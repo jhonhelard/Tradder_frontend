@@ -1,0 +1,141 @@
+<div class="row">
+    <div class="col-md-12 mt-2">
+        <div class="card shadow-element">
+            <div class="card-header">
+                <h2 class="card-title big-title fw-500">Formula Title</h2>
+            </div>
+            <div class="card-body">
+                <div class="collection-collapse-block-content">
+                    <div class="collection-brand-filter">
+                        <div class="p-field-checkbox" *ngFor="let ref of dynamicRefs; let i = index">
+                            <label class="ref-label" data-controls-modal="dynamicModal" data-backdrop="static" data-keyboard="false"
+                                data-toggle="modal" data-target="#dynamicModal" (click)="selectItem(i)">
+                                <i *ngIf="isBelongsToDynamic(ref) !== -1" class="fa fa-xs fa-circle solid" aria-hidden="true"
+                                    style="color:#007bff;"></i>
+                                <i *ngIf="isBelongsToDynamic(ref) === -1" class="fa fa-xs fa-circle" aria-hidden="true"
+                                    style="color:#007bff;font-weight: normal"></i>
+                                <!--<input type="radio"-->
+                                <!--[checked]="isBelongsToDynamic(ref)"-->
+                                <!--(click)="selectItem(i)"-->
+                                <!--data-toggle="modal" data-target="#dynamicModal"/>-->
+                                {{ref.title }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+    <div class="modal fad" id="dynamicModal" *ngIf="isShowModal">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center">
+                        <label class="formula-name-color-1 w-100 mb-0" style="font-weight: 400">Formula name</label>
+                        <label class="formula-name-color-1 w-100 mb-0">{{ selectedDynamic.title }}</label>
+                    </h5>
+                    <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                </div>
+                <div class="modal-body">
+                    <div class="card shadow-element">
+                        
+                        <div class="d-flex">
+                            <div class=" right-item card-body">
+                                <label class="mb-0">Help :&nbsp;
+                                    <span class="help-text">
+                                        {{ selectedDynamic.help }}
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="partial-right">
+                        
+                        <div class="row right-item">
+                            <div class="card shadow-element mb-0 w-100">
+                                <div class="card-header">
+                                    <h2 class="card-title big-title fw-500">Parameter </h2>
+                                </div>
+                                
+                                    <div *ngIf="selectedDynamic.values.length > 0">
+                                        <div class="row" *ngFor="let valueItem of selectedDynamic.values; let i = index">
+                                            <div class="col-md-12">
+                                                <div class="card-body">
+                                                    <div class="row mb-2 align-items-center">
+                                                        <div class="col-md-4">
+                                                            <span class="param-label">{{ valueItem.name }}</span>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <input class="param-input form-control" type="number" title="attribute" [(ngModel)]="valueItem.value"
+                                                                [class]="errors[i] ? 'text-danger' : ''" (input)="onChangeValue(valueItem.value, i)" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-2 align-items-center">
+                                                        <div class="col-md-4">
+                                                            <span class="param-label">Minimum Value:</span>
+                                                        </div>
+                                                        <div class="col-md-8 param-label">
+                                                            {{ valueItem.min }}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-2 align-items-center">
+                                                        <div class="col-md-4">
+                                                            <span class="param-label">Maximum Value:</span>
+                                                        </div>
+                                                        <div class="col-md-8 param-label">
+                                                            {{ valueItem.max }}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-2 align-items-center">
+                                                        <div class="col-md-4">
+                                                            <span class="param-label">Parameter Help:</span>
+                                                        </div>
+                                                        <div class="col-md-8 param-label">
+                                                            {{ valueItem.help }}
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    
+                                                    
+                                                    
+                                                </div>
+                                                <hr class="w-100 m-0" *ngIf="selectedDynamic.values.indexOf(valueItem) < selectedDynamic.values.length - 1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="card">
+
+                    </div>
+                    <div class="row m-auto">
+                        <button class="btn btn-primary"
+                                data-dismiss="modal"
+                                (click)="saveDynamicItem()"
+                                [disabled]="!isValidButton()">
+                            Add to Scan
+                        </button>
+                        <button class="btn btn-primary ml-2"
+                                *ngIf="isBelongsToDynamic(selectedDynamic) !== -1"
+                                data-dismiss="modal"
+                                (click)="removeDynamicItem()">Remove from Scan</button>
+                        <button type="button" class="btn btn-primary ml-2 cancel-btn"
+                                data-dismiss="modal"
+                                (click)="isShowModal = false;">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

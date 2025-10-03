@@ -1,0 +1,35 @@
+<div class="row m-0">
+    <div class="col-12 col-lg-6 pl-md-0">
+        <div class="card shadow-element">
+            <div class="card-header">
+                <h2 class="card-title big-title fw-500">
+                    Dow Industrials
+                </h2>
+            </div>
+            <div class="card-body app-chart-home"><a href="https://trucharts.com/stockchart/DIA">
+                <app-chart
+                    url="{{oldwebsiteUrl}}/Chart.aspx?Provider=DB&Code=DIA&Type=3&Scale=0&IND=VOLMA(50);&OVER=MA(50);MA(13)&Skin={{viewMode === 'light-mode' ? 'GreenRed' : 'Black'}}&Size=495*240&RT=1&Start={{sStartDate}}&End={{sEndDate}}&Layout={{viewMode === 'light-mode' ? '2Line' : '2LineBlack'}};{{viewMode === 'light-mode' ? 'Default;Price;HisDate' : 'DefaultBlack'}}&Cycle=DAY1&His=0">
+                </app-chart>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6 pr-md-0">
+        <div class="card shadow-element">
+            <div class="card-header">
+                <h2 class="card-title big-title fw-500">
+                    S&P 500
+                </h2>
+            </div>
+            <div class="card-body app-chart-home"><a href="https://trucharts.com/stockchart/SPY">
+                <app-chart
+                    url="{{oldwebsiteUrl}}/Chart.aspx?Provider=DB&code=SPY&Type=3&Scale=0&IND=VOLMA(50);&OVER=MA(50);MA(13)&Skin={{viewMode === 'light-mode' ? 'GreenRed' : 'Black'}}&Size=495*240&RT=1&Start={{sStartDate}}&End={{sEndDate}}&Layout=Layout={{viewMode === 'light-mode' ? '2Line' : '2LineBlack'}};{{viewMode === 'light-mode' ? 'Default;Price;HisDate' : 'DefaultBlack'}}&Cycle=DAY1&His=0">
+                </app-chart>
+            </a>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="col-12 col-lg-4">
+        <app-chart url="https://trucharts.com/Chart.aspx?Provider=DB&Code=GDX&Type=3&Scale=0&IND=VOLMA(50);&OVER=MA(25)&Skin={{viewMode === 'light-mode' ? 'GreenRed' : 'Black'}}&Size=495*240&RT=1&Start=20200520&End=20200720&Layout=2LineBlack;DefaultBlack;HisDate&Cycle=DAY1"></app-chart>
+    </div> -->
+</div>

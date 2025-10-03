@@ -1,0 +1,257 @@
+<!-- ==== Preloader :: End ==== -->
+<!-- ==== Header Area :: Start ==== -->
+<header>
+	<div class="container position-relative">
+		<div class="row align-items-center active-menus">
+			<div class="col-xxl-3 col-lg-2 col-2">
+				<!-- logo start -->
+				<a href="/" class="d-inline-block logo">
+					<img
+						src="../../../assets/dist/img/logo.png"
+						alt="AdminLTE Logo"
+						class="brand-image"
+						*ngIf="viewMode === 'light-mode' || viewMode == null || viewMode == undefined"
+					/>
+					<img
+						src="../../../assets/dist/img/trucharts_png_new_20200723_134930895.png"
+						alt="AdminLTE Logo"
+						class="brand-image"
+						*ngIf="viewMode === 'night-mode' && viewMode != null && viewMode != undefined"
+					/>
+				</a>
+				<!-- logo end -->
+			</div>
+			<div class="col-xxl-6 col-lg-6 col-4">
+				<div class="menu--wrapper">
+					<!-- search wrapper start -->
+					<form action="#">
+						<div class="input--group">
+							<p-autoComplete
+								id="capitalizeInput"
+								#autocomplete
+								[(ngModel)]="text"
+								name="text"
+								[suggestions]="results | async"
+								(completeMethod)="search($event)"
+								styleClass="w-100 analyze-textbox"
+								inputStyleClass="form-control"
+								placeholder="Search Symbol or Company"
+								[autoHighlight]="false"
+								emptyMessage="No company found!"
+								field="ticker"
+								(onSelect)="onSelect($event)"
+								(onKeyUp)="onKeyUp($event)"
+								(onClear)="clearInput()"
+							>
+								<ng-template let-item pTemplate="item">
+									<div class="ui-helper-clearfix container">
+										<div class="row w-100 pr-2">
+											<div class="col-2">{{ item.ticker }}</div>
+											<div class="col-8">{{ item.company }}</div>
+											<div class="col-2">
+												<i>{{ item.exchange }}</i>
+											</div>
+										</div>
+									</div>
+								</ng-template>
+							</p-autoComplete>
+						</div>
+					</form>
+					<!-- search wrapper start -->
+					<!-- menu start -->
+					<ul class="menu">
+						<li class="dropdown--toggle">
+							<a class="tools" href="#">Tools</a>
+							<ul class="dropdown--menu shadow">
+								<li>
+									<a [routerLink]="['/stockchart', latestSymbol]">Stockcharts</a>
+								</li>
+								<li>
+									<a [routerLink]="['/screener']">Screener</a>
+								</li>
+								<li>
+									<a [routerLink]="['/market-report']">Market Reports</a>
+								</li>
+								<li>
+									<a [routerLink]="['/heatmap']">Heatmap</a>
+								</li>
+								<li>
+									<a [routerLink]="['/charts']">Multi Charts</a>
+								</li>
+								<li>
+									<a href="https://www.youtube.com/@Trucharts" target="_blank">Videos </a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a [routerLink]="['/subscript']" class="nav-link">Pricing</a>
+						</li>
+						
+						<li>
+							<a href="/news">News</a>
+						</li>
+						
+					</ul>
+				</div>
+			</div>
+			<div class="col-xxl-3 col-lg-4 col-6">
+				<!-- header btn area start -->
+				<div class="header--btn--area">
+					<div class="mode--toggler">
+						<input #checkboxTheme type="checkbox" class="checkbox" id="checkbox" />
+						<label (click)="switchMode()" for="checkbox" class="checkbox-label">
+							<i class="bx bx-sun"></i>
+							<i class="bx bx-moon"></i>
+							<span class="ball"></span>
+						</label>
+					</div>
+					<div class="btn--area">
+						<!-- <a *ngIf="!isLoggedIn" [routerLink]="['/subscript']" class="button btn--one ml_15">Try For Free</a> -->
+						<a *ngIf="!isLoggedIn"  (click)="doRegister()" class="button btn--two ml_15">Try For Free</a>
+						<a *ngIf="!isLoggedIn" (click)="performLogin()" class="button btn--two ml_15">Log In</a>
+						<ul *ngIf="isLoggedIn" class="profile-login menu ml_15">
+							<li class="dropdown--toggle">
+								<a>Profile</a>
+								<ul class="dropdown--menu shadow">
+									<li *ngIf="isLoggedIn">
+										<a [routerLink]="['/subscript-change']" class="nav-link"><i class="fas fa-business-time mr-2"></i>Change Plan</a>
+									</li>
+									<li *ngIf="isLoggedIn">
+										<a [routerLink]="['/customer-card-list']" class="nav-link"><i class="fas fa-credit-card mr-2"></i>Manage Cards</a>
+									</li>
+									<li (click)="performChangePasword()">
+										<a> <i class="fas fa-key mr-2"></i> Change password </a>
+									</li>
+									<li (click)="onLoginToTradierClick()">
+										<a>
+											<img
+												style="width: 20px"
+												src="../../../assets/dist/img/traderIcon.png"
+												alt="Logo"
+											/>&nbsp; Login To Tradier
+										</a>
+									</li>
+									<li (click)="performLogout()">
+										<a> <i class="fas fa-sign-out-alt mr-2"></i> Logout </a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- header btn area end -->
+			</div>
+		</div>
+		<!-- menu toggler -->
+		<div class="hamburger-menu">
+			<span class="line-top"></span>
+			<span class="line-center"></span>
+			<span class="line-bottom"></span>
+		</div>
+		<!-- mobile menu -->
+		<div class="mobile--menu--wrapper">
+			<!-- <div class="toggle--area d-none">
+				<div class="mode--toggler">
+					<input #checkboxTheme type="checkbox" class="checkbox" id="checkbox" />
+					<label (click)="switchMode()" for="checkbox" class="checkbox-label">
+						<i class="bx bx-sun"></i>
+						<i class="bx bx-moon"></i>
+						<span class="ball"></span>
+					</label>
+				</div>
+			</div> -->
+			<!-- menu start -->
+			<ul class="menu mobile--menu pt-3">
+				<li class="dropdown--toggle">
+					<a>Tools</a>
+					<ul class="dropdown--menu shadow active-dropdown">
+						<li class="item-mobile-dropdown">
+							<a [routerLink]="['/stockchart', latestSymbol]">Stockcharts</a>
+						</li>
+						<li class="item-mobile-dropdown">
+							<a [routerLink]="['/screener']">Screener</a>
+						</li>
+						<li class="item-mobile-dropdown">
+							<a [routerLink]="['/market-report']">Market Reports</a>
+						</li>
+						<li class="item-mobile-dropdown">
+							<a [routerLink]="['/heatmap']">Heatmap</a>
+						</li>
+						<li class="item-mobile-dropdown">
+							<a [routerLink]="['/charts']">Multi Charts</a>
+						</li>
+						<li class="item-mobile-dropdown">
+							<a href="https://www.youtube.com/@Trucharts" target="_blank">Videos </a>
+						</li>
+					</ul>
+				</li>
+				<li class="item-mobile-dropdown">
+					<a [routerLink]="['/subscript']">Pricing</a>
+				</li>
+				<li>
+					<a href="/news">News</a>
+				</li>
+			</ul>
+			<ul *ngIf="isLoggedIn" class="menu mobile--menu">
+				<li class="dropdown--toggle">
+					<a>Profile</a>
+					<ul class="dropdown--menu shadow active-dropdown">
+						<li (click)="performChangePasword()">
+							<a> <i class="fas fa-key mr-2"></i> Change password </a>
+						</li>
+						<li (click)="onLoginToTradierClick()">
+							<a
+								><img
+									style="width: 20px"
+									src="../../../assets/dist/img/traderIcon.png"
+									alt="Logo"
+								/>&nbsp; Login To Tradier
+							</a>
+						</li>
+						<li (click)="performLogout()">
+							<a> <i class="fas fa-sign-out-alt mr-2"></i> Logout </a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<a *ngIf="!isLoggedIn" class="button btn--two--mobile mt_25" (click)="performLogin()"
+				>Login</a
+			>
+		</div>
+		<!-- search wrapper start -->
+		<form action="#" class="d-lg-none search-header-mobile pt-3 w-100">
+			<div class="input--group">
+				<p-autoComplete
+					id="capitalizeInput"
+					#autocomplete
+					[(ngModel)]="text"
+					name="text"
+					[suggestions]="results | async"
+					(completeMethod)="search($event)"
+					styleClass="w-100 analyze-textbox"
+					inputStyleClass="form-control"
+					placeholder="Search Symbol or Company"
+					[autoHighlight]="false"
+					emptyMessage="No company found!"
+					field="ticker"
+					(onSelect)="onSelect($event)"
+					(onKeyUp)="onKeyUp($event)"
+					(onClear)="clearInput()"
+				>
+					<ng-template let-item pTemplate="item">
+						<div class="ui-helper-clearfix container">
+							<div class="row w-100 pr-2">
+								<div class="col-2">{{ item.ticker }}</div>
+								<div class="col-8">{{ item.company }}</div>
+								<div class="col-2">
+									<i>{{ item.exchange }}</i>
+								</div>
+							</div>
+						</div>
+					</ng-template>
+				</p-autoComplete>
+			</div>
+		</form>
+	</div>
+</header>
+<!-- ==== Header Area :: End ==== -->

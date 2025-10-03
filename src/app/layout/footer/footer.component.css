@@ -1,0 +1,21 @@
+
+
+/* @media (min-width: 576px) {
+    .container {
+        margin: auto 3rem;
+        max-width: -webkit-fill-available !important;
+    }
+} */
+
+
+footer .email{
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 600px) {
+    .disclaimer {
+        height: 400px;
+        overflow: auto;
+    }
+} 
+

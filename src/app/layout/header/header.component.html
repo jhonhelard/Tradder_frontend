@@ -1,0 +1,610 @@
+<nav class="main-header navbar navbar-expand-lg navbar-light navbar-white new-header">
+	<div class="container mw-100 d-block d-lg-flex">
+		<a href="" class="navbar-brand">
+			<img
+				src="../../../assets/dist/img/logo.png"
+				alt="AdminLTE Logo"
+				class="brand-image"
+				*ngIf="viewMode === 'light-mode' || viewMode == null || viewMode == undefined"
+			/>
+			<img
+				src="../../../assets/dist/img/trucharts_png_new_20200723_134930895.png"
+				alt="AdminLTE Logo"
+				class="brand-image"
+				*ngIf="viewMode !== 'light-mode' && viewMode != null && viewMode != undefined"
+			/>
+		</a>
+
+		<button
+			class="navbar-toggler order-1"
+			type="button"
+			data-toggle="collapse"
+			data-target="#navbarCollapse"
+			aria-controls="navbarCollapse"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+			style="position: absolute; right: 20px; top: 20px"
+		>
+			<i class="fas fa-bars"></i>
+		</button>
+
+		<div class="collapse navbar-collapse order-3" id="navbarCollapse">
+			<ul class="navbar-nav">
+				<!-- <li class="nav-item">
+          <a [routerLink]="['/']" class="nav-link">Home</a>
+        </li> -->
+				<!-- <li class="nav-item">
+          <a [routerLink]="['/stockchart', latestSymbol]" class="nav-link"
+            >Stockcharts</a
+          >
+        </li> -->
+
+				<li class="nav-item position-relative">
+					<a
+						class="nav-link text-info"
+						data-toggle="dropdown"
+						href="#"
+						aria-haspopup="true"
+						aria-expanded="false"
+						class="nav-link dropdown-toggle"
+					>
+						Tools
+					</a>
+					<div
+						class="dropdown-menu dropdown-menu-lg dropdown-menu-right overflow-hidden"
+						style="min-width: unset; right: unset; top: 55px; right: 8px"
+					>
+						<a [routerLink]="['/stockchart', latestSymbol]" class="dropdown-item">Stockcharts</a>
+						<a [routerLink]="['/screener']" class="dropdown-item"> Screener </a>
+						<a [routerLink]="['/market-report']" class="dropdown-item"> Market Reports </a>
+						<a [routerLink]="['/heatmap']" class="dropdown-item"> Heatmap </a>
+
+						<a [routerLink]="['/charts']" class="dropdown-item">Multi Charts </a>
+						<a
+							href="https://www.youtube.com/@Trucharts"
+							target="_blank"
+							class="dropdown-item border-none"
+							>Videos</a
+						>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a [routerLink]="['/subscript']" class="nav-link">Pricing</a>
+				</li>
+				<li class="nav-item" *ngIf="!isLoggedIn">
+					<div>
+						<a class="nav-link btn-outline d-block" [routerLink]="['/subscript']"> Free Trial </a>
+					</div>
+				</li>
+				<!-- 
+        <li class="nav-item">
+          <a [routerLink]="['/screener']" class="nav-link">Screener</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/market-report']" class="nav-link"
+            >Market Reports
+          </a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/heatmap']" class="nav-link">Heatmap </a>
+        </li> 
+
+        <li class="nav-item">
+          <a [routerLink]="['/subscript']" class="nav-link">Subscribe</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/charts']" class="nav-link">Charts</a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="https://www.youtube.com/@Trucharts"
+            target="_blank"
+            class="nav-link border-none"
+            >Videos</a
+          >
+        </li>-->
+
+				<!-- <li class="nav-item">
+                    <a href="#" class="nav-link">Backtest</a>
+                </li> -->
+				<!-- <li class="nav-item">
+                    <a href="#" class="nav-link">Dividend</a>
+                </li> -->
+				<!-- <li class="nav-item dropdown">
+                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        class="nav-link dropdown-toggle">Portfolio</a>
+                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                        <li><a href="#" class="dropdown-item">My Portfolio </a></li>
+                        <li><a href="#" class="dropdown-item">Portfolio Alerts</a></li>
+                    </ul>
+                </li> -->
+
+				<!-- <li class="nav-item dropdown">
+                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        class="nav-link dropdown-toggle">Add Ons</a>
+                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                        <li><a href="#" class="dropdown-item">Some action </a></li>
+                        <li><a href="#" class="dropdown-item">Some other action</a></li>
+                    </ul>
+                </li> -->
+			</ul>
+
+			<!-- SEARCH FORM -->
+			<div class="form-inline ml-0 ml-md-3 d-none d-lg-block">
+				<div class="input-group input-group-sm">
+					<!-- <input type="text" class="form-control" placeholder="Enter Ticket"> -->
+					<p-autoComplete
+						id="capitalizeInput"
+						#autocomplete
+						[(ngModel)]="text"
+						name="text"
+						[suggestions]="results | async"
+						(completeMethod)="search($event)"
+						styleClass="w-100 analyze-textbox"
+						inputStyleClass="form-control"
+						placeholder="Search Symbol or Company"
+						[autoHighlight]="false"
+						emptyMessage="No company found!"
+						field="ticker"
+						(onSelect)="onSelect($event)"
+						(onKeyUp)="onKeyUp($event)"
+						(onClear)="clearInput()"
+					>
+						<ng-template let-item pTemplate="item">
+							<div class="ui-helper-clearfix container">
+								<div class="row w-100 pr-2">
+									<div class="col-2">{{ item.ticker }}</div>
+									<div class="col-8">{{ item.company }}</div>
+									<div class="col-2">
+										<i>{{ item.exchange }}</i>
+									</div>
+								</div>
+							</div>
+						</ng-template>
+					</p-autoComplete>
+					<span class="input-group-append">
+						<button type="button" class="btn btn-info btn-flat" (click)="analyze()">Analyze</button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<!-- Right navbar links -->
+		<ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto menu-responsive">
+			<li class="nav-item d-block d-lg-none">
+				<!-- <a href="javascript:void(0)" class="nav-link">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                        class="svg-inline--fa fa-search fa-w-16 fa-fw">
+                        <path fill="currentColor"
+                            d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+                            class=""></path>
+                    </svg>
+                </a> -->
+				<form class="form-inline ml-0 ml-md-3 d-block d-lg-none">
+					<div class="input-group input-group-sm">
+						<p-autoComplete
+							id="capitalizeInput"
+							#autocomplete
+							[(ngModel)]="text"
+							name="text"
+							[suggestions]="results | async"
+							(completeMethod)="search($event)"
+							styleClass="w-100 analyze-textbox mobile"
+							inputStyleClass="form-control"
+							placeholder="Search Symbol or Company"
+							[autoHighlight]="false"
+							emptyMessage="No company found!"
+							field="ticker"
+							(onSelect)="onSelect($event)"
+							(onKeyUp)="onKeyUp($event)"
+							(onClear)="clearInput()"
+						>
+							<ng-template let-item pTemplate="item">
+								<div class="ui-helper-clearfix container">
+									<div class="row w-100 pr-2">
+										<div class="col-2">{{ item.ticker }}</div>
+										<div class="col-8">{{ item.company }}</div>
+										<div class="col-2">
+											<i>{{ item.exchange }}</i>
+										</div>
+									</div>
+								</div>
+							</ng-template>
+						</p-autoComplete>
+
+						<span class="input-group-append">
+							<button type="button" class="btn btn-info btn-flat" (click)="analyze()">
+								<svg
+									aria-hidden="true"
+									focusable="false"
+									data-prefix="fas"
+									data-icon="search"
+									role="img"
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 512 512"
+									class="svg-inline--fa fa-search fa-w-16 fa-fw"
+								>
+									<path
+										fill="currentColor"
+										d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+										class=""
+									></path>
+								</svg>
+							</button>
+						</span>
+					</div>
+				</form>
+			</li>
+			<div class="inner-menu-wrap">
+				<li class="nav-item">
+					<a
+						href="javascript:void(0)"
+						class="nav-link"
+						(click)="switchMode('night-mode')"
+						*ngIf="viewMode === 'light-mode'"
+					>
+						<i class="fas fa-moon"></i>
+					</a>
+					<a
+						href="javascript:void(0)"
+						class="nav-link"
+						(click)="switchMode('light-mode')"
+						*ngIf="viewMode !== 'light-mode'"
+					>
+						<i class="fas fa-sun"></i>
+					</a>
+				</li>
+				<li>
+					<div class="mt-1" *ngIf="tradierdata" (click)="visibleSidebar = true">
+						<img
+							style="height: 20px; width: 20px"
+							src="../../../assets/dist/img/traderIcon.png"
+							alt="Logo"
+						/>
+					</div>
+				</li>
+
+				<!-- <ng-container *ngIf="tradierdata">
+                <li>
+                    <div class="mt-1" (click)="change()" style="cursor: pointer;float: right;">
+                        <img style="hight:20px; width: 20px;" src="../../../assets/dist/img/traderIcon.png" alt="Logo">
+                    </div>
+                </li>
+            </ng-container> -->
+
+				<!-- Notifications Dropdown Menu -->
+				<!-- <li class="nav-item dropdown">
+                <a class="nav-link text-info" data-toggle="dropdown" href="#">
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge">15</span>
+                </a> -->
+				<!-- <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-header">15 Notifications</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 4 new messages
+                        <span class="float-right text-muted text-sm">3 mins</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-users mr-2"></i> 8 friend requests
+                        <span class="float-right text-muted text-sm">12 hours</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-file mr-2"></i> 3 new reports
+                        <span class="float-right text-muted text-sm">2 days</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                </div> -->
+				<!-- </li> -->
+				<!-- <li class="nav-item" *ngIf="!isLoggedIn">
+          <div>
+            <a
+              class="nav-link btn-outline d-block"
+              [routerLink]="['/subscript']"
+            >
+              Free Trial
+            </a>
+          </div>
+        </li> -->
+				<li class="nav-item" *ngIf="isLoggedIn">
+					<a
+						class="nav-link text-info"
+						data-toggle="dropdown"
+						href="#"
+						aria-haspopup="true"
+						aria-expanded="false"
+						class="nav-link dropdown-toggle"
+					>
+						<i class="far fa-user"></i> {{ name }}
+					</a>
+					<div
+						class="dropdown-menu dropdown-menu-lg dropdown-menu-right"
+						style="min-width: unset; right: unset; top: 55px; right: 8px"
+					>
+						<a href="javascript:void(0)" class="dropdown-item" (click)="performChangePasword()">
+							<i class="fas fa-key mr-2"></i> Change password
+						</a>
+
+						<ng-container *ngIf="!tradierdata">
+							<a class="dropdown-item" (click)="onLoginToTradierClick()">
+								<img
+									style="width: 20px"
+									src="../../../assets/dist/img/traderIcon.png"
+									alt="Logo"
+								/>&nbsp; Login To Tradier
+							</a>
+						</ng-container>
+						<a href="javascript:void(0)" class="dropdown-item" (click)="performLogout()">
+							<i class="fas fa-sign-out-alt mr-2"></i> Logout
+						</a>
+					</div>
+				</li>
+				<li class="nav-item loggin-btn">
+					<div>
+						<a
+							class="nav-link text-info border-none d-block"
+							href="javascript:void(0)"
+							(click)="performLogin()"
+						>
+							Login
+						</a>
+					</div>
+				</li>
+			</div>
+			<!-- <li class="nav-item" *ngIf="isLoggedIn">
+                <a class="nav-link text-info" href="javascript:void(0)" (click)="performLogout()">
+                    Logout
+                </a>
+            </li> -->
+			<!-- <li class="nav-item dropdown">
+                <a _ngcontent-kuq-c20="" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    class="nav-link dropdown-toggle">Bharat Bhatia</a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-header">15 Notifications</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 4 new messages
+                        <span class="float-right text-muted text-sm">3 mins</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-users mr-2"></i> 8 friend requests
+                        <span class="float-right text-muted text-sm">12 hours</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-file mr-2"></i> 3 new reports
+                        <span class="float-right text-muted text-sm">2 days</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                </div>
+            </li> -->
+		</ul>
+	</div>
+</nav>
+<!-- <div class="sidenav ab border" [ngClass]="{'ab': toggle, 'mySidenav': !toggle}"> -->
+<!-- <div class="row border-bottom ml-2 mr-3">
+        <div class="col-md-10 pt-2">
+            <img class="ml-2" style="width: 180px;" src="../../../assets/dist/img/tradier-brokerage-logo.png"
+            alt="Logo">
+        </div>
+        <div class="col-md-2">
+            <span class="closebtn" (click)="closeNav()">&times;</span>
+        </div>
+    </div> -->
+<!-- <div class="border-bottom">
+        <img class="ml-4 mt-3 mb-3" style="width: 180px;" src="../../../assets/dist/img/tradier-brokerage-logo.png"
+            alt="Logo">
+    </div> -->
+<!-- <div class="row border-bottom mt-3 mb-3 ml-2 mr-3">
+        <div class="col-sm-8">Account Details</div>
+        <div class="col-sm-4 text-right font-weight-bold mb-3">{{accountNo}}</div>
+    </div>
+    <div class="pl-3 pr-3">
+        <div class="row">
+            <div class="col-sm-8">Option Buying Power</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.margin?.option_buying_power}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Stock Buying Power</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.margin?.stock_buying_power}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Stock Short Value</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.margin?.stock_short_value}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Account Type</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.account_type}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Close Pl</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.close_pl}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Current Requirement</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.current_requirement}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Equity</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.equity}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Long Market Value</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.long_market_value}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Market Value</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.market_value}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Open Pl</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.open_pl}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Option Long Value</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.option_long_value}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Option Requirement</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.option_requirement}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Pending Orders Count</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.pending_orders_count}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Short Market Value</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.short_market_value}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Stock Long Value</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.stock_long_value}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Total Cash</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.total_cash}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Uncleared Funds</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.uncleared_funds}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">Pending Cash</div>
+            <div class="col-sm-4 text-right font-weight-bold">{{tradierdata?.balances?.pending_cash}}</div>
+        </div>
+    </div> -->
+
+<!-- </div> -->
+
+<p-sidebar
+	[(visible)]="visibleSidebar"
+	position="right"
+	[style]="{ width: '23.5em', 'overflow-x': 'scroll' }"
+	[baseZIndex]="10000"
+>
+	<img
+		class="ml-2 mb-5"
+		style="width: 180px"
+		src="../../../assets/dist/img/tradier-brokerage-logo.png"
+		alt="Logo"
+	/>
+	<div class="row border-bottom mb-4">
+		<div class="col-sm-8">Account Details</div>
+		<div class="col-sm-4 text-right font-weight-bold mb-3">{{ accountNo }}</div>
+	</div>
+	<div>
+		<div class="row">
+			<div class="col">Option Buying Power</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.margin?.option_buying_power }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Stock Buying Power</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.margin?.stock_buying_power }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Stock Short Value</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.margin?.stock_short_value }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Account Type</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.account_type }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Close Pl</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.close_pl }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Current Requirement</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.current_requirement }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Equity</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.equity }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Long Market Value</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.long_market_value }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Market Value</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.market_value }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Open Pl</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.open_pl }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Option Long Value</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.option_long_value }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Option Requirement</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.option_requirement }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Pending Orders Count</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.pending_orders_count }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Short Market Value</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.short_market_value }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Stock Long Value</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.stock_long_value }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Total Cash</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.total_cash }}
+			</div>
+		</div>
+		<div class="row mt-1">
+			<div class="col">Uncleared Funds</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.uncleared_funds }}
+			</div>
+		</div>
+		<div class="row mt-1 mb-3">
+			<div class="col">Pending Cash</div>
+			<div class="col text-right font-weight-bold">
+				{{ tradierdata?.balances?.pending_cash }}
+			</div>
+		</div>
+	</div>
+</p-sidebar>

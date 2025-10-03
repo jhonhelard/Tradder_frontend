@@ -1,0 +1,34 @@
+<div id="collapse1" class="table table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Type</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Side</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Status</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Avg Fill Price</th>
+                <th scope="col">Exec Quantity</th>
+                <th scope="col">Remaining Quantity</th>
+                <th scope="col">Transaction Date</th>
+                <th scope="col">Class</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of orders">
+                <td>{{data.type}}</td>
+                <td>{{data.symbol}}</td>
+                <td>{{data.side}}</td>
+                <td>{{data.quantity}}</td>
+                <td>{{data.status}}</td>
+                <td>{{data.duration}}</td>
+                <td>{{data.avg_fill_price}}</td>
+                <td>{{data.exec_quantity}}</td>
+                <td>{{data.remaining_quantity}}</td>
+                <td>{{data.transaction_date | date:'dd MMM yyyy hh:mm'}}</td>
+                <td>{{data.class}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

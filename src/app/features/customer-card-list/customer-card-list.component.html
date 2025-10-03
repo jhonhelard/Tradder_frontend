@@ -1,0 +1,94 @@
+<div class="content-wrapper bg-transparent">
+	<div class="topmost">
+		<div class="container">
+			<h2>Credit Cards</h2>
+			<div class="card-deck">
+				<div *ngFor="let card of cardsData"
+					class="col-lg-4 col-sm-12">
+					<div class="payment-card">
+						<div class="container mt-1">
+							<i class="fab fa-cc-{{card.brand}} payment-icon-big"></i>
+							<h2>
+								{{ card.cardNumber }}
+							</h2>
+							<div class="row">
+								<div class="col-sm-6">
+									<small>
+										<strong>Expiry date:</strong>
+										{{ card.expiryDate }}
+									</small>
+								</div>
+								<div class="col-sm-6 text-right">
+									<small>
+										<strong>Name:</strong>
+										{{ card.cardHolder }}
+									</small>
+								</div>
+							</div>
+							<div class="pt-3">
+								<button (click)="deleteCard(card)"
+									class="btn btn-danger w-100">
+									Remove
+								</button>
+							</div>
+							<div class="powered-by text-right">
+								<span class="mr-1">Powered by</span>
+								<span class="fab fa-cc-stripe icon-small mt-1"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div [hidden]="creatingcard"
+					class="payment-card">
+					<div class="container mt-1">
+						<i class="fab fa-cc-stripe payment-icon-big"></i>
+						<div class="row">
+							<div class="d-flex justify-content-center">
+								<button (click)="addCard()"
+									class="btn btn-transparent">
+									<i class="fas fa-plus fa-8x"></i>
+								</button>
+							</div>
+						</div>
+
+						<div class="powered-by text-right">
+							<span class="mr-1">Powered by</span>
+							<span class="fab fa-cc-stripe icon-small mt-1"></span>
+						</div>
+					</div>
+				</div>
+				<div [hidden]="!creatingcard"
+					class="payment-card">
+					<div class="container mt-5">
+						<div class="row">
+							<div id="cardNumber"></div>
+						</div>
+						<div class="row">
+							<div id="cardExpiry"
+								class="col-sm-6 ">
+							</div>
+
+							<div id="cardCvc"
+								class="col-sm-6 ">
+							</div>
+						</div>
+						<div class="row">
+							<div [hidden]="!cardCreationVisible"
+								class="pt-3">
+								<button (click)="submitCard()"
+									class="btn btn-primary  w-100">
+									Save
+								</button>
+							</div>
+							<div [hidden]="!cardCreationVisible"
+								class="powered-by text-right">
+								<span class="mr-1">Powered by</span>
+								<span class="fab fa-cc-stripe icon-small mt-1"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

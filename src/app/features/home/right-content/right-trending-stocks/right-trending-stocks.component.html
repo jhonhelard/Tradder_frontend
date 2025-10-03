@@ -1,0 +1,116 @@
+<div class="card shadow-element">
+  <div
+    class="card-header d-flex align-items-center justify-content-between after-none"
+  >
+    <!-- <h2 class="card-title big-title d-block fw-500">
+            <i class="fas fa-chart-line mr-3"></i>
+            Trending Stocks
+        </h2> -->
+    <h2 class="card-title fw-500 big-title d-flex align-items-center">
+      <div
+        class="icon-wrap d-flex align-items-center justify-content-center mr-2 text-yellow-1 bg-yellow-1-light"
+      >
+        <i class="fas fa-chart-line"></i>
+      </div>
+      Trending Stocks
+    </h2>
+    <div class="text-right">
+      <a href="#" class="show-all-link">Show all</a>
+    </div>
+  </div>
+  <!-- /.card-header -->
+  <!-- table-responsive-wrap -->
+  <!--  class="table-responsive" -->
+  <div class="card-body flat-table pointer">
+    <p-table [columns]="cols" [value]="tableData">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th
+            *ngFor="let col of columns"
+            [class]="col.field === 'symbol' ? 'text-left' : 'text-right'"
+          >
+            {{ col.header }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr
+          class="extra-row"
+          #tr
+          id="#row{{ rowData.ticker }}"
+          [tooltip]="popTemplate"
+          (mouseover)="getTooltipHtml(rowData)"
+          (click)="onSymbolSelected($event, rowData.ticker)"
+        >
+          <td [attr.colspan]="columns.length">
+            <table>
+              <tr>
+                <ng-container
+                  *ngFor="let col of columns"
+                  [ngSwitch]="col.field"
+                >
+                  <td
+                    [class]="
+                      col.field === 'ticker'
+                        ? 'text-left text-info'
+                        : 'text-right'
+                    "
+                    *ngSwitchCase="'percentChange'"
+                  >
+                    <span
+                      [class]="
+                        rowData[col.field] >= 0 ? 'text-success' : 'text-danger'
+                      "
+                      >{{ rowData[col.field] | number : "1.2-2" }}</span
+                    >
+                  </td>
+                  <td class="text-right" *ngSwitchCase="'volume'">
+                    {{ rowData[col.field] | ticketVolume }}
+                  </td>
+                  <td
+                    [class]="
+                      col.field === 'ticker'
+                        ? 'text-left text-info'
+                        : 'text-right'
+                    "
+                    *ngSwitchDefault
+                  >
+                    {{ rowData[col.field] }}
+                  </td>
+                </ng-container>
+              </tr>
+              <tr class="row-append">
+                <td [attr.colspan]="columns.length" class="py-1">
+                  <div class="row">
+                    <div class="col-8 text-left">
+                      <small>{{ rowData["companyName"] }}</small>
+                    </div>
+                    <div class="col-4 text-right">
+                      <button
+                        type="button"
+                        class="btn btn-success btn-xs mr-2"
+                        (click)="onBuyClick(rowData.symbol)"
+                      >
+                        Buy
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-danger btn-xs"
+                        (click)="onSellClick(rowData.symbol)"
+                      >
+                        Sell
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <!-- /.card-body -->
+</div>
+
+<ng-template #popTemplate><div [innerHtml]="html"></div></ng-template>

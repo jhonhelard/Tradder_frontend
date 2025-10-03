@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+		<meta charset="utf-8" />
+		<title>
+			Trucharts | Technical Stock charts | Stock Screener | Backtesting | Earnings | Dividend
+		</title>
+		<base href="/" />
+		<link rel="stylesheet" href="./assets/new-layout/css/bootstrap.min.css" />
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="./assets/plugins/fontawesome-free/css/all.css" />
+		<!-- Ionicons -->
+		<link
+			rel="stylesheet"
+			href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+		/>
+		<!-- overlayScrollbars -->
+		<link rel="stylesheet" href="./assets/dist/css/adminlte.css" />
+		<!-- Google Font: Source Sans Pro -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+			rel="stylesheet"
+		/>
+		<!-- jQuery -->
+		<script src="./assets/plugins/jquery/jquery.js"></script>
+		<!-- Bootstrap 4 -->
+		<script src="./assets/plugins/bootstrap/js/bootstrap.bundle.js"></script>
+		<!-- AdminLTE App -->
+		<script src="./assets/dist/js/adminlte.js"></script>
+		<script src="https://www.youtube.com/iframe_api"></script>
+		<!-- Custom Javascript -->
+		<script src="./assets/new-layout/js/plugins.js"></script>
+		<script src="./assets/new-layout/js/main.js"></script>
+		<script src="./assets/new-layout/js/lottie-player.js"></script>
+		<!-- All CSS Links -->
+		<link rel="stylesheet" href="./assets/new-layout/css/owl.carousel.min.css" />
+		<link rel="stylesheet" href="./assets/new-layout/boxicons/css/boxicons.min.css" />
+		<link rel="stylesheet" href="./assets/new-layout/css/helper.css" />
+		<link rel="stylesheet" href="./assets/new-layout/css/main.css" />
+		<link rel="stylesheet" href="./assets/new-layout/css/responsive.css" />
+
+		<!-- Google tag (gtag.js) -->
+		<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1016588156"></script>
+  <script> window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'AW-1016588156'); </script> -->
+	</head>
+
+	<body class="hold-transition layout-top-nav">
+		<app-root></app-root>
+		<!-- AdminLTE for demo purposes -->
+		<!-- <script src="../../dist/js/demo.js"></script> -->
+		<script>
+			// $(function () {
+			//   setTimeout(() => {
+			//     $('[data-toggle="tooltip"]').tooltip()
+			//   }, 10000);
+			// })
+			document.addEventListener('readystatechange', (event) => {
+				// When window loaded ( external resources are loaded too- `css`,`src`, etc...)
+				if (event.target.readyState === 'complete') {
+					$('[data-toggle="tooltip"]').tooltip();
+				}
+			});
+
+			(function (i, s, o, g, r, a, m) {
+				i['GoogleAnalyticsObject'] = r;
+				(i[r] =
+					i[r] ||
+					function () {
+						(i[r].q = i[r].q || []).push(arguments);
+					}),
+					(i[r].l = 1 * new Date());
+				(a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+				a.async = 1;
+				a.src = g;
+				m.parentNode.insertBefore(a, m);
+			})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+			//ga('create', 'UA-48010759-1', 'trucharts.com');
+			ga('create', 'UA-48010759-1', 'auto');
+		</script>
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-2TWGFB5FWS"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', 'G-2TWGFB5FWS');
+		</script>
+
+		<!-- <script> 
+      function welcome() { 
+      window.open("https://trucharts.com/subscript#lepopup-trading","_blank")
+      } 
+      </script>
+
+<script id="lepopup-remote" src="https://tc.prernatherapy.com/wp-content/plugins/halfdata-green-popups/js/lepopup.js?ver=7.34" data-handler="https://tc.prernatherapy.com/wp-admin/admin-ajax.php"></script> -->
+	</body>
+</html>

@@ -1,0 +1,149 @@
+.partial {
+    /*border: solid 1px #cec9c9;*/
+    /*padding: 45px 0.5em 0.5em 0.5em;*/
+    /*border-radius: 5px;*/
+}
+.partial-right {
+    padding: 1em 0.5em;
+}
+.formula-name {
+    background: black;
+    padding: 8px;
+    border-radius: 5px 5px 0 0;
+}
+.collection-collapse-block {
+    border: 1px solid #dddddd !important;
+    padding: 1em;
+    /*background: #f8f9fa;*/
+    border-radius: 5px;
+}
+.collection-collapse-block.open .collection-collapse-block-content {
+    height: 120px;
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+.collection-collapse-block-content .collection-brand-filter {
+    height: 120px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.right-collection-collapse-block {
+    border: 1px solid #dddddd !important;
+    border-radius: 0 0 5px 5px;
+}
+.right-collection-collapse-block.open .right-collection-collapse-block-content {
+    max-height: 205px;
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+.right-collection-collapse-block .right-collection-collapse-block-content .right-collection-brand-filter {
+    max-height: 205px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.modal-header {
+    border: none;
+    background: var(--primary-hover);
+}
+.modal-footer {
+        border-top: 1px solid rgba(0, 0, 0, 0.125);
+    background-color: transparent;
+}
+
+.modal-block {
+    border: 1px solid #dddddd !important;
+    border-radius: 0 0 5px 5px;
+}
+.modal-block.open .modal-block-content {
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+.modal-block .modal-block-content .modal-brand-filter {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+:host::ng-deep .ui-chkbox-icon.ui-clickable.pi.pi-check {
+    display: none;
+}
+:host::ng-deep .ui-chkbox .ui-chkbox-box {
+    border: 1px solid #a6a6a6;
+    background-color: #ffffff;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    border-radius: 50%;
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    margin: 0 7px 0 3px;
+}
+:host::ng-deep .ui-chkbox-label {
+    vertical-align: initial;
+    font-weight: 100 !important;
+}
+:host::ng-deep .ui-chkbox-label:hover {
+    cursor: pointer;
+}
+
+:host::ng-deep .modal-body{
+    background-color: #ffffff;
+}
+.ref-label {
+    vertical-align: initial;
+    font-weight: 500 !important;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+        padding: 0px 20px;
+    position: relative;
+}
+.ref-label:hover {
+    cursor: pointer;
+}
+.p-field-checkbox {
+    margin: 0.3em 0;
+    width: 25%;
+    float: left;
+}
+.ref-label  i{
+    padding-right: 5px;
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+@media screen and (max-width: 550px) {
+    .p-field-checkbox {
+        width: 100%;
+    }
+}
+
+.formula-name-color-1 {
+    color: white;
+}
+.formula-name-color-2 {
+    color: yellow;
+}
+/* .right-item {
+    border: solid 1px #dddddd;
+    border-radius: 5px;
+    background: #f8f9fa;
+    padding: 0.5em;
+    margin: 0 0 1em 0;
+} */
+.help-text {
+    font-weight: 100;
+}
+.param-label {
+    font-family: "Poppins", sans-serif;
+    /* width: 150px; */
+    font-size: 14px;
+    
+}
+.param-input {
+    /* width: 150px; */
+    border-radius: 3px;
+    font-family: "Poppins", sans-serif;
+   
+}

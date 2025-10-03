@@ -1,0 +1,139 @@
+<div class="card shadow-element">
+  <div class="card-header">
+    <h3 class="card-title fw-500 big-title d-flex align-items-center w-100">
+      <div
+        class="icon-wrap d-flex align-items-center justify-content-center mr-2"
+        [ngClass]="{
+          'text-green-1 bg-green-1-light': status === 'up',
+          'text-red-1 bg-red-1-light': status === 'down',
+          'text-yellow-1 bg-yellow-1-light': status === 'neutral'
+        }"
+      >
+        <i [class]="'fas ' + iconTitle"></i>
+      </div>
+      {{ title }}
+    </h3>
+  </div>
+  <div class="card-body flat-table pointer">
+    <!-- <p-table responsiveLayout="scroll" [value]="products">
+            <ng-template pTemplate="caption">
+                Scroll
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th>Name </th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Reviews</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product let-columns="columns">
+                <tr>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price | currency:'USD'}}</td>
+                    <td>{{product.category}}</td>
+                    <td>{{product.quantity}}</td>
+                    <td><span [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span>
+                    </td>
+                    <td>
+                        <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table> -->
+    <!-- <div class="table-responsive-wrap" [ngClass]="{'removeScroll': isTableRowMouseover}"> -->
+    <!-- [scrollable]="false" class="table-responsive" -->
+    <p-table [columns]="cols" [value]="tableData">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th
+            *ngFor="let col of columns"
+            class="light"
+            [class]="col.field === 'symbol' ? 'text-left' : 'text-right'"
+          >
+            {{ col.header }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr
+          class="extra-row"
+          #tr
+          id="#row{{ rowData.ticker }}"
+          (click)="onSymbolSelected($event, rowData.ticker)"
+          [tooltip]="popTemplate"
+          (mouseover)="getTooltipHtml(rowData)"
+          (mouseleave)="onMouseLeave()"
+        >
+          <td [attr.colspan]="columns.length">
+            <table>
+              <tr>
+                <ng-container
+                  *ngFor="let col of columns"
+                  [ngSwitch]="col.field"
+                >
+                  <td class="text-right" *ngSwitchCase="'ticker'">
+                    <span
+                      [class]="
+                        rowData[col.field] >= 0 ? 'text-success' : 'text-danger'
+                      "
+                      >{{ rowData[col.field] }}</span
+                    >
+                  </td>
+                  <td class="text-right" *ngSwitchCase="'volume'">
+                    {{ rowData[col.field] | ticketVolume }}
+                  </td>
+                  <td
+                    [class]="
+                      col.field === 'changePercent'
+                        ? 'text-left text-info'
+                        : 'text-right'
+                    "
+                    *ngSwitchDefault
+                  >
+                    {{ rowData[col.field] | number : "1.2-2" }}
+                  </td>
+                </ng-container>
+              </tr>
+              <tr class="row-append">
+                <td [attr.colspan]="columns.length" class="py-1">
+                  <div class="row">
+                    <div class="col-8 text-left">
+                      <small>{{ rowData["companyName"] }}</small>
+                    </div>
+                    <div class="col-4 text-right">
+                      <button
+                        type="button"
+                        class="btn btn-success btn-xs mr-2"
+                        (click)="onBuyClick(rowData.symbol)"
+                      >
+                        Buy
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-danger btn-xs"
+                        (click)="onSellClick(rowData.symbol)"
+                      >
+                        Sell
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <!-- </div> -->
+    <div class="d-block float-right mt-2">
+      <a href="#" class="show-all-link">Show all</a>
+    </div>
+  </div>
+</div>
+
+<ng-template #popTemplate>
+  <div [innerHtml]="html"></div>
+</ng-template>

@@ -1,0 +1,24 @@
+<!-- Site wrapper -->
+<div class="wrapper" [class.night-mode]="viewMode === 'night-mode'" [class.light-mode]="viewMode === 'light-mode'">
+  <!-- Navbar -->
+  <app-header [viewMode]="viewMode" (loginEmitter)="showLoginModal($event)" (changePasswordEmitter)="showChangePasswordModel($event)">
+  </app-header>
+
+  <router-outlet></router-outlet>
+  <app-symbol-alert *ngIf="isLoggedIn" [class.d-none]="!isAlertModal"
+  (closeAlertEmitter)="hideAlertSettingModal($event)"></app-symbol-alert>
+  
+  <app-login *ngIf="!isLoggedIn" [class.d-none]="!isLogginIn" (closeLoginEmitter)="hideLoginModal($event)"
+    (logginSuccessEmitter)="onLoggedIn($event)" (onRegistering)="showRegisterModal($event)"
+    (onForgotingPassword)="showForgotPasswordModal($event)"></app-login>
+  <app-register *ngIf="!isLoggedIn" [class.d-none]="!isRegisting" (closeRegisterEmitter)="hideRegisterModal($event)"
+    (onLoginEmitter)="showLoginModal($event)">
+  </app-register>
+  <app-change-password *ngIf="isLoggedIn" [class.d-none]="!isChangingPassword"
+    (closeRegisterEmitter)="hideChangePasswordModel($event)">
+  </app-change-password>
+  <app-forgot-password *ngIf="!isLoggedIn" [class.d-none]="!isForgottingPassword"
+    (closeRegisterEmitter)="hideChangePasswordModel($event)">
+  </app-forgot-password>
+  <app-footer></app-footer>
+</div>

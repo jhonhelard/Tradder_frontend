@@ -1,0 +1,140 @@
+<div class="position-relative">
+    <div *ngIf="isScanning" class="col-12 text-center scanning-div">
+        <i class="fas fa-3x fa-sync-alt fa-spin text-muted"></i>
+    </div>
+    <div class="card rounded-0" [class]="isScanning ? 'scan-result' : ''">
+        <div class="card-header px-2 mx-0 border-0 pb-3">
+            <h3 class="card-title big-title d-block w-100">
+                <strong>{{title}}</strong>
+            </h3>
+        </div>
+        <div class="card-body flat-table pointer px-2 pt-1">
+            <div class="row">
+                <div class="col-12 flat-table">
+                    <div class="ui-table-wrapper table-responsive-sm">
+                        <p-table [columns]="cols" [value]="tableData"
+                                 tableStyleClass="table w-auto w-md-100">
+                            <ng-template pTemplate="header" let-columns>
+                                <tr>
+                                    <ng-container *ngFor="let col of columns" [ngSwitch]="col.field">
+                                        <th class="text-center favourite" *ngSwitchCase="''" >
+                                            {{ col.header }}
+                                        </th>
+                                        <th class="text-left" *ngSwitchCase="'ticker'"
+                                            [pSortableColumn]="col.field" >
+                                            {{col.header}}
+                                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                                        </th>
+                                        <th class="text-left company" *ngSwitchCase="'company'"
+                                            [pSortableColumn]="col.field" >
+                                            {{col.header}}
+                                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                                        </th>
+                                        <th class="text-center" *ngSwitchCase="'option'"
+                                            [pSortableColumn]="col.field" >
+                                            {{col.header}}
+                                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                                        </th>
+                                        <th class="text-right"  *ngSwitchDefault
+                                            [pSortableColumn]="col.field" >
+                                            {{col.header}}
+                                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                                        </th>
+                                    </ng-container>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                                <tr class="extra-row" #tr id="#row{{rowData.ticker}}"
+                                    (click)="onSymbolSelected(rowData)"
+                                    data-toggle="tooltip" data-html="true"
+                                    title='{{getTooltipHtml(rowData)}}' >
+                                    <td [attr.colspan]="columns.length">
+                                        <table>
+                                            <tr>
+                                                <ng-container *ngFor="let col of columns" [ngSwitch]="col.field">
+                                                    <td class="text-center favourite" *ngSwitchCase="''">
+                                                        <i class="fa fa-star"
+                                                           *ngIf="rowData[col.field] > 0"
+                                                           [style.color]="rowData[col.field] === 1 ? '#efd998' : '#ffc107'" ></i>
+                                                    </td>
+                                                    <td class="text-left color-blue pl-0" *ngSwitchCase="'ticker'">
+                                                        {{ rowData[col.field] }}
+                                                    </td>
+                                                    <td class="text-left company pl-0" *ngSwitchCase="'company'">
+                                                        {{ rowData[col.field] }}
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchCase="'last'">
+                                                        {{ rowData[col.field] | number : '1.2-2'}}
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchCase="'open'">
+                                                        {{ rowData[col.field] | number : '1.2-2'}}
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchCase="'high'">
+                                                        {{ rowData[col.field] | number : '1.2-2'}}
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchCase="'low'">
+                                                        {{ rowData[col.field] | number : '1.2-2'}}
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchCase="'close'">
+                                                        {{ rowData[col.field] | number : '1.2-2'}}
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchCase="'volume'">
+                                                        {{rowData[col.field] | ticketVolume}}
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchCase="'change'">
+                                                        <span [class]="rowData[col.field] >= 0 ? 'text-success' : 'text-danger'">
+                                                            {{ rowData[col.field] | number : '1.2-2'}}%
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-left" *ngSwitchCase="'option'">
+                                                        {{ rowData[col.field] }}
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchDefault>
+                                                        {{ rowData[col.field] }}
+                                                    </td>
+                                                </ng-container>
+                                            </tr>
+                                            <tr class="row-append">
+                                                <td [attr.colspan]="columns.length" class="py-1">
+                                                    <div class="row">
+                                                        <div class="col-8 text-left">
+                                                            <small>{{rowData['company']}}</small>
+                                                        </div>
+                                                        <div class="col-4 text-right">
+                                                            <button type="button" class="btn btn-success btn-sm mr-2">Buy</button>
+                                                            <button type="button" class="btn btn-danger btn-sm">Sell</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage" let-columns>
+                                <tr>
+                                    <td [attr.colspan]="columns.length">
+                                        No data for scan
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                    <div class="flickity-button flickity-button-pre d-block d-md-none" aria-label="Previous"
+                         style="left: -7px;">
+                        <svg class="flickity-button-icon" viewBox="0 0 100 100">
+                            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow"></path>
+                        </svg>
+                    </div>
+                    <div class="flickity-button flickity-button-next d-block d-md-none" aria-label="Previous"
+                         style="right: -7px;">
+                        <svg class="flickity-button-icon" viewBox="0 0 100 100">
+                            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow"
+                                  transform="translate(100, 100) rotate(180) "></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

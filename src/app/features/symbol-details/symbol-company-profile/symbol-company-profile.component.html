@@ -1,0 +1,30 @@
+<div class="row left-table-content mt-2">
+  <div class="col">
+    <div class="card stripe-table-data shadow-element">
+      <div class="card-header table-header ">
+        <h2 class="card-title big-title fw-500 mr-2">
+          Company Profile
+        </h2>
+      </div>
+      <div class="card-body">
+        <div class="card-body flat-table pointer p-0">
+          <p class="text-justify mb-0">
+            {{companyProfile}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- popup start -->
+<div *ngIf="showPopup" class="popup">
+  <div id="openModal" class="modalDialog">
+     <div>  <button (click)="closePopup()" class="close">X</button> <!-- <a href="#" title="Close" class="close">X</a> -->
+    
+          <a href="https://trucharts.com/subscript"> <img src="../../../assets/dist/img/trucharts.gif" alt="Image popup" class="popupimg"/> </a> 
+      </div>
+    </div>
+  </div>
+  <!--popup end -->

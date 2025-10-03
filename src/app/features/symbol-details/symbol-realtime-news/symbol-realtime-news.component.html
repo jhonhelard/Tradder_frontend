@@ -1,0 +1,34 @@
+<div class="card shadow-element">
+  <div class="card-header px-3 mx-0">
+    <h2 class="card-title big-title fw-500">
+      <i class="far fa-newspaper mr-2"></i>
+      Real-Time News
+    </h2>
+    <div class="d-block float-right">
+      <a href="#" class="show-all-link">Show all</a>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <!-- Show loading message while data is being fetched -->
+    <div *ngIf="loading">Loading news...</div>
+
+    <!-- Display news items only if loading is done and news data is available -->
+    <div *ngIf="!loading && newsData.length > 0">
+      <div *ngFor="let newsItem of newsData">
+        <!-- <h5>{{ newsItem.Title }}</h5> -->
+        <!-- <p>{{ newsItem.Content }}</p> -->
+        <a style="cursor: pointer;" [href]="newsItem.Link" target="_blank">{{ newsItem.Title }}</a>
+      </div>
+    </div>
+
+    <!-- Show "No news available" message only if loading is done and no news data is present -->
+    <div *ngIf="!loading && newsData.length === 0">
+Loading News..    </div>
+
+    <!-- Show error message if there's an issue fetching the data -->
+    <div *ngIf="!loading && errorMessage">
+      {{ errorMessage }}
+    </div>
+  </div>
+</div>

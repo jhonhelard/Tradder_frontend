@@ -1,0 +1,70 @@
+input[disabled],
+select[disabled],
+textarea[disabled],
+input[readonly],
+select[readonly],
+textarea[readonly] {
+    background-color: #EEEEEE;
+    cursor: not-allowed;
+}
+
+.tr-green {
+    background-color: #C6EFCE;
+    color: #035A00;
+}
+
+.tr-red {
+    background-color: #FFC7CE;
+    color: #A20709;
+    ;
+}
+
+.input-box{
+        display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+@media only screen and (max-width: 991px) {
+    .card-body {
+        padding: 1.25rem 0rem;
+    } 
+
+    .w-100 {
+        display: flex;
+    }
+
+    .card-body .row {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .card-body .number-bar {
+        display: flex;
+        flex-direction: column !important;
+    }
+
+    .card-body .trading-system {
+        display: flex;
+        flex-direction: column !important;
+    }
+
+    .col-2 {
+        flex: 1;
+        max-width: fit-content;
+    }
+
+    .col-5 {
+        flex: 1;
+        max-width: fit-content;
+    }
+}
+

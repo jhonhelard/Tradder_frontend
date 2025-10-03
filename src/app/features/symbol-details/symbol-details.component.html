@@ -1,0 +1,39 @@
+<div class="content-wrapper mt-3 bg-transparent shadow-add">
+  <div class="content px-0">
+    <div class="row m-0">
+      <div class="col-12 px-0">
+        <div class="row m-0">
+          <div class="col-12">
+            <app-symbol-header *ngIf="!!symbol" [symbol]="symbol"></app-symbol-header>
+          </div>
+        </div>
+        <div class= "row m-0">
+          <div class="col-md-12 col-sm-12 col-lg-3" [ngClass]="{'hide':!isshow}">
+            <app-symbol-left-table [symbol]="symbol"></app-symbol-left-table>
+          </div>
+          <div [class]="isshow ? 'col-lg-9' : 'col-lg-12'">
+            <a class="badge bg-danger toggle-button py-3 d-none d-md-block" (click)="isshow = !isshow"><i class="arrow"
+                [class.left]="isshow" [class.right]="!isshow"></i></a>
+                <app-symbol-right-table [symbol]="selectedSymbol"></app-symbol-right-table>
+
+          </div>
+        </div>
+        <div class="row m-0">
+          <div class="col-md-12 px-0">
+            <app-symbol-table-content [symbol]="symbol"></app-symbol-table-content>
+          </div>
+        </div>
+        <div class="row m-0">
+          <div class="col-md-12">
+            <app-symbol-company-profile></app-symbol-company-profile>
+          </div>
+        </div>
+        <div class="row m-0">
+          <div class="col-md-12">
+            <app-symbol-realtime-news [symbol]="symbol"></app-symbol-realtime-news>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

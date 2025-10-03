@@ -1,0 +1,38 @@
+.dropdown-width {
+    width: 20%;
+    padding: 0.5em;
+}
+@media screen and (max-width: 860px) {
+    .dropdown-width {
+        width: 50%;
+        padding: 0.5em;
+    }
+}
+@media screen and (max-width: 580px) {
+    .dropdown-width {
+        width: 100%;
+        padding: 0.5em;
+    }
+}
+:host::ng-deep .ui-dropdown label.ui-dropdown-label,
+body .ui-dropdown .ui-dropdown-label {
+    font-weight: 500;
+}
+.show-icon {
+    max-width: max-content;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+.show-icon:hover {
+    color: var(--primary);
+    cursor: pointer;
+}
+.item-title {
+    /*font-weight: 500;*/
+    font-size: 13px;
+}
+.tab-content > .tab-pane {
+    min-height: 200px;
+}

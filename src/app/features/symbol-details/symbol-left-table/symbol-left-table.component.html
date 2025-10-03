@@ -1,0 +1,222 @@
+<app-trader [symbol]="symbol?.symbol"></app-trader>
+
+<div class="row left-table-content">
+  <div class="col">
+    <accordion>
+      <div class="stripe-table-data rounded-0">
+        <accordion-group
+          [isOpen]="isDefaultAccordionOpen"
+          (isOpenChange)="openAccordation($event)"
+        >
+          <div
+            class="rounded-0 pb-0 d-flex align-items-center"
+            accordion-heading
+            type="button"
+          >
+            <h2 class="card-title big-title fw-500 mr-2">Scanned List</h2>
+            <a
+              href="javascript:void(0)"
+              class="nav-link no-arrow text-center py-0"
+              (click)="showChangeOverley($event, op)"
+              >Change</a
+            >
+            <p-overlayPanel
+              #op
+              styleClass="portfolio-overlayPanel ui-overlaypanel-left ui-overlaypanel-noarrow"
+            >
+              <ng-template pTemplate>
+                <p-tabView styleClass="tab-view-transparent">
+                  <p-tabPanel header="Watchlist">
+                    <div class="stick-right-cornor">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        (click)="hideChangeOverley(op)"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                    <ul class="border-0 watchlist-box-wapper p-0 m-0">
+                      <ul class="list-unstyled">
+                        <li
+                          *ngFor="let item of watchLists"
+                          class="mb-1 px-3 py-2 link-light"
+                          (click)="changeWatchList(item, op)"
+                        >
+                          <a href="javascript:void(0)" class="d-block"
+                            ><i class="fas fa-star mr-3 text-warning"></i
+                            >{{ item.name }}</a
+                          >
+                        </li>
+                        <hr class="my-1" />
+                        <li class="mt-1 text-center px-3 py-2 background-dark">
+                          <a href="javascript:void(0)" class="d-block"
+                            >Recently Viewed Stock</a
+                          >
+                        </li>
+                      </ul>
+                    </ul>
+                  </p-tabPanel>
+                  <p-tabPanel header="Portfolio">
+                    <div class="stick-right-cornor">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        (click)="hideChangeOverley(op)"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                    <ul class="border-0 watchlist-box-wapper p-0 m-0">
+                      <ul class="list-unstyled">
+                        <li class="mb-1 px-3 py-2 link-light">
+                          <a href="javascript:void(0)" class="d-block"
+                            ><i class="fas fa-star mr-3 text-warning"></i
+                            >Portfolio 1</a
+                          >
+                        </li>
+                        <li class="my-1 px-3 py-2 link-light">
+                          <a href="javascript:void(0)" class="d-block"
+                            ><i class="fas fa-star mr-3 text-warning"></i
+                            >Portfolio 2</a
+                          >
+                        </li>
+                        <li class="mt-1 px-3 py-2 link-light">
+                          <a href="javascript:void(0)" class="d-block"
+                            ><i class="fas fa-star mr-3 text-warning"></i
+                            >Portfolio 3</a
+                          >
+                        </li>
+                        <hr class="my-1" />
+                        <li class="mt-1 text-center px-3 py-2 background-dark">
+                          <a href="javascript:void(0)" class="d-block"
+                            >Recently Viewed Stock</a
+                          >
+                        </li>
+                      </ul>
+                    </ul>
+                  </p-tabPanel>
+                </p-tabView>
+              </ng-template>
+            </p-overlayPanel>
+            <i
+              class="fa mr-4"
+              style="right: 0; position: absolute"
+              [ngClass]="{
+                'fa-chevron-up': isAccordionOpen,
+                'fa-chevron-down': !isAccordionOpen
+              }"
+            ></i>
+          </div>
+          <div class="flat-table pointer table-height">
+            <span
+              class="badge badge-primary"
+              style="font-size: 16px"
+              *ngIf="selectedWatchList"
+              >{{ selectedWatchList
+              }}<i
+                class="fa fa-trash"
+                style="margin-left: 5px; color: red"
+                (click)="removeWatchList()"
+              ></i
+            ></span>
+            <p-table
+              [columns]="cols"
+              [value]="tableData"
+              [paginator]="true"
+              [rows]="10"
+            >
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th
+                    *ngFor="let col of columns"
+                    class="light"
+                    [class]="
+                      col.field === 'symbol' ? 'text-left' : 'text-left'
+                    "
+                  >
+                    {{ col.header }}
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr
+                  class="extra-row"
+                  #tr
+                  id="#row{{ rowData.ticker }}"
+                  (click)="onSymbolSelected(rowData.ticker)"
+                >
+                  <td [attr.colspan]="columns.length">
+                    <table>
+                      <tr>
+                        <ng-container
+                          *ngFor="let col of columns"
+                          [ngSwitch]="col.field"
+                        >
+                          <td
+                            class="text-left"
+                            *ngSwitchCase="'percentChange'"
+                          >
+                            <span
+                              [class]="
+                                rowData[col.field] >= 0
+                                  ? 'text-success'
+                                  : 'text-danger'
+                              "
+                              >{{ rowData[col.field] | number : "1.2-2" }}</span
+                            >
+                          </td>
+                          <td class="text-right" *ngSwitchCase="'volume'">
+                            {{ rowData[col.field] | ticketVolume }}
+                          </td>
+                          <td
+                            [class]="
+                              col.field === 'symbol'
+                                ? 'text-left text-info'
+                                : 'text-left'
+                            "
+                            *ngSwitchDefault
+                          >
+                            {{ rowData[col.field] }}
+                          </td>
+                        </ng-container>
+                      </tr>
+                      <tr class="row-append">
+                        <td [attr.colspan]="columns.length" class="py-1">
+                          <div class="row">
+                            <div class="col-8 text-left">
+                              <small>{{ rowData["companyName"] }}</small>
+                            </div>
+                            <div class="col-4 text-right">
+                              <button
+                                type="button"
+                                class="btn btn-success btn-xs mr-2"
+                                (click)="onBuyClick(rowData.symbol)"
+                              >
+                                Buy
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-danger btn-xs"
+                                (click)="onSellClick(rowData.symbol)"
+                              >
+                                Sell
+                              </button>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+            <!-- <div class="d-block float-right mt-2">
+                            <a href="#" class="show-all-link">Show all</a>
+                        </div> -->
+          </div>
+        </accordion-group>
+      </div>
+    </accordion>
+  </div>
+</div>

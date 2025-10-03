@@ -1,0 +1,60 @@
+<div class="card rounded-0">
+    <div class="card-header px-3 mx-0">
+        <h3 class="card-title big-title d-block">
+            <i class="far fa-clock mr-3"></i>
+            <strong>Recently Viewed</strong>
+        </h3>
+        <div class="d-block float-right">
+            <a href="#" class="show-all-link">Show all</a>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body flat-table pointer px-2">
+        <p-table [columns]="cols" [value]="tableData">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns" [class]="col.field==='ticker' ? 'text-left' : 'text-right'">
+                        {{col.header}}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr class="extra-row" #tr id="#row{{rowData.ticker}}" data-toggle="tooltip" data-html="true" title='{{getTooltipHtml(rowData)}}'>
+                    <td [attr.colspan]="columns.length">
+                        <table>
+                            <tr>
+                                <ng-container *ngFor="let col of columns" [ngSwitch]="col.field">
+                                    <td class="text-right" *ngSwitchCase="'percentChange'">
+                                        <span
+                                            [class]="rowData[col.field] >= 0 ? 'text-success' : 'text-danger'">{{rowData[col.field] | number : '1.2-2'}}</span>
+                                    </td>
+                                    <td class='text-right' *ngSwitchCase="'volume'">
+                                        {{rowData[col.field] | ticketVolume}}
+                                    </td>
+                                    <td [class]="col.field==='ticker' ? 'text-left text-info' : 'text-right'"
+                                        *ngSwitchDefault>
+                                        {{rowData[col.field]}}
+                                    </td>
+                                </ng-container>
+                            </tr>
+                            <tr class="row-append">
+                                <td [attr.colspan]="columns.length" class="py-1">
+                                    <div class="row">
+                                        <div class="col-8 text-left">
+                                            <small>{{rowData['company']}}</small>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <button type="button" class="btn btn-success btn-xs mr-2">Buy</button>
+                                            <button type="button" class="btn btn-danger btn-xs">Sell</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <!-- /.card-body -->
+</div>

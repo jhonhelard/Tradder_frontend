@@ -1,0 +1,43 @@
+/* .table thead th {
+    vertical-align: top;
+    border: 1px solid #f0f0f0;
+    background-color: #f9f9f9;
+}
+
+.ui-table-tbody > tr {
+    border: 1px solid #f0f0f0;
+}
+
+table th .pi {
+    font-size: inherit;
+} */
+
+.anchor-blank{
+    cursor: pointer;
+}
+
+a {
+    cursor: pointer;
+}
+
+.form-check-input{
+    margin-left: -5px !important;
+    vertical-align: middle ;
+}
+
+tr:hover{
+    cursor: pointer;
+    background-color: rgb(180, 185, 190);
+}
+
+.wrapper.night-mode a {
+    color: #fff !important;
+}
+
+.wrapper.night-mode strong {
+    color: #fff !important;
+}
+
+.wrapper.night-mode .night-mode-div {
+    color: #fff !important;
+}

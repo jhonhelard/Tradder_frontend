@@ -1,0 +1,515 @@
+<div class="container-fluid">
+  <h2 class="mt-3">Charts</h2>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <!-- <div class="card-header">WatchList Filters</div> -->
+        <div class="card-header">
+          <h5>WatchList</h5>
+          <p-multiSelect
+            class="watch-list-select"
+            [options]="getNameList"
+            [(ngModel)]="pushPrimaryWatchList"
+            (onChange)="onMultiselectChange($event)"
+            (click)="onWatchListClick()"
+          ></p-multiSelect>
+        </div>
+        <div class="card-body stock-symbols">
+          <div class="">
+            <label>Stock Symbols</label>
+            <br />
+            <div class="chips-container">
+              <p-chips
+                [(ngModel)]="selectedTags"
+                separator=","
+                class="custom-chips"
+                (onAdd)="onSelectedTagsUpdate()"
+                (onRemove)="onSelectedTagsUpdate()"
+              ></p-chips>
+              <br />
+              <button class="btn btn-danger" (click)="resetAll()">Clear</button>
+            </div>
+          </div>
+          <div class="">
+            <button
+              class="btn btn-info ml-0 ml-lg-5"
+              (click)="toggleGraphContainer()"
+            >
+              Show Charts
+            </button>
+            <button
+              class="btn btn-info ml-2"
+              (click)="openModal(manageWatchList)"
+            >
+              Manage Watchlist
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="size-options">
+      <label class="label-title">Chart Size:</label>
+      <label [class.selected]="selectedSize === 'mini'">
+        Mini
+        <input
+          type="radio"
+          name="size"
+          [(ngModel)]="selectedSize"
+          (click)="selectSize('mini')"
+          value="mini"
+          style="display: none"
+        />
+      </label>
+      <span class="barline">|</span>
+      <label [class.selected]="selectedSize === 'small'">
+        Small
+        <input
+          type="radio"
+          name="size"
+          [(ngModel)]="selectedSize"
+          (click)="selectSize('small')"
+          value="small"
+          style="display: none"
+        />
+      </label>
+      <span class="barline">|</span>
+      <label [class.selected]="selectedSize === 'medium'">
+        Medium
+        <input
+          type="radio"
+          name="size"
+          [(ngModel)]="selectedSize"
+          (click)="selectSize('medium')"
+          value="medium"
+          style="display: none"
+        />
+      </label>
+      <span class="barline">|</span>
+      <label [class.selected]="selectedSize === 'large'">
+        Big
+        <input
+          type="radio"
+          name="size"
+          [(ngModel)]="selectedSize"
+          (click)="selectSize('big')"
+          value="large"
+          style="display: none"
+        />
+      </label>
+      <p-dropdown
+        [options]="typesofCharts"
+        (onChange)="onDropdownItemSelected($event)"
+      ></p-dropdown>
+
+      <label class="label-title">TA:</label>
+      <label
+        [class.active]="isActive('on')"
+        (click)="
+          handleonOffClick(
+            'AreaRSI(14){U};VOLMA(60);MACD(12,26,9)',
+            'MA(13);MA(50)',
+            'on'
+          )
+        "
+      >
+        on
+        <input type="radio" name="size" style="display: none" />
+      </label>
+      <span class="barline">|</span>
+      <label
+        [class.active]="isActive('off')"
+        (click)="handleonOffClick('', '', 'off')"
+      >
+        off
+        <input type="radio" name="size" style="display: none" />
+      </label>
+
+      <label class="label-title">Time frame:</label>
+      <label
+        [class.active]="isActiveDays('day1')"
+        (click)="handleRadioClick('Day1', 'day1')"
+      >
+        daily
+        <input type="radio" name="size" style="display: none" />
+      </label>
+      <span class="barline">|</span>
+      <label
+        [class.active]="isActiveDays('week1')"
+        (click)="handleRadioClick('Week1', 'week1')"
+      >
+        weekly
+        <input type="radio" name="size" style="display: none" />
+      </label>
+      <span class="barline">|</span>
+      <label
+        [class.active]="isActiveDays('month1')"
+        (click)="handleRadioClick('Month1', 'month1')"
+      >
+        monthly
+        <input type="radio" name="size" style="display: none" />
+      </label>
+
+      <ul class="navbar-nav justify-content-start justify-content-md-end">
+        <li *ngIf="isLoggedIn" class="nav-item dropdown">
+          <a
+            (click)="hasPermission()"
+            id="strategymobile"
+            href="#"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            class="nav-link dropdown-toggle border border-primary rounded ml-2 bold-dropdown"
+            >{{ strategyText }}</a
+          >
+          <ul aria-labelledby="strategymobile" class="dropdown-menu border-0">
+            <li>
+              <a
+                href="javascript:void(0)"
+                (click)="updateStrategy('')"
+                class="dropdown-item"
+                >-- None --
+              </a>
+            </li>
+            <li>
+              <a
+                href="javascript:void(0)"
+                (click)="updateStrategy('TCFast();')"
+                class="dropdown-item"
+                >TC Fast Strategy
+              </a>
+            </li>
+            <li>
+              <a
+                href="javascript:void(0)"
+                (click)="updateStrategy('TCPositional();')"
+                class="dropdown-item"
+                >TC Positional Strategy
+              </a>
+            </li>
+            <li>
+              <a
+                href="javascript:void(0)"
+                (click)="updateStrategy('GoldenSpike();')"
+                class="dropdown-item"
+                >TC Premium Strategy
+              </a>
+            </li>
+            <li>
+              <a
+                href="javascript:void(0)"
+                (click)="updateStrategy('Ichimoku();')"
+                class="dropdown-item"
+                >Ichimoku Cloud
+              </a>
+            </li>
+            <li>
+              <a
+                href="javascript:void(0)"
+                (click)="updateStrategy('TurtleTrading();')"
+                class="dropdown-item"
+                >Turtle Trading Strategy
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li *ngIf="!isLoggedIn" class="nav-item dropdown">
+          <a
+            (click)="gotoLogin()"
+            id="strategymobile"
+            href="#"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            class="nav-link dropdown-toggle border border-primary rounded ml-2 bold-dropdown"
+            >{{ strategyText }}</a
+          >
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+        <li
+          *ngIf="isLoggedIn"
+          style="padding-right: 3px"
+          class="nav-item dropdown"
+        >
+          <button
+            data-toggle="dropdown"
+            class="btn btn-secondary mt-0"
+            (click)="hasPermission()"
+          >
+            <i class="fas fa-download mr-1"></i> Load Chart Settings
+          </button>
+          <ul
+            style="float: left; left: -96px"
+            aria-labelledby="dropdownSubMenu1"
+            class="dropdown-menu border-0 shadow"
+          >
+            <strong class="text-center d-block text-toggle"
+              >Load from ...</strong
+            >
+            <hr class="my-1" />
+            <div class="chart-settings-container">
+              <li *ngFor="let settings of chartSettingsList">
+                <a
+                  (click)="changeChartSettings(settings.name)"
+                  class="dropdown-item border-bottom-toggle cursor-pointer"
+                  >{{ settings.name }}</a
+                >
+              </li>
+            </div>
+          </ul>
+        </li>
+        <li *ngIf="!isLoggedIn" style="padding-right: 3px">
+          <button
+            style="padding-right: 3px"
+            (click)="gotoLogin()"
+            class="btn btn-secondary btn-sm"
+          >
+            <i class="fas fa-download mr-1"></i> Load Chart Settings
+          </button>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item dropdown mr-1">
+          <!-- <button data-toggle="dropdown"  class="btn btn-primary btn-xs pt-0" data-toggle="modal" data-target="#chartsettings-modal"><i class="fas fa-save mr-1"></i> Save</button> -->
+          <ul
+            style="float: left; left: -120px"
+            aria-labelledby="dropdownSubMenu"
+            class="dropdown-menu border-0 shadow"
+          >
+            <strong class="text-center d-block text-toggle">Save to ...</strong>
+            <hr class="my-1" />
+            <div class="chart-settings-container">
+              <li *ngFor="let settings of chartSettingsList">
+                <a
+                  (click)="updateChartSettings(settings.name)"
+                  class="dropdown-item border-bottom-toggle cursor-pointer"
+                  >{{ settings.name }}</a
+                >
+              </li>
+            </div>
+            <li class="mt-1 text-center px-3 py-2">
+              <button
+                data-toggle="modal"
+                data-target="#chartsettings-modal"
+                class="btn-primary btn-sm text-white d-block border-0"
+              >
+                Create New Chart Setttings
+              </button>
+            </li>
+          </ul>
+        </li>
+        <li *ngIf="!isLoggedIn" style="padding-right: 3px"></li>
+      </ul>
+    </div>
+
+    <div class="time-filters">
+      <a
+        href="javascript:void(0)"
+        [ngClass]="{
+          'bg-primary badge p-2 pl-0': dateType === '3M'
+        }"
+        (click)="updateDateType('3M')"
+        >3M</a
+      >
+      <a
+        href="javascript:void(0)"
+        [ngClass]="{
+          'bg-primary badge p-2 pl-0': dateType === '6M'
+        }"
+        (click)="updateDateType('6M')"
+        >6M</a
+      >
+      <a
+        href="javascript:void(0)"
+        [ngClass]="{
+          'bg-primary badge p-2 pl-0': dateType === '1y'
+        }"
+        (click)="updateDateType('1y')"
+        >1y</a
+      >
+      <a
+        href="javascript:void(0)"
+        [ngClass]="{
+          'bg-primary badge p-2 pl-0': dateType === '2y'
+        }"
+        (click)="updateDateType('2y')"
+        >2y</a
+      >
+      <a
+        href="javascript:void(0)"
+        [ngClass]="{
+          'bg-primary badge p-2 pl-0': dateType === '3y'
+        }"
+        (click)="updateDateType('3y')"
+        >3y</a
+      >
+      <a
+        href="javascript:void(0)"
+        [ngClass]="{
+          'bg-primary badge p-2 pl-0': dateType === '5y'
+        }"
+        (click)="updateDateType('5y')"
+        >5y</a
+      >
+    </div>
+    <!-- *ngIf="showGraphContainer" -->
+    <div class="card">
+      <div class="card-body list-chart">
+        <h4 *ngIf="isChartsLoading" class="text-center my-5">Loading...</h4>
+        <div
+          class="graph-container"
+          [ngClass]="getContainerClass()"
+          *ngIf="!isChartsLoading"
+        >
+          <ng-container *ngFor="let chart of chartURLs">
+            <div
+              class="single-chart-item d-flex flex-column align-content-center justify-content-center"
+            >
+              <div
+                *ngIf="selectedChartItem?.id === chart?.id"
+                class="spinner-border text-info mx-auto"
+                role="status"
+              >
+                <span class="sr-only">Loading...</span>
+              </div>
+
+              <!-- <img
+                *ngIf="selectedChartTagToReload !== tag"
+                [useCache]="false"
+                src="https://trucharts.in/Chart.aspx?Provider=DB&Code={{tag}}&Type={{
+                  this.getValType
+                }}&Scale=0&IND={{this.indVal}};&OVER={{
+                  this.overVal + this.overlayValues + this.strategySelected
+                }};&Skin={{
+                  this.viewMode === 'light-mode' ? 'GreenRed' : 'Black'
+                }}&Size={{this.chartWidth}}*{{this.chartHeight}}&RT=1&Start={{this.getDateString(
+                  this.startDate
+                )}}&End={{this.getDateString(this.endDate)}}&Layout={{
+                  this.viewMode === 'light-mode' ? '2Line' : '2LineBlack'
+                }};{{
+                  this.viewMode === 'light-mode' ? 'Default;Price;HisDate' : 'DefaultBlack'
+                }}&Cycle={{this.cycleVal}}&HIS=0"
+                alt="chart"
+                loading="eager"
+              /> -->
+
+              <img
+                *ngIf="selectedChartItem?.id !== chart?.id"
+                [src]="chart?.url"
+                alt="chart"
+              />
+              <button
+                *ngIf="selectedChartItem?.id !== chart?.id"
+                class="btn btn-sm btn-primary w-fit-content"
+                (click)="onReloadChart(chart)"
+              >
+                Reload
+              </button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #manageWatchList>
+  <div class="watch-list-modal alternate-container">
+    <div class="modal-content shadow-none border-0">
+      <div class="loader" *ngIf="isLoading">
+        <div class="loader-circle"></div>
+        <span class="loader-text">Loading...</span>
+      </div>
+      <h2>Watch List</h2>
+      <div>
+        <div class="row p-3" [ngClass]="{ 'disabled-container': isLoading }">
+          <div class="col-md-4">
+            <div class="overflow-box watch-list-box pr-2">
+              <ul style="list-style: none">
+                <ng-container *ngFor="let name of getWatchList">
+                  <li
+                    [ngClass]="{ highlighted: name.name === selectedItem }"
+                    [class.active]="isItemActive(item)"
+                    (click)="getNameIndex(name)"
+                    class="p-2"
+                  >
+                    {{ name.name }}
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4 my-3 my-md-0">
+            <p-chips
+              class="watchlist-chip"
+              [(ngModel)]="chipData"
+              separator=","
+              (onAdd)="onTagAdded($event)"
+              (onRemove)="onTagRemove($event)"
+            ></p-chips>
+
+            <div class="listing-modal-btns">
+              <div class="d-flex justify-content-between">
+                <button
+                  (click)="deleteAPI(getWatchList)"
+                  [disabled]="isUpdateButtonDisabled()"
+                  class="btn btn-danger"
+                >
+                  Delete Selected WatchList
+                </button>
+                <div>
+                  <button class="btn btn-info w-auto" (click)="copySymbols()">
+                    {{ hasSymbolsCopied ? "Copied!" : "Copy" }}
+                  </button>
+                </div>
+              </div>
+
+              <button
+                (click)="updateAPI()"
+                [disabled]="isUpdateButtonDisabled()"
+                class="btn btn-info"
+              >
+                Updated Selected WatchList
+              </button>
+
+              <a class="btn btn-info" (click)="getDefaultWatchList()"
+                >Make Default WatchList</a
+              >
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="">
+              <div class="listing-modal-btns">
+                <input
+                  type="text"
+                  placeholder="Watchlist"
+                  [(ngModel)]="newText"
+                  class="form-control mb-2"
+                />
+                <input
+                  type="text"
+                  placeholder="Ticker"
+                  [(ngModel)]="newTicker"
+                  class="form-control mb-2"
+                />
+                <button
+                  class="btn btn-lg btn-info mt-2"
+                  [disabled]="isButtonDisabled()"
+                  (click)="saveText()"
+                >
+                  Create New WatchList
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-info" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,80 @@
+<form [formGroup]="comboBuySellForm">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <select [ngClass]="{ 'is-invalid': submitted && comboBuySellForm['controls'].type.errors }"
+                        class="custom-select" formControlName="type" id="inputGroupSelect01">
+                        <option selected>-Type-</option>
+                        <option *ngFor="let type of typeOptions" [value]="type.value">{{type.name}}</option>
+                    </select>
+                    <span *ngIf="submitted && comboBuySellForm['controls'].type.errors">
+                        <span class="text-danger" *ngIf="comboBuySellForm['controls'].type.errors.required">Type Is
+                            Required
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <select [ngClass]="{ 'is-invalid': submitted && comboBuySellForm['controls'].duration.errors }"
+                        class="custom-select" formControlName="duration" id="inputGroupSelect01">
+                        <option selected>-Duration-</option>
+                        <option *ngFor="let duration of durationOptions" [value]="duration.value">{{duration.name}}</option>
+                    </select>
+                    <span *ngIf="submitted && comboBuySellForm['controls'].duration.errors">
+                        <span class="text-danger"
+                            *ngIf="comboBuySellForm['controls'].duration.errors.required">Duration
+                            Is
+                            Required</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <select [ngClass]="{ 'is-invalid': submitted && comboBuySellForm['controls'].side.errors }"
+                        class="custom-select" formControlName="side" id="inputGroupSelect01">
+                        <option selected>-Side-</option>
+                        <option *ngFor="let side of sideOptions" [value]="side.value">{{side.name}}</option>
+                    </select>
+                    <span *ngIf="submitted && comboBuySellForm['controls'].side.errors">
+                        <span class="text-danger" *ngIf="comboBuySellForm['controls'].side.errors.required">Side Is
+                            Required
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input [ngClass]="{ 'is-invalid': submitted && comboBuySellForm['controls'].quantity.errors }"
+                        type="number" class="form-control" formControlName="quantity" placeholder="Quantity">
+                    <span *ngIf="submitted && comboBuySellForm['controls'].quantity.errors">
+                        <span class="text-danger"
+                            *ngIf="comboBuySellForm['controls'].quantity.errors.required">Quantity Is
+                            Required</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input [ngClass]="{ 'is-invalid': submitted && comboBuySellForm['controls'].quantity.errors }"
+                        type="text" class="form-control" formControlName="option_symbol" placeholder="Option Symbol">
+                    <span *ngIf="submitted && comboBuySellForm['controls'].class.errors">
+                        <span class="text-danger" *ngIf="comboBuySellForm['controls'].class.errors.required">Option
+                            Symbol Is
+                            Required</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" [disabled]="submitInProgress" (click)="onSubmit()"
+                    class="btn btn-success">Submit</button>
+            </div>
+        </div>
+    <!-- {{comboBuySellForm.value | json}} -->
+</form>

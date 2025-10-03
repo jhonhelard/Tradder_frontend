@@ -1,0 +1,41 @@
+<app-header>
+</app-header>
+
+<!-- <div style="text-align: center;width:100%">
+    
+           <div class="container" >
+<div style="min-height: 50px;"></div>
+<h2 class="text-center mb-5">Feel free to call us!</h2>
+<a href="tel:+15106065994"> Toll Free - +1 (866) 534-1776 </a> <br/>
+<a href="tel:+15106065994"> Call us - +1 (510) 606-5994 </a> <br/>
+<div> Fax - (510) 824-4740 </div> <br/>
+</div>
+
+ 
+</div> -->
+<div class="container" *ngIf="!isSubmit">
+    <h2 class="text-center mb-5">Get in touch with us!</h2>
+    <div class="row">
+    <div class="col-md-6 offset-md-3">
+    <form [formGroup]="FData" (ngSubmit)="onSubmit(FData.value)"><div class="form-group">
+    <label for="Email">Email</label>
+    <input type="email" class="form-control" name="Email" aria-describedby="emailHelp" placeholder="Enter email"formControlName="Email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+    <label for="fullname">Full Name</label>
+    <input type="text" class="form-control" name="Fullname" placeholder="Full Name" formControlName="Fullname">
+    </div>
+    <div class="form-group">
+    <label for="comment">Comment</label>
+    <textarea class="form-control" formControlName="Comment" name="Comment">
+    </textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!FData.valid">Submit</button>
+    </form>
+    </div>
+    </div>
+    </div>
+    <div><h2 class="text-center mb-5" *ngIf="isSubmit">Thank you! We have received your message, we will get back to you shortly!</h2></div>
+    <div style="min-height: 400px;"></div>
+<app-footer></app-footer>

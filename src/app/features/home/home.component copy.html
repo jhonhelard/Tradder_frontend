@@ -1,0 +1,202 @@
+<app-landing *ngIf="!isLoggedIn"></app-landing>
+<div *ngIf="isLoggedIn" class="content-wrapper mt-3 bg-transparent">
+  <div class="content">
+    <div class="row m-0">
+      <div class="col-12 col-xl-9">
+        <!-- <div class="row">
+            <div class="col-12">
+              <app-home-banner></app-home-banner>
+            </div>
+          </div> -->
+        <!-- <div class="row mt-3">
+            <div class="col-12">
+              <app-home-tables-content></app-home-tables-content>
+            </div>
+          </div> -->
+        <section>
+          <app-home-banner></app-home-banner>
+        </section>
+        <section class="mt-3 mt-lg-3">
+          <app-home-tables-content></app-home-tables-content>
+        </section>
+
+        <section class="mt-3 mt-lg-3">
+          <app-home-chart></app-home-chart>
+        </section>
+        <section class="">
+          <div class="card shadow-element">
+            <div class="card-header">
+              <h2 class="card-title big-title fw-500">
+                Join TruCharts Premium for Better Trading & Investing Decisions
+              </h2>
+            </div>
+            <div class="card-body">
+              <div class="upper-accordian-wrap">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="mb-5">
+                        <div class="note-tradier">
+                          <img
+                            width="100"
+                            src="https://tradier.com/assets/images/tradier-logo.svg"
+                            alt=""
+                            srcset=""
+                          />
+                          <br />
+                          <p class="mb-0 pl-0 mt-3">
+                            TruCharts is a Tradier Brokerage Partner offering
+                            unlimited flat fee (stock/options) trading from our
+                            site (with an approved opened/funded account and
+                            includes full site access).
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="image-accordian">
+                        <accordion [closeOthers]="true" [isAnimated]="true">
+                          <accordion-group
+                            heading="When to Buy and When to Sell any Stock? Use Profitable
+                              Buy/Sell signal strategy charts"
+                            [isOpen]="first"
+                            (isOpenChange)="onChangeAccordian($event, 1)"
+                          >
+                            Real time technical stock charts with quotes,
+                            fundamental data and news
+                            <br />
+                            Automated Strategies with buy and sell signals for
+                            any stock .<br />
+                            Profitable Tested Buy/Sell Signal Strategies for
+                            Members.
+                            <a
+                              routerLink="/stockchart/TSLA"
+                              target="_blank"
+                              class="nav-link text-info border-none accordian-btn"
+                              >EXPLORE STOCK CHARTS</a
+                            >
+
+                            <div class="d-md-none d-block img-margin-top">
+                              <img
+                                src="/assets/dist/img/chart-1.png"
+                                class="img-fluid"
+                              />
+                            </div>
+                          </accordion-group>
+                          <accordion-group
+                            heading="Do you know how to find the best stocks for Investment?
+                              Use Trucharts Dynamic Technical Stock Screener"
+                            [isOpen]="second"
+                            (isOpenChange)="onChangeAccordian($event, 2)"
+                          >
+                            <p>
+                              Customizable Single, Multiple technical parameter
+                              screener with mouseover charts. <br />
+                              <a
+                                routerLink="/screener"
+                                target="_blank"
+                                class="nav-link text-info border-none accordian-btn"
+                                >EXPLORE STOCK SCREENER</a
+                              >
+                            </p>
+                            <div class="d-md-none d-block img-margin-top">
+                              <img
+                                src="/assets/dist/img/chart-2.png"
+                                class="img-fluid"
+                              />
+                            </div>
+                          </accordion-group>
+                          <accordion-group
+                            heading="How to evaluate your trading strategies? Do
+                              profitability research on technical indicators in
+                              Backtest tool."
+                            [isOpen]="third"
+                            (isOpenChange)="onChangeAccordian($event, 3)"
+                          >
+                            Backtest will help you evaluate your trading
+                            strategies before applying them to the real market.
+                            <br />
+                            <a
+                              routerLink="/stockchart/TSLA"
+                              target="_blank"
+                              class="nav-link text-info border-none accordian-btn"
+                              >EXPLORE BACKTESTING</a
+                            >
+                            <div class="d-md-none d-block img-margin-top">
+                              <img
+                                src="/assets/dist/img/chart-3.png"
+                                class="img-fluid"
+                              />
+                            </div>
+                          </accordion-group>
+
+                          <accordion-group
+                            heading="Do you know how to find the best stocks for Investment?
+                              Use daily Technical Screened Stocks Reports"
+                            [isOpen]="fourth"
+                            (isOpenChange)="onChangeAccordian($event, 4)"
+                          >
+                            Bullish and Bearish Technical Screened Stock lists
+                            with mouseover charts. <br />
+                            <a
+                              routerLink="/market-report"
+                              target="_blank"
+                              class="nav-link text-info border-none accordian-btn"
+                              >EXPLORE SCREENED REPORTS</a
+                            >
+                            <div class="d-md-none d-block img-margin-top">
+                              <img
+                                src="/assets/dist/img/chart-4.png"
+                                class="img-fluid"
+                              />
+                            </div>
+                          </accordion-group>
+
+                          <accordion-group
+                            heading="How do I manage my Stock Portfolio? Now tracking your
+                              portfolio is easy with Daily Trucharts Technical Alerts"
+                            [isOpen]="fifth"
+                            (isOpenChange)="onChangeAccordian($event, 5)"
+                          >
+                            We send daily Technical Alerts emails for every
+                            stock in your portfolio, so your investment keeps
+                            growing. <br />
+                            <a
+                              routerLink="/stockchart/TSLA"
+                              target="_blank"
+                              class="nav-link text-info border-none accordian-btn"
+                              >MAINTAIN YOUR STOCK PORTFOLIO</a
+                            >
+                            <div class="d-md-none d-block img-margin-top">
+                              <img
+                                src="/assets/dist/img/chart-5.png"
+                                class="img-fluid"
+                              />
+                            </div>
+                          </accordion-group>
+                        </accordion>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="d-none d-md-block">
+                        <img [src]="activeAccordian?.img" class="img-fluid" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="mt-0 mt-lg-3">
+          <app-home-top-gainers></app-home-top-gainers>
+        </section>
+      </div>
+      <div class="col-12 col-xl-3">
+        <app-right-content></app-right-content>
+      </div>
+    </div>
+  </div>
+</div>
+<app-videos *ngIf="isLoggedIn"></app-videos>

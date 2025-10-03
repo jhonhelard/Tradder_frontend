@@ -1,0 +1,10 @@
+<div class="earnings-container">
+    <h1>Earnings Report Date</h1>
+    <button (click)="getEarnings('msft.us')">Fetch Earnings</button>
+    <div *ngIf="reportDate; else loading">
+      <h2>Upcoming Report Date: {{ reportDate }}</h2>
+    </div>
+    <ng-template #loading>
+      <p>Loading earnings data...</p>
+    </ng-template>
+  </div>

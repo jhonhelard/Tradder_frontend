@@ -1,0 +1,44 @@
+.col-12.chart-header > div {
+    padding-right: 2rem;
+}
+.first >.ui-dropdown{
+    min-width: 2rem !important;
+}
+.inp-date{
+    width: 2px;
+}
+
+.from-calendar#from-calendar .ui-inputtext{
+    width: 6rem;
+}
+.p-card-custom.card-overlays .ui-card{
+    background-color: #252525;
+}
+
+.from-calendar .ui-inputtext{
+    width: 6rem !important;
+}
+
+.txt-price-overlays{
+    width: 13rem !important;
+}
+
+/*.chart-image{
+    max-height: 450px;
+}*/
+
+.chart-header a{
+    font-weight: normal;
+    /* font-size: 100%; */
+}
+
+/* .chart-header a.badge{
+    border-radius: 50%;
+    padding: 7px 4px !important;
+} */
+
+.chart-settings-container {
+  max-height: 200px;
+  overflow-y: auto;
+}
+

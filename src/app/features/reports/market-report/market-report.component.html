@@ -1,0 +1,119 @@
+<div class="content-wrapper mt-3 bg-transparent">
+    <div class="px-0" [class]="isLoading ? 'opacity': ''">
+        <div class="position-relative">
+            <!-- <div class="card rounded-0" [class]=" ? 'isScanningscan-result' : ''"> -->
+            <div class="card rounded-0">
+                <div class="card-header px-2 mx-0 border-0 pb-3">
+                    <h3 class="card-title big-title d-block w-100">
+                        <strong>Technical Screened Market Reports</strong>
+                    </h3>
+                    <div class="float-right"><button class="btn btn-primary" (click)="reloadData()"
+                            *ngIf="!IsLogin"><span class="glyphicon glyphicon-refresh"></span> Reload Data</button>
+                    </div>
+                </div>
+                <div class="card-body flat-table pointer px-2 pt-1">
+                    <div class="row">
+                        <div class="col-xl-10 col-md-12">
+                            <!-- Sales Graph -->
+                            <div class="card card-default">
+                                <!-- <div class="card-header">
+                                    <h6>Stock List</h6>
+                                </div> -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12 flat-table">
+                                            <div class="ui-table-wrapper table-responsive-sm">
+                                                <p-table [columns]="columns" [value]="data"
+                                                    tableStyleClass="table w-md-100">
+                                                    <ng-template pTemplate="header" let-columns>
+                                                        <tr>
+                                                            <ng-container *ngFor="let col of columns">
+                                                                <th class="text-left">
+                                                                    {{col}}
+                                                                </th>
+                                                            </ng-container>
+                                                        </tr>
+                                                    </ng-template>
+                                                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                                                        <tr class="extra-row" data-toggle="tooltip" data-html="true">
+                                                            <ng-container *ngFor="let col of columns">
+                                                                <td class="text-left color-blue pl-2">
+                                                                    <div class="black-them-report"
+                                                                        [innerHtml]="rowData[col]"></div>
+                                                                </td>
+                                                            </ng-container>
+                                                        </tr>
+                                                    </ng-template>
+                                                    <ng-template pTemplate="emptymessage" let-columns>
+                                                        <tr>
+                                                            <td [attr.colspan]="columns.length"
+                                                                *ngIf="data.length == 0 && defaultLoadData">
+                                                                No data for scan
+                                                            </td>
+                                                        </tr>
+                                                    </ng-template>
+                                                </p-table>
+                                                <!-- start loading region-->
+                                                <div *ngIf="isLoading" class="col-12 text-center loading">
+                                                    <i class="fas fa-3x fa-sync-alt fa-spin text-muted"></i>
+                                                </div>
+                                                <!--end loading region-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-md-12">
+                            <div class="card card-default">
+                                <div class="card-header justify-content-center">
+                                    <h6>Index Stocks List</h6>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="nav navbar-nav">
+                                        <li><a [routerLink]="['/market-report-details']"
+                                                [queryParams]="{ id: 'Dow30' }">DOW30</a></li>
+                                        <li><a [routerLink]="['/market-report-details']"
+                                                [queryParams]="{ id: 'NASDAQ100' }">NASDAQ100</a></li>
+                                        <li><a [routerLink]="['/market-report-details']"
+                                                [queryParams]="{ id: 'SAP500' }">SP500</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card card-default">
+                                <div class="card-header justify-content-center">
+                                    <h6>Sectors Stocks List</h6>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="nav navbar-nav">
+                                        <li><a [routerLink]="['/market-report-details']"
+                                                [queryParams]="{ id: 'Basic Materials' }">Basic Materials</a></li>
+                                        <li><a [routerLink]="['/market-report-details']"
+                                                [queryParams]="{ id: 'Conglomerates' }">Conglomerates</a></li>
+                                        <li><a [routerLink]="['/market-report-details']"
+                                                [queryParams]="{ id: 'Consumer Goods' }">Consumer Goods</a></li>
+                                        <li><a [routerLink]="['/market-report-details']"
+                                                [queryParams]="{ id: 'Financial' }">Financial</a></li>
+                                        <li><a [routerLink]="['/market-report-details']"
+                                                [queryParams]="{ id: 'Healthcare' }">Healthcare</a></li>
+                                        <li><a [routerLink]="['/market-report-details']"
+                                                [queryParams]="{ id: 'Industrial Goods' }">Industrial Goods</a></li>
+                                        <li><a [routerLink]="['/market-report-details']"
+                                                [queryParams]="{ id: 'Services' }">Services</a></li>
+                                        <li><a [routerLink]="['/market-report-details']"
+                                                [queryParams]="{ id: 'Technology' }">Technology</a></li>
+                                        <li><a [routerLink]="['/market-report-details']"
+                                                [queryParams]="{ id: 'Utilities' }">Utilities</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

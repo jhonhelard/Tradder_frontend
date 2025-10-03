@@ -1,0 +1,25 @@
+<div class="card shadow-element">
+  <div class="card-header px-3 mx-0">
+    <h3 class="card-title big-title d-block">
+      <i class="far fa-newspaper mr-3"></i>
+      News
+    </h3>
+    <div class="d-block float-right">
+      <a href="#" class="show-all-link">Show all</a>
+    </div>
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body">
+    <ul class="list-unstyled">
+      <li *ngFor="let new of news">
+        <a href="{{ new.Link }}" target="_blank">{{ new.Title }}</a>
+      </li>
+      <!-- <li><a href="#" class="text-muted">Is Delek Trading at a Discount to Its Peer Average?</a></li>
+            <li><a href="#" class="text-muted">This High-Yield Stock Is Starting the Next Stage of Its Evolution</a>
+            </li>
+            <li><a href="#" class="text-muted">North Dakota Oil Production Soars to Record High in July.</a></li>
+            <li><a href="#" class="text-muted">Refining Margin Expectations in Q3 2018</a></li> -->
+    </ul>
+  </div>
+  <!-- /.card-body -->
+</div>

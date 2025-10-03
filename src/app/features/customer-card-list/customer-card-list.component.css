@@ -1,0 +1,96 @@
+.top_row {
+  background-color: white !important;
+  border-radius: 30px !important;
+  box-shadow: 0px 10px 11px 6px #c9c9c9 !important;
+  margin-bottom: 20px;
+}
+.accordian-header {
+  background-color: #024f88;
+  color: #fff;
+  margin: 0;
+  padding: 1rem 1.9rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.note-tradier {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.2;
+  font-size: 18px;
+  font-weight: normal;
+  text-align: left;
+}
+.payment-card {
+  /* background: #ffffff; */
+  padding: 20px;
+  margin-bottom: 25px;
+  border: 1px solid;
+  width: 400px; /* Set desired width */
+  height: 300px; /* Set desired height */
+}
+.payment-icon-big {
+  font-size: 60px;
+  color: #d1dade;
+}
+.topmost{
+  margin-top: 55px;
+}
+.icon-small{
+  font-size: 30px;
+  color: #9aa6ac;
+}
+.powered-by {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  font-size: 14px;
+  color: #666;
+}
+
+.powered-by a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.powered-by a:hover {
+  text-decoration: underline;
+}
+
+.btn-transparent {
+  background-color: transparent;
+  border: none;
+  color: #007bff; /* You can set the text color as needed */
+}
+
+.btn-transparent i{
+  font-size: 140px;
+  color: #9aa6ac;
+}
+.btn-transparent i:hover {
+  background-color: transparent;
+  color: #636c75; /* Optional: Change color on hover */
+}
+
+/* .StripeElement {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: box-shadow 0.15s ease-in-out, border-color 0.15s ease-in-out; 
+}
+.ElementsApp input {
+  background-color: transparent;
+  border: none;
+  display: block;
+  font-family: sans-serif;
+  font-size: 2em;
+  height: 1.2em;
+  line-height: 1.2em;
+  margin: 0;
+  padding: 0;
+  width: 100%
+} */

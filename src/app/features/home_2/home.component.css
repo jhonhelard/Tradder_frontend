@@ -1,0 +1,204 @@
+/* You can add global styles to this file, and also import other style files */
+.wrapper{
+    max-width: 1346px;
+    margin: 0px auto;
+}
+
+.header{
+    background: linear-gradient(90deg, rgba(57, 128, 191, 1) 0%, rgba(8, 168, 254, 1) 69%, rgba(0, 154, 254, 1) 100%);
+}
+
+.header .small-link{
+    font-size: 13px;
+    color: #ffffff !important;
+    height: auto;
+}
+
+.header .small-link:hover,
+.header .small-link:active{
+    opacity: .7;
+}
+
+.header .strong-link{
+    font-weight: 600;
+    color: #ffffff !important;
+}
+
+.header .strong-link:hover,
+.header .strong-link:active{
+    opacity: .7;
+}
+
+.header .main-header.border-bottom{
+    box-shadow: 0px 1px 1px 0px rgba(255, 255, 255, .3);
+    border-bottom: none !important;
+}
+
+.header .intro{
+    height: auto;
+}
+
+.header .btn-outline-primary.bg-white{
+    color: rgba(0, 154, 254, 1) !important;
+}
+
+.header .btn-outline-primary.bg-white:hover,
+.header .btn-outline-primary.bg-white:active{
+    color: rgba(0, 154, 254, .7) !important;
+}
+
+.header .sell-card ul li,
+.wrapper .content-wrapper .content
+{
+    color: #3f5a6b;    
+}
+
+.content-wrapper{
+    background: transparent;
+}
+
+.wrapper .content-wrapper .content .bg-content{
+    background: #f4feff;
+}
+
+.wrapper .content-wrapper .content .action-btn{
+    min-width: 175px;
+}
+
+.wrapper .content-wrapper .content .dark-link{
+    color: #bcbcbc;
+    border-bottom: .1em dotted #bcbcbc;
+}
+
+.wrapper .content-wrapper .content .dark-link:hover,
+.wrapper .content-wrapper .content .dark-link:active{
+    opacity: .7;
+}
+
+.wrapper .content-wrapper .content .report-selectbox-wrapper{
+    border: .1em solid #a6a6a6;
+}
+
+.wrapper .content-wrapper .content .report-selectbox-wrapper .ui-dropdown-trigger{
+    height: 90%;
+    top: 5px;
+    right: 5px;
+}
+
+.wrapper .content-wrapper .content .report-selectbox-wrapper label.ui-dropdown-label{
+    font-size: 20px;
+    color: #bcbcbc;
+    font-weight: normal;
+}
+
+.wrapper .content-wrapper .content .info-box-icon{
+    background: #d4e6f4;
+    color: #5187c3;
+    height: 90px;
+    width: 90px;
+    font-size: 45px;
+}
+
+.wrapper .content-wrapper .content .info-box-text{
+    white-space: pre-wrap;
+}
+
+.header .sell-card .check-icon{
+    font-size: 13px;
+}
+
+.wrapper .content-wrapper .content .stripe-table-data .table-header{
+    background-color: #3280c2;
+    color: #ffffff;
+    text-align: center;
+}
+
+.wrapper .content-wrapper .content .stripe-table-data .ui-table .ui-table-thead > tr > th{
+    border: none;
+    background-color: #6ca6d4;
+    color: #ffffff;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.wrapper .content-wrapper .content .stripe-table-data .ui-table .ui-table-tbody > tr:nth-child(even){
+    background-color: #effdfe;
+}
+
+.wrapper .content-wrapper .content .stripe-table-data .ui-table .ui-table-tbody > tr > td{
+    border: none;
+    color: #3f5a6b;
+    font-weight: 500;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.wrapper .content-wrapper .content .tab-content .nav-tabs,
+.wrapper .content-wrapper .content .tab-content .nav-tabs .nav-link.active, 
+.wrapper .content-wrapper .content .tab-content .nav-tabs .nav-item.show .nav-link{
+    background-color: #3280c2;
+    border: none;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.wrapper .content-wrapper .content .tab-content  .nav-tabs .nav-link:hover, 
+.wrapper .content-wrapper .content .tab-content .nav-tabs .nav-link:focus{
+    border: 1px solid transparent;
+}
+
+.wrapper .content-wrapper .content .tab-content .nav-tabs .nav-link.active{
+    border-bottom: 2px solid #ffffff;
+    margin-bottom: 3px;
+}
+
+.wrapper .content-wrapper .content .tab-content .nav-tabs .nav-link{
+    color: #a3c5e3;
+}
+
+.content .site-tour{
+    background: #3280c2;
+}
+
+.content .site-tour iframe{
+    border: none;
+}
+
+.content .site-tour .small-link{
+    color: #ffffff;
+}
+
+.footer .bottom-link{
+    color: #414141;
+    font-weight: 600;
+}
+
+.footer .bottom-link:hover,
+.footer .bottom-link:active{
+    opacity: .7;
+}
+
+.footer .disclaimer{
+    font-size: 13px;
+    text-align: justify;
+}
+
+.small-link{
+    color: #bcbcbc;
+    font-size: 14px;    
+}
+
+.dot-link
+{
+    border-bottom: .1em dotted #bcbcbc;
+}
+
+.text-small{
+    font-size: 12px;;    
+}
+
+.btn-primary-dark{
+    background-color: #3280c2;
+}

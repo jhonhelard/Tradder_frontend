@@ -1,0 +1,103 @@
+<!-- submitted = false; -->
+<div *ngIf="isLoggedIn">
+    <div class="modal-header">
+        <div class="modal-title row">
+            <div class="col-md-4">
+                <img style="width: 25px;" src="../../../assets/dist/img/traderIcon.png" alt="Logo">
+            </div>
+            <div class="col-md-6">Tradier</div>
+        </div>
+        <button type="button" class="close" (click)="bsModalRef.hide()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+        <p-tabView [(activeIndex)]="activeIndex">
+            <p-tabPanel header="TRADE">
+                <div *ngIf="activeIndex==0">
+                    <div [formGroup]="traderDetailsBuySellForm">
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p-autoComplete id="capitalizeInput" #autocomplete formControlName="symbol"
+                                        [suggestions]="results | async" (completeMethod)="search($event)"
+                                        styleClass="w-100 analyze-textbox" inputStyleClass="form-control"
+                                        placeholder="Search Symbol or Company" [autoHighlight]="false"
+                                        emptyMessage="No company found!" field="ticker" (onSelect)="onSelect($event)"
+                                        (onKeyUp)="onKeyUp($event)" (onClear)="clearInput()">
+                                        <ng-template let-item pTemplate="item">
+                                            <div class="ui-helper-clearfix container" style="width: 410px !important;">
+                                                <div class="row w-100">
+                                                    <div class="col-2">{{item.ticker}}</div>
+                                                    <div class="col-8">{{item.company}}
+                                                    </div>
+                                                    <div class="col-2"><i>{{item.exchange}}</i></div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </p-autoComplete>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select
+                                        [ngClass]="{ 'is-invalid': submitted && traderDetailsBuySellForm['controls'].class.errors }"
+                                        class="custom-select" formControlName="class">
+                                        <option selected>-Class-</option>
+                                        <option *ngFor="let class of classOptions" [value]="class.value">{{class.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <app-trader-equity *ngIf="traderDetailsBuySellForm.value.class == 'equity'"
+                        [orderSubmittedCb]="orderSubmittedCb" [symbol]="this.traderDetailsBuySellForm.value.symbol"
+                        [class]="this.traderDetailsBuySellForm.value.class">
+                    </app-trader-equity>
+                    <app-trader-option *ngIf="traderDetailsBuySellForm.value.class == 'option'"
+                        [orderSubmittedCb]="orderSubmittedCb" [symbol]="this.traderDetailsBuySellForm.value.symbol"
+                        [class]="this.traderDetailsBuySellForm.value.class">
+                    </app-trader-option>
+                    <app-trader-multileg *ngIf="traderDetailsBuySellForm.value.class == 'multileg'"
+                        [orderSubmittedCb]="orderSubmittedCb" [symbol]="this.traderDetailsBuySellForm.value.symbol"
+                        [class]="this.traderDetailsBuySellForm.value.class" [tickets]="tickets">
+                    </app-trader-multileg>
+                    <app-trader-combo *ngIf="traderDetailsBuySellForm.value.class == 'combo'"
+                        [orderSubmittedCb]="orderSubmittedCb" [symbol]="this.traderDetailsBuySellForm.value.symbol"
+                        [class]="this.traderDetailsBuySellForm.value.class">
+                    </app-trader-combo>
+                    <app-trader-oco *ngIf="traderDetailsBuySellForm.value.class == 'oco'"
+                        [orderSubmittedCb]="orderSubmittedCb" [symbol]="this.traderDetailsBuySellForm.value.symbol"
+                        [class]="this.traderDetailsBuySellForm.value.class">
+                    </app-trader-oco>
+                    <app-trader-oto *ngIf="traderDetailsBuySellForm.value.class == 'oto'"
+                        [orderSubmittedCb]="orderSubmittedCb" [symbol]="this.traderDetailsBuySellForm.value.symbol"
+                        [class]="this.traderDetailsBuySellForm.value.class">
+                    </app-trader-oto>
+                    <app-trader-otoco *ngIf="traderDetailsBuySellForm.value.class == 'otoco'"
+                        [orderSubmittedCb]="orderSubmittedCb" [symbol]="this.traderDetailsBuySellForm.value.symbol"
+                        [class]="this.traderDetailsBuySellForm.value.class">
+                    </app-trader-otoco>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="ORDERS">
+                <app-orders-details *ngIf="activeIndex==1"></app-orders-details>
+            </p-tabPanel>
+            <p-tabPanel header="GAIN/LOSS">
+                <app-gainloss *ngIf="activeIndex==2"></app-gainloss>
+            </p-tabPanel>
+            <p-tabPanel header="POSITIONS">
+                <app-positions *ngIf="activeIndex==3"></app-positions>
+            </p-tabPanel>
+            <p-tabPanel header="CHAINS">
+                <app-options-chains *ngIf="activeIndex==4" [symbol]="symbol" [sendToTickets]="sendToTickets">
+                </app-options-chains>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="bsModalRef.hide()">close</button>
+    </div>
+</div>

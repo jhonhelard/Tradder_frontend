@@ -1,0 +1,14 @@
+<!-- <p-overlayPanel #op>
+    <ng-template pTemplate>
+        <img src="{{oldwebsiteUrl}}/Chart.aspx?Provider=DB&Code=AAPL&Type=3&Scale=0&IND=AreaRSI(14){U};VOLMA(60);MACD(12,26,9)&OVER=MA(13);MA(50)&Skin=GreenRed&Size=520&RT=1&Start=20191214&End=20200614&Layout=2LineBlack;DefaultBlack;HisDate&Cycle=DAY1&x=100&y=100"
+            width="100%" />
+    </ng-template>
+</p-overlayPanel> -->
+<p-overlayPanel #chartop dismissable="true">
+    <ng-template pTemplate>
+        <div class="overlay chart-loading"><i class="fas fa-3x fa-sync-alt fa-spin text-muted"></i>
+        </div>
+        <img src="{{oldwebsiteUrl}}/Chart.aspx?Provider=DB&Code={{selectedItem.symbol}}&Type=3&Scale=0&IND=AreaRSI(14){U};VOLMA(60);MACD(12,26,9)&OVER=MA(13);MA(50)&Skin=GreenRed&Size=520&RT=1&Start=20191214&End=20200614&Layout=2LineBlack;DefaultBlack;HisDate&Cycle=DAY1&HIS=0"
+            width="100%" />
+    </ng-template>
+</p-overlayPanel>

@@ -1,0 +1,240 @@
+<div class="row left-table-content m-0 mt-2">
+  <div class="col">
+    <div class="card stripe-table-data rounded-0 shadow-element">
+      <div class="card-header">
+        <h2 class="card-title big-title fw-500">Price stats</h2>
+      </div>
+      <div class="card-body flat-table pointer">
+
+        <div class="vertical-table-wrapper d-md-none">
+          <div class="v-item d-flex align-items-center justify-content-between">
+            <span class="key fw-600">Price</span>
+            <span class="value">{{stock_price}}</span>
+          </div>
+          <div class="v-item d-flex align-items-center justify-content-between">
+            <span class="key fw-600">Change</span>
+            <span class="value">{{getPercentageDisplayValue(change_percentage)}}</span>
+          </div>
+          <div class="v-item d-flex align-items-center justify-content-between">
+            <span class="key fw-600">Price Range</span>
+            <span class="value">
+              <span class="text-success">{{getDisplayValue(stock_high, '1.2-2')}}</span><br />
+              <span class="text-danger">{{getDisplayValue(stock_prevclose, '1.2-2')}}</span>
+            </span>
+          </div>
+          <div class="v-item d-flex align-items-center justify-content-between">
+            <span class="key fw-600">Prev Close</span>
+            <span class="value">{{getDisplayValue(stock_prevclose) }}</span>
+          </div>
+          <div class="v-item d-flex align-items-center justify-content-between">
+            <span class="key fw-600">Bid</span>
+            <span class="value">{{getDisplayValue(quote?.bid, '1.2-2')}}</span>
+          </div>
+          <div class="v-item d-flex align-items-center justify-content-between">
+            <span class="key fw-600">Ask</span>
+            <span class="value">{{getDisplayValue(quote?.ask) }}</span>
+          </div>
+
+          <div class="v-item d-flex align-items-center justify-content-between">
+            <span class="key fw-600">Volume</span>
+            <span class="value">{{getDisplayValue(quote?.volume, '1.')}}</span>
+          </div>
+
+          <div class="v-item d-flex align-items-center justify-content-between">
+            <span class="key fw-600">Avg Volume</span>
+            <span class="value">{{getDisplayValue(quote?.average_volume, '1.')}}</span>
+          </div>
+
+          <div class="v-item d-flex align-items-center justify-content-between">
+            <span class="key fw-600">Bid Size</span>
+            <span class="value">{{getDisplayValue(quote?.bidsize, '1.')}}</span>
+          </div>
+
+          <div class="v-item d-flex align-items-center justify-content-between">
+            <span class="key fw-600">Ask Size</span>
+            <span class="value">{{getDisplayValue(quote?.asksize, '1.')}}</span>
+          </div>
+
+          <div class="v-item d-flex align-items-center justify-content-between">
+            <span class="key fw-600">52 Weeks High</span>
+            <span class="value">{{getDisplayValue(quote?.week_52_high)}}</span>
+          </div>
+
+          <div class="v-item d-flex align-items-center justify-content-between">
+            <span class="key fw-600">52 Weeks Low</span>
+            <span class="value">{{getDisplayValue(quote?.week_52_low)}}</span>
+          </div>
+        </div>
+
+        <div class="ui-table ui-widget d-none d-md-block">
+          <div class="ui-table-wrapper table-responsive-sm">
+            <table role="grid" class="table w-md-100 mb-0">
+              <tbody class="ui-table-tbody">
+                <tr>
+                  <td class="header">Price</td>
+                  <td [class.text-success]="change_percentage > 0" [class.text-danger]="change_percentage < 0">
+                    {{stock_price}}</td>
+                  <td class="header">Change</td>
+                  <td [class.text-success]="change_percentage > 0" [class.text-danger]="change_percentage < 0">
+                    {{getPercentageDisplayValue(change_percentage)}}</td>
+                  <td class="header">Price Range</td>
+                  <td>
+                    <span class="text-success">{{getDisplayValue(stock_high, '1.2-2')}}</span><br />
+                    <span class="text-danger">{{getDisplayValue(stock_prevclose, '1.2-2')}}</span>
+                  </td>
+                  <td class="header">Prev Close</td>
+                  <td>{{getDisplayValue(stock_prevclose) }}</td>
+                </tr>
+                <tr>
+                  <td class="header">Bid</td>
+                  <td>{{getDisplayValue(quote?.bid, '1.2-2')}}</td>
+                  <td class="header">Ask</td>
+                  <td>{{getDisplayValue(quote?.ask) }}</td>
+                  <td class="header">Volume</td>
+                  <td>{{getDisplayValue(quote?.volume, '1.')}}</td>
+                  <td class="header">Avg Volume</td>
+                  <td>
+                    <span>{{getDisplayValue(quote?.average_volume, '1.')}}</span><br />
+                    <!-- <span>2.77%</span> -->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="header">Bid Size</td>
+                  <td>{{getDisplayValue(quote?.bidsize, '1.')}}</td>
+                  <td class="header">Ask Size</td>
+                  <td>{{getDisplayValue(quote?.asksize, '1.')}}</td>
+                  <td class="header">52 Weeks High</td>
+                  <td>{{getDisplayValue(quote?.week_52_high) }}</td>
+                  <td class="header">52 Weeks Low</td>
+                  <td>{{getDisplayValue(quote?.week_52_low) }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="flickity-button flickity-button-pre d-block d-md-none" aria-label="Previous" style="left: -7px;">
+        <svg class="flickity-button-icon" viewBox="0 0 100 100">
+          <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow"></path>
+        </svg>
+      </div>
+      <div class="flickity-button flickity-button-next d-block d-md-none" aria-label="Previous" style="right: -7px;">
+        <svg class="flickity-button-icon" viewBox="0 0 100 100">
+          <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow"
+            transform="translate(100, 100) rotate(180) "></path>
+        </svg>
+      </div> -->
+    </div>
+    <div class="card stripe-table-data shadow-element">
+      <div class="card-header">
+        <h2 class="card-title big-title fw-500">Fundamental stats</h2>
+      </div>
+      <div class="card-body">
+        <div class="card-body flat-table pointer p-0">
+          <div class="ui-table ui-widget">
+            <div class="ui-table-wrapper table-responsive-sm">
+              <table role="grid" class="table w-md-100 mb-0">
+                <tbody class="ui-table-tbody">
+                  <tr>
+                    <td class="header">Exchange</td>
+                    <td>
+                      {{getExchangeValue(quote?.exch) }}
+                    </td>
+                    <td class="header">P/E</td>
+                    <td>{{ getDisplayValue(peRatio) }}</td>  
+                    <!-- <td>{{getDisplayValue(stableStock?.peRatio)}}</td> -->
+                    <td class="header">EPS (ttm)</td>
+                    <td>{{ getDisplayValue(eps) }}</td>  
+                    <!-- <td [class.text-danger]="stableStock?.ttmEPS < 0" [class.text-success]="stableStock?.ttmEPS > 0"> 
+                      {{getDisplayValue(stableStock?.ttmEPS)}}</td>-->
+                    <td class="header">Forward P/E</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.forward_p_e_ratio) }}</td>
+                  </tr>
+                  <tr>
+                    <td class="header">Market Cap</td>
+                    <!-- <td>{{getDisplayValue(stableStock?.marketcap, '1.')}}</td> -->
+                    <td>{{ getDisplayValue(marketCapitalization) }}</td>  
+                    <td class="header">PEG</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.p_e_g_ratio) }}</td>
+                    <td class="header">Beta</td>
+                    <!-- <td>{{getDisplayValue(dividend?.valuation_ratios?.beta)}}</td>
+                 -->
+                 <td>{{ getDisplayValue(beta) }}</td>  
+                  
+                    <!-- <td class="header">P/S</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.p_s_ratio) }}</td> -->
+                    <td class="header">EBIDTA</td>
+                    <!-- <td>{{getDisplayValue(dividend?.valuation_ratios?.quick_ratio) }}</td> -->
+                    <td>{{ getDisplayValue(EBIDTA) }}</td>  
+                  
+                  </tr>
+                  <tr>
+                    <td class="header">Dividend Rate</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.dividend_rate) }}</td>
+                    <td class="header">Dividend Yield(%)</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.dividend_yield*100) }}</td>
+                    <td class="header">Forward PE Ratio</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.forward_p_e_ratio) }}</td>
+                    <td class="header">CAPE Ratio</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.c_a_p_e_ratio)}}</td>
+                  </tr>
+                  <tr>
+                    <td class="header">PEG Ratio</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.p_e_g_ratio)}}</td>
+                    <td class="header">Payout Ratio</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.payout_ratio)}}</td>
+                    <td class="header">PB Ratio</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.p_b_ratio)}}</td>
+                    <td class="header">Price to Cash Flow Ratio</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.p_cash_ratio3_yr_avg)}}</td>
+                  </tr>
+                  <tr>
+                    <td class="header">Book Value per Share</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?. book_value_per_share)}}</td>
+                    <td class="header">PE Ratio 1 Year High</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.p_e_ratio1_year_high)}}</td>
+                    <td class="header">PE Ratio 1 Year Low</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.p_e_ratio1_year_low)}}</td>
+                    <td class="header">PE Ratio 1 Year Avg</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.p_e_ratio1_year_average)}}</td>
+                  </tr>
+                  <tr>
+                    <td class="header">Price to Cash Ratio</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?. priceto_cash_ratio)}}</td>
+                    <td class="header">Price to Sales Ratio</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.p_s_ratio)}}</td>
+                    <td class="header">Total Asset per Share</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.total_asset_per_share)}}</td>
+                    <td class="header">Tangible Book Value per Share</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.tangible_book_value_per_share )}}</td>
+                  </tr>
+                  <tr>
+                    <td class="header">Sale per Share</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?. sales_per_share)}}</td>
+                    <td class="header">Sales Yield(%)</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.sales_yield*100)}}</td>
+                    <td class="header">Total Yield(%)</td>
+                    <td>{{getDisplayValue(dividend?.valuation_ratios?.total_yield*100)}}</td>
+                     <td class="header"></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="flickity-button flickity-button-pre d-block d-md-none" aria-label="Previous" style="left: -7px;">
+          <svg class="flickity-button-icon" viewBox="0 0 100 100">
+            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow"></path>
+          </svg>
+        </div>
+        <div class="flickity-button flickity-button-next d-block d-md-none" aria-label="Previous" style="right: -7px;">
+          <svg class="flickity-button-icon" viewBox="0 0 100 100">
+            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow"
+              transform="translate(100, 100) rotate(180) "></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

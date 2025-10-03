@@ -1,0 +1,78 @@
+<form [formGroup]="otocoBuySellForm">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <select [ngClass]="{ 'is-invalid': submitted && otocoBuySellForm['controls'].duration.errors }"
+                    class="custom-select" formControlName="duration" id="inputGroupSelect01">
+                    <option selected>-Duration-</option>
+                    <option *ngFor="let duration of durationOptions" [value]="duration.value">{{duration.name}}</option>
+                </select>
+                <span *ngIf="submitted && otocoBuySellForm['controls'].duration.errors">
+                    <span class="text-danger" *ngIf="otocoBuySellForm['controls'].duration.errors.required">Duration
+                        Is
+                        Required</span>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input [ngClass]="{ 'is-invalid': submitted && otocoBuySellForm['controls'].quantity.errors }"
+                    type="number" class="form-control" formControlName="quantity" placeholder="Quantity">
+                <span *ngIf="submitted && otocoBuySellForm['controls'].quantity.errors">
+                    <span class="text-danger" *ngIf="otocoBuySellForm['controls'].quantity.errors.required">Quantity Is
+                        Required</span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <select [ngClass]="{ 'is-invalid': submitted && otocoBuySellForm['controls'].type.errors }"
+                    class="custom-select" formControlName="type" id="inputGroupSelect01">
+                    <option selected>-Type-</option>
+                    <option *ngFor="let type of typeOptions" [value]="type.value">{{type.name}}</option>
+                </select>
+                <span *ngIf="submitted && otocoBuySellForm['controls'].type.errors">
+                    <span class="text-danger" *ngIf="otocoBuySellForm['controls'].type.errors.required">Type Is
+                        Required
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input [ngClass]="{ 'is-invalid': submitted && otocoBuySellForm['controls'].quantity.errors }"
+                    type="text" class="form-control" formControlName="option_symbol" placeholder="Option Symbol">
+                <span *ngIf="submitted && otocoBuySellForm['controls'].class.errors">
+                    <span class="text-danger" *ngIf="otocoBuySellForm['controls'].class.errors.required">Option
+                        Symbol Is
+                        Required</span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <select [ngClass]="{ 'is-invalid': submitted && otocoBuySellForm['controls'].side.errors }"
+                    class="custom-select" formControlName="side" id="inputGroupSelect01">
+                    <option selected>-Side-</option>
+                    <option *ngFor="let side of sideOptions" [value]="side.value">{{side.name}}</option>
+                </select>
+                <span *ngIf="submitted && otocoBuySellForm['controls'].side.errors">
+                    <span class="text-danger" *ngIf="otocoBuySellForm['controls'].side.errors.required">Side Is
+                        Required
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button type="submit" [disabled]="submitInProgress" (click)="onSubmit()"
+                class="btn btn-success">Submit</button>
+        </div>
+    </div>
+    <!-- {{otocoBuySellForm.value | json}} -->
+</form>

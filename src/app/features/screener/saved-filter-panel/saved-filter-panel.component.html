@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-12 mt-2 card-height">
+        <div class="card shadow-element">
+            <div class="card-header">
+                <h2 class="card-title big-title fw-500">Saved Filters</h2>
+            </div>
+            <div class="card-body ">
+                <div class="collection-collapse-block-content">
+                    <div class="row collection-brand-filter m-0">
+                        <div class="dropdown-width" *ngFor="let item of savedFilters; let i = index">
+                            <div class="saved-item">
+                                <a class="link" (click)="clickSavedFilter(i)"> {{ item.name }}</a>
+                                <a class="delete-link" title="delete" (click)="clickDeleteFilter(i)">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                
+                        </div>
+                        <div *ngIf="savedFilters.length === 0" class="col-md-12 m-auto">
+                            No Saved Filters
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="table table-responsive fixTableHead">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Date Acquired</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of positions">
+                <td>{{data.symbol}}</td>
+                <td>{{data.cost_basis}}</td>
+                <td>{{data.quantity}}</td>
+                <td>{{data.date_acquired | date}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

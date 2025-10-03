@@ -1,0 +1,168 @@
+<div class="content-wrapper mt-3 bg-transparent">
+    <!--<p-tabView styleClass="tab-view-transparent">-->
+    <!--<p-tabPanel header="Fundamental">-->
+    <!--<app-fundamental-panel-->
+    <!--[fundamental]="screener.fundamental"-->
+    <!--[customData]="fundamentalCustomData"-->
+    <!--(handleData)="onChangeFundamentalDropDown($event)"-->
+    <!--(handleCustomDelete)="onDeleteCustomData($event)">-->
+    <!--</app-fundamental-panel>-->
+    <!--</p-tabPanel>-->
+    <!--<p-tabPanel header="Technical">-->
+    <!--<app-technical-panel-->
+    <!--[technical]="screener.technical"-->
+    <!--(handleData)="onChangeTechnicalDropDown($event)">-->
+    <!--</app-technical-panel>-->
+    <!--</p-tabPanel>-->
+    <!--<p-tabPanel header="Signal">-->
+    <!--<app-signal-panel-->
+    <!--[signal]="screener.signal"-->
+    <!--(handleData)="onChangeSignalDropDown($event)">-->
+    <!--</app-signal-panel>-->
+    <!--</p-tabPanel>-->
+    <!--<p-tabPanel header="Dynamic">-->
+    <!--<app-dynamic-panel-->
+    <!--[dynamic]="screener.dynamic"-->
+    <!--[isShowModal]="isShowDynamicModal"-->
+    <!--(handleUnSelectDynamicRefItem)="handleUnSelectDynamicRefItem($event)"-->
+    <!--(handleData)="onChangeFromDynamicPanel($event)">-->
+    <!--</app-dynamic-panel>-->
+    <!--</p-tabPanel>-->
+    <!--<p-tabPanel header="Technical">-->
+    <!--<app-saved-filter-panel>-->
+    <!--(handleSelectSavedFilter)="openSavedFilter($event)">-->
+    <!--</app-saved-filter-panel>-->
+    <!--</p-tabPanel>-->
+    <!--</p-tabView>-->
+
+    <div class="content px-3" [class]="isLoading ? 'opacity': ''">
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item" *ngFor="let item of TABS">
+                <a class="nav-link text-white colored-tabs" [herf]="item.herf"
+                    [ngClass]="activeTab === item.id ? 'active ' + item.active_class : ''"
+                    [ngClass]="(viewMode !== 'light-mode' && activeTab !== item.id) ? 'black' : ''" [class]="item.class"
+                    (click)="activate(item.id)" data-toggle="tab">
+                    {{ item.label }}
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-content py-3">
+                <!-- start fundamental panel -->
+                <div class="tab-pane" id="fundamental" [ngClass]="{ 'active':activeTab==='fundamental'}">
+                    <app-fundamental-panel [fundamental]="screener.fundamental" [customData]="fundamentalCustomData"
+                        (handleData)="onChangeFundamentalDropDown($event)"
+                        (handleCustomDelete)="onDeleteCustomData($event)">
+                    </app-fundamental-panel>
+                </div>
+                <!-- end fundamental panel -->
+
+                <!-- start technical panel -->
+                <div class="tab-pane" id="technical" [ngClass]="{ 'active':activeTab==='technical'}">
+                    <app-technical-panel [technical]="screener.technical"
+                        (handleData)="onChangeTechnicalDropDown($event)">
+                    </app-technical-panel>
+                </div>
+                <!-- end technical panel -->
+
+                <!-- start signal panel -->
+                <div class="tab-pane" id="signal" [ngClass]="{ 'active':activeTab==='signal'}">
+                    <app-signal-panel [signal]="screener.signal" (handleData)="onChangeSignalDropDown($event)">
+                    </app-signal-panel>
+                </div>
+                <!-- end signal panel -->
+
+                <!-- start dynamic panel -->
+                <div class="tab-pane" id="dynamic" [ngClass]="{ 'active':activeTab==='dynamic'}">
+                    <app-dynamic-panel [dynamic]="screener.dynamic"
+                        (handleUnSelectDynamicRefItem)="handleUnSelectDynamicRefItem($event)"
+                        (handleData)="onChangeFromDynamicPanel($event)">
+                    </app-dynamic-panel>
+                </div>
+                <!-- end dynamic panel -->
+
+                <!-- start saved filter panel -->
+                <div class="tab-pane" id="saved" [ngClass]="{ 'active':activeTab==='saved'}">
+                    <app-saved-filter-panel (handleSelectSavedFilter)="openSavedFilter($event)">
+                    </app-saved-filter-panel>
+                </div>
+                <!-- end saved filter panel -->
+
+                <!-- start filter region -->
+                <div>
+                    <div class="row m-0  mt-3">
+                        <div class="col-md-12 px-0">
+                            <div class="card shadow-element">
+                                <div class="card-header">
+                                    <h2 class="card-title big-title fw-500">Applied Filters</h2>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row m-0 pt-2 pb-2">
+                                        <div *ngFor="let filter of filters" class="filter-item fw-500 poppin-font text-white" [class]="filter.index" (click)="clickedFilteredItem(filter)"
+                                            data-toggle="modal" data-target="#dynamicModal">
+                                            {{ filter.id}}: {{ filter.value}}
+                                            <i class="fa fa-times-circle delete-filter" (click)="deleteFilter(filter.id)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent card-footer-border">
+                                    <div class="m-0 w-100 d-flex flex-sm-row justify-content-between align-items-sm-center flex-column align-items-start">
+                                        <div class="">
+                                            <button class="btn btn-sm btn-scan " (click)="scanData()" [disabled]="filters.length === 0 || isSpinner">Scan <span
+                                                    *ngIf="isSpinner" class="spinner-border spinner-border-sm"></span></button>
+                                            &nbsp;&nbsp; <button class="btn btn-sm btn-scan-stop" *ngIf="isSpinner" (click)="stopScan()">Stop Scan</button>
+                                        </div>
+                                        <div class="mt-3 mt-sm-0">
+                                            <a class="show-icon" style="margin-right: 1em" (click)="saveFilterData(true)">
+                                                Save Scan Filter
+                                            </a>
+                                            <a class="show-icon filled-grey" (click)="saveFilterData(false)">
+                                                Update Scan Filter</a>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+
+                        
+                        
+                    </div>
+                    <div class="row m-0 mt-3" *ngIf="totalRecord > 0">
+                        <span *ngIf="totalRecordScan < totalRecord">{{totalRecordScan}} stocks scanned out of
+                            {{totalRecord}} stocks</span>
+                        <span *ngIf="totalRecordScan >= totalRecord">{{totalRecord}} stocks scanned out of
+                            {{totalRecord}} stocks</span>
+
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 50%"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end filter region -->
+
+                
+
+                <!-- start scan result region -->
+                <app-scan-result [tableData]="tableData"></app-scan-result>
+                <!-- end scan result region -->
+            </div>
+        </div>
+    </div>
+
+    <!-- start loading region-->
+    <div class="centered">
+        <!-- <div *ngIf="isLoading" class="col-12 text-center loading">
+            <i class="fas fa-3x fa-sync-alt fa-spin text-muted"></i>
+        </div> -->
+        <div *ngIf="isLoading" class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!--end loading region-->
+</div>

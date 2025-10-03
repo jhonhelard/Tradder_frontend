@@ -1,0 +1,292 @@
+.page-news {
+	position: relative;
+}
+
+/*==== News Area Style :: End ====*/
+.news--area {
+	padding-top: 30px;
+	padding-bottom: 40px;
+}
+.news--area .news--title--area {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 42px;
+}
+.news--area .news--title--area h4 {
+	font-size: 32px;
+	font-weight: 700;
+	line-height: 48px;
+	color: var(--heading-color);
+}
+.news--area .news--title--area a {
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 28px;
+	display: flex;
+	align-items: center;
+	color: var(--heading-color);
+}
+.news--area .news--title--area a i {
+	color: var(--heading-color);
+	margin-left: 8px;
+	font-size: 14px;
+}
+.news--area .news--slider .news--box {
+	display: flex;
+	padding: 16px;
+	border-radius: 8px;
+	border: 1px solid #ebebeb;
+	background-color: #f5f5f5;
+}
+.news--area .news--slider .news--box h3 {
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 24px;
+	margin-bottom: 16px;
+}
+.news--area .news--slider .news--box p {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 24px;
+}
+.news--area .news--slider .news--box img {
+	width: 110px;
+	height: 110px;
+	border-radius: 4px;
+	object-fit: cover;
+	margin-right: 20px;
+}
+.news--area .news--slider .news--content {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+/*==== News Area Style :: End ====*/
+
+/*==== Trending Area Style :: Start ====*/
+.trending--area {
+	padding-bottom: 50px;
+}
+.trending--area .trending--title--area {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 42px;
+}
+.trending--area .trending--title--area h4 {
+	font-size: 32px;
+	font-weight: 700;
+	line-height: 48px;
+	color: var(--heading-color);
+}
+.trending--area .trending--title--area a {
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 28px;
+	display: flex;
+	align-items: center;
+	color: var(--heading-color);
+}
+.trending-area .trending--title--area a i {
+	color: var(--heading-color);
+	margin-left: 8px;
+	font-size: 14px;
+}
+.trending--area .trending--box {
+	padding: 16px;
+	border-radius: 8px;
+	border: 1px solid #ebebeb;
+	background-color: #f5f5f5;
+}
+
+.trending--area .trending--box,
+.trending--area .price--and--percent {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: space-between;
+}
+.trending--area .trending--box h4 {
+	flex: 1;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 24px;
+	margin-bottom: 0;
+}
+.trending--area .trending--box .upper--content {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	margin-bottom: 8px;
+}
+.trending--area .trending--box .price--and--percent p {
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 24px;
+}
+.trending--area .trending--box .price--and--percent p.percent {
+	color: #21d789 !important;
+	margin-left: 16px;
+}
+.trending--area .trending--box .price--and--percent p.percent.red {
+	color: #f73b4c !important;
+}
+.trending--area .trending--slider .img--area {
+	height: 72px;
+	width: 72px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	border-radius: 50%;
+	background-color: #ebebeb;
+	margin-right: 16px;
+}
+.trending--area .trending--slider img {
+	height: 35px;
+	width: 35px;
+}
+.trending--area .trending--box .content {
+	flex: 1;
+	/* position: relative; */
+}
+.trending--area .trending--box p.posi--text {
+	padding: 4px 12px;
+	background-color: var(--btn-color);
+	color: #fff;
+	font-size: 14px;
+	font-weight: 600;
+	border-radius: 4px;
+	max-width: 60px;
+	height: 28px;
+	margin: auto 0 auto 20px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}
+.industrial--box {
+	padding: 24px 24px 64px 24px;
+	background-color: #ebebeb;
+	border-radius: 8px;
+}
+.industrial--box img {
+	max-height: 400px;
+	-o-object-fit: cover;
+	object-fit: cover;
+	border-radius: 8px;
+}
+.industrial--box .content .left {
+	max-width: 80%;
+	width: 100%;
+}
+.industrial--box .content .right {
+	width: 100%;
+	text-align: right;
+}
+.industrial--box .content {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: end;
+	-ms-flex-align: end;
+	align-items: flex-end;
+	margin-top: 32px;
+}
+.industrial--box .content h3 {
+	font-size: 32px;
+	font-weight: 700;
+	line-height: 48px;
+	margin-bottom: 4px;
+}
+.industrial--box .content p {
+	font-family: 'Poppins', sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 32px;
+	margin-bottom: 0;
+}
+.industrial--box .content .right .button {
+	padding: 20px 32px;
+	font-family: 'Poppins', sans-serif;
+}
+.dark--active .trending--area .trending--box h4,
+.dark--active .trending--area .trending--box .price--and--percent .price,
+.dark--active .industrial--box .content h3 {
+	color: #fff;
+}
+.dark--active .industrial--box {
+	background-color: var(--dark--box);
+}
+
+
+
+@media only screen and (min-width: 1200px) {
+	.top-gainer-mobile {
+		display: none;
+	}
+	
+	.top-loser-mobile {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 1199px) {
+	.industrial--box .content {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.industrial--box .content .left {
+		max-width: 100%;
+		width: 100%;
+	}
+	.industrial--box .content .right {
+		text-align: left;
+	}
+
+	.top-gainer-desktop {
+		display: none;
+	}
+
+	.top-loser-desktop {
+		display: none;
+	}
+}
+/*==== Trending Area Style :: End ====*/
+
+::ng-deep .page-news .chart-playground img {
+	min-width: initial !important;
+}
+
+::ng-deep .owl-carousel .owl-stage-outer {
+	position: unset !important;
+}
+
+::ng-deep .owl-carousel .owl-stage {
+	position: unset !important;
+}
+
+::ng-deep .owl-carousel, .owl-carousel .owl-item {
+    -webkit-tap-highlight-color: transparent;
+	position: unset !important;
+}
+
+::ng-deep .owl-carousel, .owl-carousel .owl-item {
+    /* -webkit-tap-highlight-color: transparent; */
+    position: unset !important;
+}

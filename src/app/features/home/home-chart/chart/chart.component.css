@@ -1,0 +1,7 @@
+.chart-playground {
+    overflow-x: auto;
+}
+
+.chart-playground img {
+    min-width: 2000px;
+}

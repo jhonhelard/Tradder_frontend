@@ -1,0 +1,159 @@
+<div class="position-relative mt-3">
+    <!-- <div class="card rounded-0" [class]=" ? 'isScanningscan-result' : ''"> -->
+    <div class="card shadow-element">
+        <div class="card-header">
+            <h2 class="card-title big-title fw-500">
+                Scan Result: {{tableData.length}}
+            </h2>
+        </div>
+        <!-- <div class="tooltip fade bs-tooltip-top show" role="tooltip" id="tooltip307184" style="position: absolute; transform: translate3d(280px, 346px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="top">
+            <div class="arrow" style="left: 254px;"></div>
+            <div class="tooltip-inner">
+                <div class="chart-wapper">
+                    <div class="chart-loading">
+                        <i class="fas fa-3x fa-sync-alt fa-spin text-muted"></i>
+                    </div>    
+                    <img class="chart-img" src="{{oldwebsiteUrl}}/Chart.aspx?Provider=DB&amp;Code=QQQQQ&amp;Type=3&amp;Scale=0&amp;IND=AreaRSI(14){U};VOLMA(60);MACD(12,26,9)&amp;OVER=MA(13);MA(50)&amp;Skin=Black&amp;Size=520*400&amp;RT=1&amp;Start=20191214&amp;End=20200614&amp;Layout=2LineBlack;DefaultBlack;HisDate&amp;Cycle=DAY1&amp;x=100&amp;y=100" width="100%">
+                </div>
+            </div>
+        </div> -->
+        <div class="card-body flat-table pointer">
+            <div class="row">
+                <div class="col-12 flat-table">
+                    <div class="ui-table-wrapper table-responsive-sm">
+                        <p-table #dt1 [columns]="cols" [value]="tableData" tableStyleClass="table mb-0"
+                            [tableStyle]="{'min-width': '50rem'}" [scrollable]="false" scrollHeight="500px"
+                            [frozenColumns]="frozenCols" frozenWidth="170px"
+                            [globalFilterFields]="['ticker', 'ticker', 'company','last','open','high','low','close','volume','change','percentChange','exchange']">
+                            <ng-template pTemplate="caption">
+                                <div class="flex align-items-left">
+                                    <span class="p-input-icon-left ml-auto mr-5">
+                                        <i class="pi pi-search"></i>
+                                        <input pInputText type="text"
+                                            (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                                            placeholder="Search keyword" />
+                                    </span>
+                                </div>
+                            </ng-template>
+                            <ng-template pTemplate="colgroup" let-columns>
+                                <colgroup>
+                                    <ng-container *ngFor="let col of columns" [ngSwitch]="col.field">
+                                        <col class="text-center favourite" *ngSwitchCase="''">
+                                        <col [style.width.px]="260" *ngSwitchCase="'company'">
+                                        <col [style.width.px]="170" *ngSwitchDefault>
+                                    </ng-container>
+                                </colgroup>
+                            </ng-template>
+                            <ng-template pTemplate="header" let-columns>
+                                <tr>
+                                    <ng-container *ngFor="let col of columns" [ngSwitch]="col.field">
+                                        <th class="text-center favourite" *ngSwitchCase="''">
+                                            {{ col.header }}
+                                        </th>
+                                        <th class="text-left" *ngSwitchCase="'ticker'" [pSortableColumn]="col.field" [style.width.px]="170">
+                                            {{col.header}}
+                                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                                        </th>
+                                        <th class="text-left company" *ngSwitchCase="'company'"
+                                            [pSortableColumn]="col.field" [style.width.px]="260">
+                                            {{col.header}}
+                                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                                        </th>
+                                        <th class="text-right" *ngSwitchDefault [pSortableColumn]="col.field" [style.width.px]="170">
+                                            {{col.header}}
+                                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                                        </th>
+                                    </ng-container>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                                <tr class="extra-row" #tr id="#row{{rowData.ticker}}"
+                                    (click)="onSymbolSelected(rowData)" data-toggle="tooltip" data-html="true"
+                                    title='{{getTooltipHtml(rowData) }}'>
+                                    <!-- <tr class="extra-row" #tr id="row{{rowData.ticker}}"
+                                    (click)="onSymbolSelected(rowData)"
+                                    data-toggle="tooltip" data-html="true"                                
+                                    (mouseover)="showChart(rowData.ticker)" 
+                                    (mouseout)="hideChart(rowData.ticker)"> -->
+                                    <td [attr.colspan]="columns.length">
+                                        <table>
+                                            <tr>
+                                                <ng-container *ngFor="let col of columns" [ngSwitch]="col.field">
+                                                    <td class="text-center favourite" *ngSwitchCase="''">
+                                                        <i class="fa fa-star" *ngIf="rowData[col.field] > 0"
+                                                            [style.color]="rowData[col.field] === 1 ? '#efd998' : '#ffc107'"></i>
+                                                    </td>
+                                                    <td class="text-left color-blue pl-0" *ngSwitchCase="'ticker'">
+                                                        {{ rowData[col.field] }}
+                                                    </td>
+                                                    <td class="text-left company pl-0" *ngSwitchCase="'company'">
+                                                        {{ rowData[col.field] }}
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchCase="'last'">
+                                                        {{ rowData[col.field] | number : '1.2-2'}}
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchCase="'open'">
+                                                        {{ rowData[col.field] | number : '1.2-2'}}
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchCase="'high'">
+                                                        {{ rowData[col.field] | number : '1.2-2'}}
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchCase="'low'">
+                                                        {{ rowData[col.field] | number : '1.2-2'}}
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchCase="'close'">
+                                                        {{ rowData[col.field] | number : '1.2-2'}}
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchCase="'volume'">
+                                                        {{rowData[col.field] | ticketVolume}}
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchCase="'change'">
+                                                        <span
+                                                            [class]="rowData[col.field] >= 0 ? 'text-success' : 'text-danger'">
+                                                            {{ rowData[col.field] | number : '1.2-2'}}
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchCase="'percentChange'">
+                                                        <span
+                                                            [class]="rowData[col.field] >= 0 ? 'text-success' : 'text-danger'">
+                                                            {{ rowData[col.field] | number : '1.2-2'}}%
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-right" *ngSwitchDefault>
+                                                        {{ rowData[col.field] }}
+                                                    </td>
+                                                </ng-container>
+                                            </tr>
+                                            <tr class="row-append">
+                                                <td [attr.colspan]="columns.length" class="py-1">
+                                                    <div class="row" id="extraRow{{rowData.ticker}}">
+                                                        <div class="col-8 text-left">
+                                                            <!-- <small>{{rowData['company']}}</small> -->
+                                                        </div>
+                                                        <div class="col-4 text-right">
+                                                            <button type="button"
+                                                                class="btn btn-success btn-sm mr-2">Buy</button>
+                                                            <button type="button"
+                                                                class="btn btn-danger btn-sm">Sell</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage" let-columns>
+                                <tr>
+                                    <td [attr.colspan]="columns.length">
+                                        No data for scan
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

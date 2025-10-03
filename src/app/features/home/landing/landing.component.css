@@ -1,0 +1,24 @@
+.price--box {
+    display: flex;
+    flex-direction: column;
+}
+
+.pricing--area .feature--area {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.pricing--area .feature--area ul {
+    flex: 1;
+}
+
+.pricing--area .feature--area li p {
+    margin-bottom: 0;
+}
+
+.pricing--area .feature--area a {
+    color: white;
+    cursor: pointer;
+}
+

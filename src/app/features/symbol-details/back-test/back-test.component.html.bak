@@ -1,0 +1,661 @@
+<div class="card-body container">
+    <div class="w-100">
+        <!-- <div class="row">
+
+        </div> -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <label>BACKTEST:</label>
+                
+            </div>
+            <div class="col-12">
+                {{symbol}}
+                <div class="custom-control custom-radio d-inline-flex ml-3">
+                    <input class="custom-control-input" type="radio" id="ckbBasicTest" name="ckbBasicTest" checked
+                        (click)="BackTestType('Basic')" value="Basic">
+                    <label for="ckbBasicTest" class="custom-control-label font-90 pt-1">Beginner Level</label>
+                </div>
+            </div>
+            <div class="col-2 m-1 hide">
+                <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" id="ckbAdvanceTest" name="ckbBasicTest"
+                        (click)="BackTestType('Advance')" value="Advance">
+                    <label for="ckbAdvanceTest" class="custom-control-label font-90 pt-1">Pro Level</label>
+                </div>
+            </div>
+        </div>
+        <div class="row flex-nowrap calander-input mb-3">
+            <div class="col-6 col-md-4">
+                <label for="min-max" class="d-flex">From Date: </label>
+                <p-calendar class="from-calendar form-control" id="from-calendar" [readonlyInput]="true" [showIcon]="false"
+                     [(ngModel)]="fromDate" dateFormat="mm/dd/yy" [monthNavigator]="true"
+                    [yearNavigator]="true" yearRange="2000:2030"></p-calendar>
+
+               
+            </div>
+            <div class="col-6 col-md-4">
+            
+                <label for="min-max" class="d-flex"> To: </label>
+                <p-calendar [(ngModel)]="toDate"  [readonlyInput]="true" [showIcon]="false"
+                    [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" dateFormat="mm/dd/yy" class="form-control">
+                </p-calendar>
+            </div>
+            <div class="col-2" *ngIf="backTestType == 'Advance'">
+                <button class="btn btn-sm btn-info ml-1 mr-1" (click)="RunBacktest()"> Run
+                    Backtest</button>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="backTestType == 'Advance'" >
+            <div class="col-2"><strong>EnterLong:</strong> </div>
+            <div class="col-10">{{LongStrategySummary.EnterLong}}</div>
+        </div>
+        <div class="row" *ngIf="backTestType == 'Advance'">
+            <div class="col-2"><strong>ExitLong:</strong> </div>
+            <div class="col-10">{{LongStrategySummary.ExitLong}}</div>
+        </div>
+        <div class="row" *ngIf="backTestType == 'Advance'">
+            <div class="col-2"><strong>EnterShort:</strong> </div>
+            <div class="col-10">{{LongStrategySummary.EnterShort}}</div>
+        </div>
+        <div class="row" *ngIf="backTestType == 'Advance'">
+            <div class="col-2"><strong>CoverShort:</strong> </div>
+            <div class="col-10">{{LongStrategySummary.CoverShort}}</div>
+        </div>
+    </div>
+
+    <div *ngIf="backTestType == 'Basic'">
+        <div class="row mb-3">
+            <div class="col-2">
+                <label>No of Bars:</label>
+            </div>
+            <div class="col-10">
+                <input type="number" pInputText class="from-control" [inputStyle]="{'width':'6rem'}"
+                    [(ngModel)]="numberOfDays" min="1" max="10000" required>
+                <br>
+                <span class="color-red" *ngIf="!numberOfDays">
+                    No of Bars is required
+                </span>
+                <span class="color-red" *ngIf="numberOfDays < 0">
+                    No of Bars is invalid
+                </span>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-2">
+                <label>Show Result For:</label>
+            </div>
+            <div class="col-10">
+                <div class="d-inline-flex flex-column flex-sm-row">
+                    <div class="custom-control custom-radio mr-3">
+                        <input class="custom-control-input" type="radio" id="SignalTypeBuySell" name="ckbSignalType" checked
+                            value="Buy & Sell" (click)="onSignalTypeChange('Buy & Sell')">
+                        <label for="SignalTypeBuySell" class="custom-control-label font-90 pt-1">Buy & Sell</label>
+                    </div>
+                    <div class="custom-control custom-radio mr-3">
+                        <input class="custom-control-input" type="radio" id="SignalTypeShortCover" name="ckbSignalType"
+                            value="Short & Cover" (click)="onSignalTypeChange('Short & Cover')">
+                        <label for="SignalTypeShortCover" class="custom-control-label font-90 pt-1">ShortSell &
+                            ShortCover</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio" id="SignalTypeBoth" name="ckbSignalType" value="Both"
+                            (click)="onSignalTypeChange('Both')">
+                        <label for="SignalTypeBoth" class="custom-control-label font-90 pt-1">Both</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                <label>Trading System:</label>
+            </div>
+            <div class="col-12 col-md-4 calander-input">
+                <p-dropdown [options]="indicatorDynnamicListForCompare" styleClass="p-dropdown"
+                    (onChange)="onSelecteBasicIndicator($event)" optionLabel="FullName" optionValue="Name"
+                    placeholder="<< Select Trading Strategy >>" filter="true" class="form-control">
+                </p-dropdown>
+            </div>
+        </div>
+        <div class="row mt-2" *ngIf="selectedParam.length > 0">
+            <div class="col-2">
+                <strong>Parameters: </strong>
+            </div>
+            <div class="col-8">
+                <div class="row mt-3" *ngFor="let item of selectedParam">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <span>{{item.Name}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <span>Default Value: </span>
+                                <input type="text" pInputText [(ngModel)]="item.DefaultValue">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <span>Minimum Value: {{item.MinValue}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <span>Maximum Value: {{item.MaxValue}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <span>Parameter Help: {{item.Description}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-sm btn-info ml-1 mr-1" (click)="StartTesting()"> Start Testing</button>
+            </div>
+        </div>
+        <div class="row mt-2"
+            *ngIf="backTestReposonseModel && backTestReposonseModel.BuySell && backTestReposonseModel.BuySell.length > 0">
+            <div class="col-12 flat-table">
+                <div class="table-responsive-sm">
+                    <div class="p-5">
+                        <strong>Buy & Sell</strong>
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Entry Date</th>
+                                    <th>Entry Price</th>
+                                    <th>Exit Date</th>
+                                    <th>Exit Price</th>
+                                    <th>profit Percent</th>
+                                    <th>Days In Trade</th>
+                                </tr>
+                            </thead>
+                            <tbody class="ui-table-tbody">
+                                <tr *ngFor="let li of backTestReposonseModel.BuySell | paginate : {
+                                itemsPerPage: tableSize,
+                                currentPage: page,
+                                totalItems: count
+                              }; let i = index">
+
+                                    <td>{{ li.entryDate | date:'MM-dd-yyyy' }}</td>
+                                    <td>{{ li.entryPrice | number:'1.2-2' }}</td>
+                                    <td>{{ li.exitDate | date:'MM-dd-yyyy'}}</td>
+                                    <td>{{ li.exitPrice | number:'1.2-2' }}</td>
+                                    <td [ngClass]="li.profitPercent >= 0 ? 'tr-green' : 'tr-red' ">{{ li.profitPercent |
+                                        number:'1.2-2' }} %</td>
+                                    <td>{{ li.daysInTrade }}</td>
+                                </tr>
+                                <tr *ngIf="backTestReposonseModel.BuySell.length == 0" style="text-align: center;"
+                                    class="text-center">
+                                    <td colspan="10"> No data found </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="d-flex justify-content-center">
+                            <pagination-controls previousLabel="Prev" nextLabel="Next"
+                                (pageChange)="pageChanged($event)">
+                            </pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2"
+            *ngIf="backTestReposonseModel && backTestReposonseModel.ShortCover && backTestReposonseModel.ShortCover.length > 0">
+            <div class="col-12 flat-table">
+                <div class="table-responsive-sm">
+                    <div class="p-5">
+                        <strong>Short & Cover</strong>
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Entry Date</th>
+                                    <th>Entry Price</th>
+                                    <th>Exit Date</th>
+                                    <th>Exit Price</th>
+                                    <th>profit Percent</th>
+                                    <th>Days In Trade</th>
+                                </tr>
+                            </thead>
+                            <tbody class="ui-table-tbody">
+                                <tr *ngFor="let li of backTestReposonseModel.ShortCover | paginate : {
+                                itemsPerPage: tableSize,
+                                currentPage: page,
+                                totalItems: count
+                              }; let i = index" [ngClass]="li.profitPercent >= 0 ? 'tr-green' : 'tr-red' ">
+
+                                    <td>{{ li.entryDate | date:'dd-MM-yyyy' }}</td>
+                                    <td>{{ li.entryPrice | number:'1.2-2' }}</td>
+                                    <td>{{ li.exitDate | date:'dd-MM-yyyy'}}</td>
+                                    <td>{{ li.exitPrice | number:'1.2-2' }}</td>
+                                    <td [ngClass]="li.profitPercent >= 0 ? 'tr-green' : 'tr-red' ">{{ li.profitPercent |
+                                        number:'1.2-2' }} %</td>
+                                    <td> {{ li.daysInTrade }}</td>
+                                </tr>
+                                <tr *ngIf="backTestReposonseModel.ShortCover.length == 0" style="text-align: center;"
+                                    class="text-center">
+                                    <td colspan="10"> No data found </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="d-flex justify-content-center">
+                            <pagination-controls previousLabel="Prev" nextLabel="Next"
+                                (pageChange)="pageChanged($event)">
+                            </pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pl-5 mt-2" *ngIf="backTestReposonseModel && backTestReposonseModel != null && isStartTest">
+            <div class="col-4" [ngClass]="backTestReposonseModel.totalGain >= 0 ? 'tr-green' : 'tr-red' ">Total Earnings
+                = {{backTestReposonseModel.totalGain |
+                number:'1.2-2'}} %</div>
+        </div>
+        <div class="row pl-5 mt-2" *ngIf="backTestReposonseModel && backTestReposonseModel  != null && isStartTest">
+            <div class="col-4">Total Profitable Trades = {{backTestReposonseModel.totalProfitableTrades}} </div>
+        </div>
+        <div class="row pl-5 mt-2" *ngIf="backTestReposonseModel && backTestReposonseModel  != null && isStartTest">
+            <div class="col-4">Total Losing Trades = {{backTestReposonseModel.totalLoosingTrades}} </div>
+        </div>
+        <div class="row pl-5 mt-2" *ngIf="backTestReposonseModel && backTestReposonseModel  != null && isStartTest">
+            <div class="col-12" style="width: 100%; overflow-x: auto;">
+                <app-chart url="{{oldwebsiteUrl}}/{{backTestReposonseModel.ChartURL}}">
+                </app-chart>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="backTestType == 'Advance1'">
+        <accordion [isAnimated]="true" class="accordion accordion-borderless">
+            <accordion-group heading="LONG STRATEGY" [isOpen]="true">
+                <div class="row">
+                    <div class="col-1"> <label></label> </div>
+                    <div class="col-2 m-1 ml-0">
+                        <strong> <i class="fa fa-arrow-circle-right"></i> ENTRY WHEN</strong>
+                    </div>
+                </div>
+                <div *ngFor="let item of entryConditionList_LongStrategy; let i = index">
+                    <div class="row" *ngIf="i > 0">
+                        <div class="col-1"> <label></label> </div>
+                        <div class="col-2 m-1 pb-1">
+                            <p class="text-muted">AND</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="text-right mt-2" *ngIf="entryConditionList_LongStrategy.length > 1">
+                                <a href="Javascript:" (click)="removeEntryCondition_LongStrategy(i)"
+                                    class="text-danger">
+                                    <i class="fa fa-trash"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-11 m-0 p-0">
+                            <div class="row">
+                                <div class="col-3 pr-0 ml-0">
+                                    <p-dropdown [options]="indicatorDynnamicListForCompare" styleClass="p-dropdown"
+                                        (onChange)="indicatorSelectedFrom(item, $event, i)"
+                                        [(ngModel)]="item.FromIndicator" optionLabel="FullName" optionValue="Name"
+                                        placeholder="--Indicator--" filter="true">
+                                    </p-dropdown>
+                                </div>
+                                <div class="col-2  pr-0 ml-0">
+                                    <div class="form-group">
+                                        <input type="text" pInputText class="w-100" [(ngModel)]="item.FromParameter"
+                                            placeholder="Parameters"
+                                            [readonly]="(item.FromIndicator == 'Open' || item.FromIndicator == 'High' || item.FromIndicator == 'Low' || item.FromIndicator == 'Close') ? true : false"
+                                            [ngClass]="(item.FromIndicator == 'Open' || item.FromIndicator == 'High' || item.FromIndicator == 'Low' || item.FromIndicator == 'Close') ? 'disabled' : ''">
+                                    </div>
+                                </div>
+                                <div class="col-2  pr-0 ml-0">
+                                    <div class="form-group  mb-1">
+                                        <p-dropdown [options]="operators" [(ngModel)]="item.operator"
+                                            styleClass="p-dropdown" filter="true">
+                                        </p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-3  pr-0 ml-0">
+                                    <p-dropdown [options]="indicatorDynnamicListForCompare" styleClass="p-dropdown"
+                                        (onChange)="indicatorSelectedTo(item, $event, i)" [(ngModel)]="item.ToIndicator"
+                                        optionLabel="FullName" optionValue="Name" placeholder="--Indicator--"
+                                        filter="true">
+                                    </p-dropdown>
+                                </div>
+                                <div class="col-2  pr-0 ml-0">
+                                    <div class="form-group">
+                                        <input type="text" pInputText class="w-100" [(ngModel)]="item.ToParameter"
+                                            placeholder="Parameters"
+                                            [readonly]="(item.ToIndicator.Name == 'Open' || item.ToIndicator.Name == 'High' || item.ToIndicator.Name == 'Low' || item.ToIndicator.Name == 'Close') ? true : false"
+                                            [ngClass]="(item.ToIndicator.Name == 'Open' || item.ToIndicator.Name == 'High' || item.ToIndicator.Name == 'Low' || item.ToIndicator.Name == 'Close') ? 'disabled' : ''">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pb-3">
+                    <div class="col-1"> <label></label> </div>
+                    <div class="col-10 text-left pt-1">
+                        <button class="btn btn-sm btn-info mr-1" (click)="addEntryConditionRow_LongStrategy()"> + Add
+                            Entry
+                            Indicator</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1"> <label></label> </div>
+                    <div class="col-2 m-1 pt-3 ml-0">
+                        <strong> <i class="fa fa-arrow-circle-left"></i> EXIT WHEN</strong>
+                    </div>
+                </div>
+                <div *ngFor="let item of exitConditionList_LongStrategy; let i = index">
+                    <div class="row" *ngIf="i > 0">
+                        <div class="col-1"> <label></label> </div>
+                        <div class="col-2 m-1 pb-1">
+                            <p class="text-muted">AND</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="text-right color-red mt-2" *ngIf="exitConditionList_LongStrategy.length > 1">
+                                <a href="Javascript:" (click)="removeExitCondition_LongStrategy(i)" class="text-danger">
+                                    <i class="fa fa-trash"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-11  m-0 p-0">
+                            <div class="row">
+                                <div class="col-3 pr-0 ml-0">
+                                    <p-dropdown [options]="indicatorDynnamicListForCompare" styleClass="p-dropdown"
+                                        (onChange)="indicatorSelectedFrom(item, $event, i)"
+                                        [(ngModel)]="item.FromIndicator" optionLabel="FullName" optionValue="Name"
+                                        placeholder="--Indicator--" filter="true">
+                                    </p-dropdown>
+                                </div>
+                                <div class="col-2 pr-0 ml-0">
+                                    <div class="form-group">
+                                        <input type="text" pInputText class="w-100" [(ngModel)]="item.FromParameter"
+                                            placeholder="Parameters"
+                                            [readonly]="(item.FromIndicator == 'Open' || item.FromIndicator == 'High' || item.FromIndicator == 'Low' || item.FromIndicator == 'Close') ? true : false"
+                                            [ngClass]="(item.FromIndicator == 'Open' || item.FromIndicator == 'High' || item.FromIndicator == 'Low' || item.FromIndicator == 'Close') ? 'disabled' : ''">
+                                    </div>
+                                </div>
+                                <div class="col-2 pr-0 ml-0">
+                                    <div class="form-group  mb-1">
+                                        <p-dropdown [options]="operators" [(ngModel)]="item.operator"
+                                            styleClass="p-dropdown" filter="true">
+                                        </p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-3 pr-0 ml-0">
+                                    <p-dropdown [options]="indicatorDynnamicListForCompare" styleClass="p-dropdown"
+                                        (onChange)="indicatorSelectedTo(item, $event, i)" [(ngModel)]="item.ToIndicator"
+                                        optionLabel="FullName" optionValue="Name" placeholder="--Indicator--"
+                                        filter="true">
+                                    </p-dropdown>
+                                </div>
+                                <div class="col-2 pr-0 ml-0">
+                                    <div class="form-group">
+                                        <input type="text" pInputText class="w-100" [(ngModel)]="item.ToParameter"
+                                            placeholder="Parameters"
+                                            [readonly]="(item.ToIndicator.Name == 'Open' || item.ToIndicator.Name == 'High' || item.ToIndicator.Name == 'Low' || item.ToIndicator.Name == 'Close') ? true : false"
+                                            [ngClass]="(item.ToIndicator.Name == 'Open' || item.ToIndicator.Name == 'High' || item.ToIndicator.Name == 'Low' || item.ToIndicator.Name == 'Close') ? 'disabled' : ''">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="IsAddStopLoss_LongStrategy">
+                    <div class="row">
+                        <div class="col-1"> <label></label> </div>
+                        <div class="col-2 m-1 pb-1 text-muted">
+                            <p class="text-muted">OR</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="text-right mt-5">
+                                <a href="Javascript:" (click)="AddStopLoss_LongStrategy()" class="text-danger">
+                                    <i class="fa fa-trash"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-2 m-1 pb-1">
+                            <label>Stop Loss (%)</label>
+                            <input type="number" pInputText class="w-100" [(ngModel)]="AddStopLossValue_LongStrategy">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="IsAddTimeBasedExit_LongStrategy">
+                    <div class="row">
+                        <div class="col-1"> <label></label> </div>
+                        <div class="col-2 m-1 pb-1 text-muted">
+                            <p class="text-muted">OR</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="text-right mt-5">
+                                <a href="Javascript:" (click)="AddTimeBasedExit_LongStrategy()" class="text-danger">
+                                    <i class="fa fa-trash"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-2 m-1 pb-3">
+                            <label>After (days)</label>
+                            <input type="number" pInputText class="w-100"
+                                [(ngModel)]="AddTimeBasedExitValue_LongStrategy">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1"> <label></label> </div>
+                    <div class="col-10 text-left pt-1">
+                        <button class="btn btn-sm btn-info ml-1 mr-1" (click)="addExitConditionRow_LongStrategy()"> +
+                            Add
+                            Exit
+                            Indicator</button>
+                        <button class="btn btn-sm btn-info  ml-1 mr-1" (click)="AddTimeBasedExit_LongStrategy()"
+                            *ngIf="!IsAddTimeBasedExit_LongStrategy"> + Add Time Based Exit</button>
+                        <button class="btn btn-sm btn-info  ml-1 mr-1" (click)="AddStopLoss_LongStrategy()"
+                            *ngIf="!IsAddStopLoss_LongStrategy"> + Add
+                            Stop Loss</button>
+                    </div>
+                </div>
+            </accordion-group>
+            <accordion-group heading="SHORT STRATEGY" *ngIf="false">
+                <div class="row">
+                    <div class="col-1"> <label></label> </div>
+                    <div class="col-2 m-1 ml-0">
+                        <strong> <i class="fa fa-arrow-circle-right"></i> ENTRY WHEN</strong>
+                    </div>
+                </div>
+                <div *ngFor="let item of entryConditionList_ShortStrategy; let i = index">
+                    <div class="row" *ngIf="i > 0">
+                        <div class="col-1"> <label></label> </div>
+                        <div class="col-2 m-1 pb-1">
+                            <p class="text-muted">AND</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="text-right mt-2" *ngIf="entryConditionList_ShortStrategy.length > 1">
+                                <a href="Javascript:" (click)="removeEntryCondition_ShortStrategy(i)"
+                                    class="text-danger">
+                                    <i class="fa fa-trash"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-11 m-0 p-0">
+                            <div class="row">
+                                <div class="col-3 pr-0 ml-0">
+                                    <p-dropdown [options]="indicatorDynnamicListForCompare" styleClass="p-dropdown"
+                                        (onChange)="indicatorSelectedFrom(item, $event, i)"
+                                        [(ngModel)]="item.FromIndicator" optionLabel="FullName" optionValue="Name"
+                                        placeholder="--Indicator--" filter="true">
+                                    </p-dropdown>
+                                </div>
+                                <div class="col-2  pr-0 ml-0">
+                                    <div class="form-group">
+                                        <input type="text" pInputText class="w-100" [(ngModel)]="item.FromParameter"
+                                            placeholder="Parameters"
+                                            [readonly]="(item.FromIndicator.Name == 'Open' || item.FromIndicator.Name == 'High' || item.FromIndicator.Name == 'Low' || item.FromIndicator.Name == 'Close') ? true : false"
+                                            [ngClass]="(item.FromIndicator.Name == 'Open' || item.FromIndicator.Name == 'High' || item.FromIndicator.Name == 'Low' || item.FromIndicator.Name == 'Close') ? 'disabled' : ''">
+                                    </div>
+                                </div>
+                                <div class="col-2  pr-0 ml-0">
+                                    <div class="form-group  mb-1">
+                                        <p-dropdown [options]="operators" [(ngModel)]="item.operator"
+                                            styleClass="p-dropdown" filter="true">
+                                        </p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-3  pr-0 ml-0">
+                                    <p-dropdown [options]="indicatorDynnamicListForCompare" styleClass="p-dropdown"
+                                        (onChange)="indicatorSelectedTo(item, $event, i)" [(ngModel)]="item.ToIndicator"
+                                        optionLabel="FullName" optionValue="Name" placeholder="--Indicator--"
+                                        filter="true">
+                                    </p-dropdown>
+                                </div>
+                                <div class="col-2  pr-0 ml-0">
+                                    <div class="form-group">
+                                        <input type="text" pInputText class="w-100" [(ngModel)]="item.ToParameter"
+                                            placeholder="Parameters"
+                                            [readonly]="(item.ToIndicator.Name == 'Open' || item.ToIndicator.Name == 'High' || item.ToIndicator.Name == 'Low' || item.ToIndicator.Name == 'Close') ? true : false"
+                                            [ngClass]="(item.ToIndicator.Name == 'Open' || item.ToIndicator.Name == 'High' || item.ToIndicator.Name == 'Low' || item.ToIndicator.Name == 'Close') ? 'disabled' : ''">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pb-3">
+                    <div class="col-1"> <label></label> </div>
+                    <div class="col-10 text-left pt-1">
+                        <button class="btn btn-sm btn-info mr-1" (click)="addEntryConditionRow_ShortStrategy()"> + Add
+                            Entry
+                            Indicator</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1"> <label></label> </div>
+                    <div class="col-2 m-1 pt-3 ml-0">
+                        <strong> <i class="fa fa-arrow-circle-left"></i> EXIT WHEN</strong>
+                    </div>
+                </div>
+                <div *ngFor="let item of exitConditionList_ShortStrategy; let i = index">
+                    <div class="row" *ngIf="i > 0">
+                        <div class="col-1"> <label></label> </div>
+                        <div class="col-2 m-1 pb-1">
+                            <p class="text-muted">AND</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="text-right color-red mt-2" *ngIf="exitConditionList_ShortStrategy.length > 1">
+                                <a href="Javascript:" (click)="removeExitCondition_ShortStrategy(i)"
+                                    class="text-danger">
+                                    <i class="fa fa-trash"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-11  m-0 p-0">
+                            <div class="row">
+                                <div class="col-3 pr-0 ml-0">
+                                    <p-dropdown [options]="indicatorDynnamicListForCompare" styleClass="p-dropdown"
+                                        (onChange)="indicatorSelectedFrom(item, $event, i)"
+                                        [(ngModel)]="item.FromIndicator" optionLabel="FullName" optionValue="Name"
+                                        placeholder="--Indicator--" filter="true">
+                                    </p-dropdown>
+                                </div>
+                                <div class="col-2 pr-0 ml-0">
+                                    <div class="form-group">
+                                        <input type="text" pInputText class="w-100" [(ngModel)]="item.FromParameter"
+                                            placeholder="Parameters"
+                                            [readonly]="(item.FromIndicator == 'Open' || item.FromIndicator == 'High' || item.FromIndicator == 'Low' || item.FromIndicator == 'Close') ? true : false"
+                                            [ngClass]="(item.FromIndicator == 'Open' || item.FromIndicator == 'High' || item.FromIndicator == 'Low' || item.FromIndicator == 'Close') ? 'disabled' : ''">
+                                    </div>
+                                </div>
+                                <div class="col-2 pr-0 ml-0">
+                                    <div class="form-group  mb-1">
+                                        <p-dropdown [options]="operators" [(ngModel)]="item.operator"
+                                            styleClass="p-dropdown" filter="true">
+                                        </p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-3 pr-0 ml-0">
+                                    <p-dropdown [options]="indicatorDynnamicListForCompare" styleClass="p-dropdown"
+                                        (onChange)="indicatorSelectedTo(item, $event, i)" [(ngModel)]="item.ToIndicator"
+                                        optionLabel="FullName" optionValue="Name" placeholder="--Indicator--"
+                                        filter="true">
+                                    </p-dropdown>
+                                </div>
+                                <div class="col-2 pr-0 ml-0">
+                                    <div class="form-group">
+                                        <input type="text" pInputText class="w-100" [(ngModel)]="item.ToParameter"
+                                            placeholder="Parameters"
+                                            [readonly]="(item.ToIndicator == 'Open' || item.ToIndicator == 'High' || item.ToIndicator == 'Low' || item.ToIndicator == 'Close') ? true : false"
+                                            [ngClass]="(item.ToIndicator == 'Open' || item.ToIndicator == 'High' || item.ToIndicator == 'Low' || item.ToIndicator == 'Close') ? 'disabled' : ''">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="IsAddStopLoss_ShortStrategy">
+                    <div class="row">
+                        <div class="col-1"> <label></label> </div>
+                        <div class="col-2 m-1 pb-1 text-muted">
+                            <p class="text-muted">OR</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="text-right mt-5">
+                                <a href="Javascript:" (click)="AddStopLoss_ShortStrategy()" class="text-danger">
+                                    <i class="fa fa-trash"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-2 m-1 pb-1">
+                            <label>Stop Loss (%)</label>
+                            <input type="number" pInputText class="w-100" [(ngModel)]="AddStopLossValue_ShortStrategy">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="IsAddTimeBasedExit_ShortStrategy">
+                    <div class="row">
+                        <div class="col-1"> <label></label> </div>
+                        <div class="col-2 m-1 pb-1 text-muted">
+                            <p class="text-muted">OR</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="text-right mt-5">
+                                <a href="Javascript:" (click)="AddTimeBasedExit_ShortStrategy()" class="text-danger">
+                                    <i class="fa fa-trash"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-2 m-1 pb-3">
+                            <label>After (days)</label>
+                            <input type="number" pInputText class="w-100"
+                                [(ngModel)]="AddTimeBasedExitValue_ShortStrategy">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1"> <label></label> </div>
+                    <div class="col-10 text-left pt-1">
+                        <button class="btn btn-sm btn-info ml-1 mr-1" (click)="addExitConditionRow_ShortStrategy()"> +
+                            Add
+                            Exit
+                            Indicator</button>
+                        <button class="btn btn-sm btn-info  ml-1 mr-1" (click)="AddTimeBasedExit_ShortStrategy()"
+                            *ngIf="!IsAddTimeBasedExit_ShortStrategy"> + Add Time Based Exit</button>
+                        <button class="btn btn-sm btn-info  ml-1 mr-1" (click)="AddStopLoss_ShortStrategy()"
+                            *ngIf="!IsAddStopLoss_ShortStrategy"> + Add
+                            Stop Loss</button>
+                    </div>
+                </div>
+            </accordion-group>
+        </accordion>
+    </div>
+</div>

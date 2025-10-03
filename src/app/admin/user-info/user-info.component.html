@@ -1,0 +1,87 @@
+<div class="content-wrapper mt-3 bg-transparent">
+
+    <div class="content px-0" [class]="isLoading ? 'opacity': ''">
+
+        <div class="position-relative">
+            <div class="card rounded-0">
+                <div class="card-header px-2 mx-0 border-0 pb-3">
+                    <h3 class="card-title big-title d-block w-100">
+                        <strong>User Information</strong>
+                    </h3>
+                </div>
+            </div>
+            <div class="card-body flat-table pointer px-2 pt-1">
+                <div class="row">
+                    <div class="col-12 flat-table">
+                        <div class="table-responsive-sm">
+                            <div class="p-5">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Username
+                                               
+                                                <input type="text" class="form-control" (keyup)="handleFilterUserName()"
+                                                    [(ngModel)]='searchStringUserName'>
+                                            </th>
+                                            <th>Email
+                                                <input type="text" class="form-control" (keyup)="handleFilterEmail()"
+                                                    [(ngModel)]='searchStringEmail'>
+                                            </th>
+                                            <th>Role
+                                                <select class="form-control" [(ngModel)]='searchStringRole'
+                                                    (change)="handleFilterRoleName($event)">
+                                                    <option selected="true" value="">All</option>
+                                                    <option *ngFor="let item of roles" [value]="item.RoleId">
+                                                        {{item.RoleName}}</option>
+                                                </select>
+                                            </th>
+                                            <th>Create Date
+                                                <a class="anchor-blank" (click)="orderBy('CreateDate')"> <i class="ui-sortable-column-icon pi pi-fw pi-sort-alt"></i></a>
+                                            </th>
+                                            <th>Last Login Date <a class="anchor-blank" (click)="orderBy('LastActivityDate')"> <i class="ui-sortable-column-icon pi pi-fw pi-sort-alt"></i></a></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="ui-table-tbody">
+                                        <tr *ngFor="let li of userList | paginate : {
+                                        itemsPerPage: tableSize,
+                                        currentPage: page,
+                                        totalItems: count
+                                      }; let i = index">
+
+                                            <td>{{ li.UserName }}</td>
+                                            <td>{{ li.Email }}</td>
+                                            <td>
+                                                <select class="form-control" [(ngModel)]='li.RoleId'
+                                                    (change)="updateRole(li)">
+                                                    <option *ngFor="let item of roles" [value]="item.RoleId">
+                                                        {{item.RoleName}}</option>
+                                                </select>
+                                            </td>
+                                            <td>{{ li.CreateDate | date:'dd-MM-yyyy' }}</td>
+                                            <td>{{ li.LastloginDate | date:'dd-MM-yyyy'}}</td>
+                                        </tr>
+                                        <tr *ngIf="userList.length == 0" style="text-align: center;" class="text-center">
+                                            <td colspan="10"> No data found </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="d-flex justify-content-center">
+                                    <pagination-controls previousLabel="Prev" nextLabel="Next"
+                                        (pageChange)="pageChanged($event)">
+                                    </pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- start scan result region -->
+    </div>
+    <!-- start loading region-->
+    <div *ngIf="isLoading" class="col-12 text-center loading">
+        <i class="fas fa-3x fa-sync-alt fa-spin text-muted"></i>
+    </div>
+    <!--end loading region-->
+</div>

@@ -1,0 +1,268 @@
+<div class="pb-3">
+<div class="card shadow-element mb-0">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 card-height">
+            <div class="d-inline-flex flex-wrap">
+
+            
+            <div class="dropdown-width">
+                <label class="poppin-font fw-500 item-title">{{ MOVING_AVERAGE_20 }}</label>
+                <p-dropdown [options]="movingAverage20dayResp"
+                            [(ngModel)]="technical.movingAverage20day"
+                            (onChange)="onChangeDropDown(MOVING_AVERAGE_20)"
+                            styleClass="w-100"
+                            class="w-50">
+                </p-dropdown>
+            </div>
+            <div class="dropdown-width">
+                <label class="poppin-font fw-500 item-title">{{ MOVING_AVERAGE_50 }}</label>
+                <p-dropdown [options]="movingAverage50dayResp"
+                            [(ngModel)]="technical.movingAverage50day"
+                            (onChange)="onChangeDropDown(MOVING_AVERAGE_50)"
+                            styleClass="w-100"
+                            class="w-50">
+                </p-dropdown>
+            </div>
+            <div class="dropdown-width">
+                <label class="poppin-font fw-500 item-title">{{ MOVING_AVERAGE_120 }}</label>
+                <p-dropdown [options]="movingAverage120dayResp"
+                            [(ngModel)]="technical.movingAverage120day"
+                            (onChange)="onChangeDropDown(MOVING_AVERAGE_120)"
+                            styleClass="w-100"
+                            class="w-50">
+                </p-dropdown>
+            </div>
+            <div class="dropdown-width">
+                <label class="poppin-font fw-500 item-title">{{ EXPONENTIAL_MOVING_AVERAGE_20 }}</label>
+                <p-dropdown [options]="exponentialMovingaverage20dayResp"
+                            [(ngModel)]="technical.exponentialMovingaverage20day"
+                            (onChange)="onChangeDropDown(EXPONENTIAL_MOVING_AVERAGE_20)"
+                            styleClass="w-100"
+                            class="w-50">
+                </p-dropdown>
+            </div>
+            <div class="dropdown-width">
+                <label class="poppin-font fw-500 item-title">{{ EXPONENTIAL_MOVING_AVERAGE_50 }}</label>
+                <p-dropdown [options]="exponentialMovingaverage50dayResp"
+                            [(ngModel)]="technical.exponentialMovingaverage50day"
+                            (onChange)="onChangeDropDown(EXPONENTIAL_MOVING_AVERAGE_50)"
+                            styleClass="w-100"
+                            class="w-50">
+                </p-dropdown>
+            </div>
+            <div class="dropdown-width">
+                <label class="poppin-font fw-500 item-title">{{ EXPONENTIAL_MOVING_AVERAGE_120 }}</label>
+                <p-dropdown [options]="exponentialMovingaverage120dayResp"
+                            [(ngModel)]="technical.exponentialMovingaverage120day"
+                            (onChange)="onChangeDropDown(EXPONENTIAL_MOVING_AVERAGE_120)"
+                            styleClass="w-100"
+                            class="w-50">
+                </p-dropdown>
+            </div>
+            <div class="dropdown-width">
+                <label class="poppin-font fw-500 item-title"> {{ PRICE_ACTION}} </label>
+                <p-dropdown [options]="priceActionResp"
+                            [(ngModel)]="technical.priceAction"
+                            (onChange)="onChangeDropDown(PRICE_ACTION)"
+                            styleClass="w-100"
+                            class="w-50">
+                </p-dropdown>
+            </div>
+            <div class="dropdown-width">
+                <label class="poppin-font fw-500 item-title">{{ NEW_HIGH_LOW_PRICE }}</label>
+                <p-dropdown [options]="newHighlowpriceResp"
+                            [(ngModel)]="technical.newHighlowprice"
+                            (onChange)="onChangeDropDown(NEW_HIGH_LOW_PRICE)"
+                            styleClass="w-100"
+                            class="w-50">
+                </p-dropdown>
+            </div>
+            <div class="dropdown-width">
+                <label class="poppin-font fw-500 item-title">{{ NEW_HIGH_LOW_VOLUME }}</label>
+                <p-dropdown [options]="newHighlowvolResp"
+                            [(ngModel)]="technical.newHighlowvol"
+                            (onChange)="onChangeDropDown(NEW_HIGH_LOW_VOLUME)"
+                            styleClass="w-100"
+                            class="w-50">
+                </p-dropdown>
+            </div>
+            <div class="dropdown-width">
+                <label class="poppin-font fw-500 item-title">{{ MA_VS_PRICE_CROSSES}}</label>
+                <p-dropdown [options]="maVspricecrossesResp"
+                            [(ngModel)]="technical.maVspricecrosses"
+                            (onChange)="onChangeDropDown(MA_VS_PRICE_CROSSES)"
+                            styleClass="w-100"
+                            class="w-50">
+                </p-dropdown>
+            </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="row my-2">
+            
+            <a class="m-auto show-icon" (click)="clickedShowAll()">
+                
+                {{ isShowAll ? 'Show minimal filters view': 'Show All' }}
+                <i [ngClass]="isShowAll ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+
+
+            </a>
+        </div>
+
+        <div *ngIf="isShowAll">
+            <div class="row">
+                <div class="col-md-12 card-height">
+            <div class="  d-inline-flex flex-wrap">
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ EMA_CROSSOVERS }}</label>
+                    <p-dropdown [options]="emaCrossoversResp"
+                                [(ngModel)]="technical.emaCrossovers"
+                                (onChange)="onChangeDropDown(EMA_CROSSOVERS)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ VOLUME }}</label>
+                    <p-dropdown [options]="volumeResp"
+                                [(ngModel)]="technical.volume"
+                                (onChange)="onChangeDropDown(VOLUME)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ AVG_VOLUME_ACTION_20 }}</label>
+                    <p-dropdown [options]="avgVolumeactiionResp"
+                                [(ngModel)]="technical.avgVolumeaction"
+                                (onChange)="onChangeDropDown(AVG_VOLUME_ACTION_20)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ MACD }}</label>
+                    <p-dropdown [options]="macdResp"
+                                [(ngModel)]="technical.macd"
+                                (onChange)="onChangeDropDown(MACD)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ ADX_10 }}</label>
+                    <p-dropdown [options]="adx10DaysResp"
+                                [(ngModel)]="technical.adx10Days"
+                                (onChange)="onChangeDropDown(ADX_10)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ ADX_14 }}</label>
+                    <p-dropdown [options]="adx14DaysResp"
+                                [(ngModel)]="technical.adx14Days"
+                                (onChange)="onChangeDropDown(ADX_14)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ DI_CROSSOVER_10 }}</label>
+                    <p-dropdown [options]="diCrossover10dResp"
+                                [(ngModel)]="technical.diCrossover10d"
+                                (onChange)="onChangeDropDown(DI_CROSSOVER_10)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ DI_CROSSOVER_14 }}</label>
+                    <p-dropdown [options]="diCrossover14dResp"
+                                [(ngModel)]="technical.diCrossover14d"
+                                (onChange)="onChangeDropDown(DI_CROSSOVER_14)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ RSI_14 }}</label>
+                    <p-dropdown [options]="rsiResp"
+                                [(ngModel)]="technical.rsi"
+                                (onChange)="onChangeDropDown(RSI_14)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ PRICE_CHANGE }}</label>
+                    <p-dropdown [options]="priceChangeResp"
+                                [(ngModel)]="technical.priceChange"
+                                (onChange)="onChangeDropDown(PRICE_CHANGE)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ BOLLINGER_BAND }}</label>
+                    <p-dropdown [options]="bollBandresp"
+                                [(ngModel)]="technical.bollBand"
+                                (onChange)="onChangeDropDown(BOLLINGER_BAND)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ VOLUME_ACTION }}</label>
+                    <p-dropdown [options]="volumeActionResp"
+                                [(ngModel)]="technical.volumeAction"
+                                (onChange)="onChangeDropDown(VOLUME_ACTION)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ WEEKS_TRIGGER }}</label>
+                    <p-dropdown [options]="weeksTriggerResp"
+                                [(ngModel)]="technical.weeksTrigger"
+                                (onChange)="onChangeDropDown(WEEKS_TRIGGER)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ FORCE_INDEX }}</label>
+                    <p-dropdown [options]="forceIndexResp"
+                                [(ngModel)]="technical.forceIndex"
+                                (onChange)="onChangeDropDown(FORCE_INDEX)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ BULLISH_CANDLESTICK }}</label>
+                    <p-dropdown [options]="bullishCandlestickResp"
+                                [(ngModel)]="technical.bullishCandlestick"
+                                (onChange)="onChangeDropDown(BULLISH_CANDLESTICK)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                <div class="dropdown-width">
+                    <label class="poppin-font fw-500 item-title">{{ BEARISH_CANDLESTICK }}</label>
+                    <p-dropdown [options]="bearishCandlestickResp"
+                                [(ngModel)]="technical.bearishCandlestick"
+                                (onChange)="onChangeDropDown(BEARISH_CANDLESTICK)"
+                                styleClass="w-100"
+                                class="w-50">
+                    </p-dropdown>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

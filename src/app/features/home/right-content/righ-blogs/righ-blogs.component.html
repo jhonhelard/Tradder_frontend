@@ -1,0 +1,13 @@
+<div class="card shadow-element">
+    <!-- /.card-header -->
+    <div class="card-body">
+        <dl>
+            <!-- <dt>Do you keep buying or sell here...</dt>
+            <dd>Such a conundrum buy or sell. Stock keep moving up on the Nasdaq - this is very reminiscent of the 2000 bubble Dow jones move up  first...</dd> -->
+            <!-- <ngx-tweet tweetId="1286174610828926976"></ngx-tweet> -->
+            <ngx-twitter-timeline [data]="{sourceType: 'url', url: 'https://twitter.com/trucharts?ref_src=twsrc%5Etfw'}"
+                [opts]="{tweetLimit: 1}"></ngx-twitter-timeline>
+        </dl>
+    </div>
+    <!-- /.card-body -->
+</div>

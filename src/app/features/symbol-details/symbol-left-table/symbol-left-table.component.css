@@ -1,0 +1,37 @@
+.line-break-horizotal{
+    width: 9.5rem;
+    height: 0.5rem;
+    display: block;
+    border-radius: 5rem;
+}
+.left-table-content{
+    font-weight: bold;
+}
+.color-red{
+    background: green;
+}
+
+.color-green{
+    background: red;
+}
+
+.text-large{
+    font-size: 30px;
+}
+
+.dot {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  /* .card-title{
+      font-size: 1.125rem;
+  } */
+
+  /* .table-height{
+      max-height: 615px;
+      overflow-y: scroll;
+  } */

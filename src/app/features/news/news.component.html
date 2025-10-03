@@ -1,0 +1,431 @@
+<main #tr class="page-news">
+  <!-- ==== News Area :: End ==== -->
+  <section class="news--area">
+    <div class="container">
+      <div class="news--title--area">
+        <h4>News</h4>
+        <!-- <a href="#">
+					See all
+					<i class="bx bxs-right-arrow"></i>
+				</a> -->
+      </div>
+      <owl-carousel-o class="news--slider" [options]="sliderNewsOptions">
+        <ng-container *ngFor="let news of listNews; let i = index">
+          <ng-template carouselSlide [id]="i">
+            <a
+              target="_blank"
+              href="{{ news.url }}"
+              class="item"
+              style="color: initial"
+            >
+              <div class="news--box">
+                <img src="{{ news.image }}" alt="{{ news.headline }}" />
+                <div class="news--content">
+                  <h3>{{ news.headline }}</h3>
+                  <p class="mb-0">
+                    {{ news.datetime | date : "MMM d, y, h:mm z" }}
+                  </p>
+                </div>
+              </div>
+            </a>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </section>
+  <section class="trending--area">
+    <div class="container">
+      <div *ngIf="newsItems.length > 0; else noNews">
+        <div *ngFor="let news of newsItems" class="news-item">
+          <h3>{{ news.Title }}</h3>
+          <p><strong>Date:</strong> {{ news.Date | date : "longDate" }}</p>
+          <p>{{ news.Content }}</p>
+          <a [href]="news.link" target="_blank">Read more</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ng-template #noNews>
+    <p>No news available at the moment.</p>
+  </ng-template>
+  <!-- ==== News Area :: End ==== -->
+
+  <!-- ==== Trending Area :: Start ==== -->
+  <section class="trending--area">
+    <div class="container">
+      <div *ngIf="listTrending.length > 0" class="trending--title--area">
+        <h4>Trending Stocks</h4>
+        <!-- <a href="#">
+					See all
+					<i class="bx bxs-right-arrow"></i>
+				</a> -->
+      </div>
+      <owl-carousel-o
+        class="trending--slider"
+        [options]="sliderTrendingOptions"
+      >
+        <ng-container *ngFor="let trend of listTrending; let i = index">
+          <ng-template carouselSlide [id]="i">
+            <div
+              class="item"
+              [tooltip]="popTemplate"
+              container="body"
+              (mouseover)="getTooltipHtml(trend)"
+            >
+              <div class="trending--box">
+                <div class="content">
+                  <div class="upper--content">
+                    <h4>{{ trend.companyName }}</h4>
+                    <p class="posi--text">{{ trend.symbol }}</p>
+                  </div>
+                  <div class="price--and--percent">
+                    <p class="price">{{ trend.close }} {{ trend.currency }}</p>
+                    <p
+                      class="percent"
+                      [class.red]="trend.changePercent < 0"
+                      [class.green]="trend.changePercent > 0"
+                    >
+                      {{ trend.changePercent > 0 ? "+" : ""
+                      }}{{ trend.changePercent }} ({{ trend.change }}%)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+
+      <div *ngIf="listTopGainer.length > 0" class="trending--title--area mt-4">
+        <h4>Top Gainers</h4>
+        <!-- <a href="#">
+					See all
+					<i class="bx bxs-right-arrow"></i>
+				</a> -->
+      </div>
+      <owl-carousel-o
+        class="trending--slider top-gainer-desktop"
+        [options]="sliderTrendingOptions"
+      >
+        <ng-container *ngFor="let trend of listTopGainer; let i = index">
+          <ng-template carouselSlide [id]="i">
+            <div
+              class="item"
+              [tooltip]="popTemplate"
+              container="body"
+              (mouseover)="getTooltipHtml(trend)"
+            >
+              <div class="trending--box">
+                <div class="content">
+                  <div class="upper--content">
+                    <h4>{{ trend.companyName }}</h4>
+                    <p class="posi--text">{{ trend.symbol }}</p>
+                  </div>
+                  <div class="price--and--percent">
+                    <p class="price">{{ trend.close }} {{ trend.currency }}</p>
+                    <p
+                      class="percent"
+                      [class.red]="trend.changePercent < 0"
+                      [class.green]="trend.changePercent > 0"
+                    >
+                      {{ trend.changePercent > 0 ? "+" : ""
+                      }}{{ trend.changePercent }} ({{ trend.change }}%)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+
+      <owl-carousel-o
+        class="trending--slider top-gainer-mobile"
+        [options]="sliderTrendingMobileOptions"
+      >
+        <ng-container *ngFor="let trend of listTopGainerMobile; let i = index">
+          <ng-template carouselSlide [id]="i">
+            <div style="display: flex; flex-direction: column">
+              <ng-container *ngFor="let item of trend">
+                <div class="item mb-4">
+                  <div
+                    class="trending--box"
+                    [tooltip]="popTemplate"
+                    container="body"
+                    (mouseover)="getTooltipHtml(item)"
+                  >
+                    <div class="content">
+                      <div class="upper--content">
+                        <h4>{{ item.companyName }}</h4>
+                        <p class="posi--text">{{ item.symbol }}</p>
+                      </div>
+                      <div class="price--and--percent">
+                        <p class="price">
+                          {{ item.close }} {{ item.currency }}
+                        </p>
+                        <p
+                          class="percent"
+                          [class.red]="item.changePercent < 0"
+                          [class.green]="item.changePercent > 0"
+                        >
+                          {{ item.changePercent > 0 ? "+" : ""
+                          }}{{ item.changePercent }} ({{ item.change }}%)
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+
+      <div *ngIf="listTopLoser.length > 0" class="trending--title--area mt-4">
+        <h4>Top Losers</h4>
+        <!-- <a href="#">
+					See all
+					<i class="bx bxs-right-arrow"></i>
+				</a> -->
+      </div>
+      <owl-carousel-o
+        class="trending--slider top-loser-desktop"
+        [options]="sliderTrendingOptions"
+      >
+        <ng-container *ngFor="let trend of listTopLoser; let i = index">
+          <ng-template carouselSlide [id]="i">
+            <div
+              class="item"
+              [tooltip]="popTemplate"
+              container="body"
+              (mouseover)="getTooltipHtml(trend)"
+            >
+              <div class="trending--box">
+                <div class="content">
+                  <div class="upper--content">
+                    <h4>{{ trend.companyName }}</h4>
+                    <p class="posi--text">{{ trend.symbol }}</p>
+                  </div>
+                  <div class="price--and--percent">
+                    <p class="price">{{ trend.close }} {{ trend.currency }}</p>
+                    <p
+                      class="percent"
+                      [class.red]="trend.changePercent < 0"
+                      [class.green]="trend.changePercent > 0"
+                    >
+                      {{ trend.changePercent > 0 ? "+" : ""
+                      }}{{ trend.changePercent }} ({{ trend.change }}%)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+      <owl-carousel-o
+        class="trending--slider top-loser-mobile"
+        [options]="sliderTrendingMobileOptions"
+      >
+        <ng-container *ngFor="let trend of listTopLoserMobile; let i = index">
+          <ng-template carouselSlide [id]="i">
+            <div style="display: flex; flex-direction: column">
+              <ng-container *ngFor="let item of trend">
+                <div class="item mb-4">
+                  <div
+                    class="trending--box"
+                    [tooltip]="popTemplate"
+                    container="body"
+                    (mouseover)="getTooltipHtml(item)"
+                  >
+                    <div class="content">
+                      <div class="upper--content">
+                        <h4>{{ item.companyName }}</h4>
+                        <p class="posi--text">{{ item.symbol }}</p>
+                      </div>
+                      <div class="price--and--percent">
+                        <p class="price">
+                          {{ item.close }} {{ item.currency }}
+                        </p>
+                        <p
+                          class="percent"
+                          [class.red]="item.changePercent < 0"
+                          [class.green]="item.changePercent > 0"
+                        >
+                          {{ item.changePercent > 0 ? "+" : ""
+                          }}{{ item.changePercent }} ({{ item.change }}%)
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+
+      <div class="row mt_40">
+        <div class="col-md-4 mt_30">
+          <div class="industrial--box">
+            <a class="w-100 d-block" href="/stockchart/DIA">
+              <app-chart
+                url="{{
+                  oldwebsiteUrl
+                }}/Chart.aspx?Provider=DB&Code=DIA&Type=3&Scale=0&IND=VOLMA(50);&OVER=MA(50);MA(13)&Skin={{
+                  viewMode === 'light-mode' ? 'GreenRed' : 'Black'
+                }}&Size=495*240&RT=1&Start={{ sStartDate }}&End={{
+                  sEndDate
+                }}&Layout={{
+                  viewMode === 'light-mode' ? '2Line' : '2LineBlack'
+                }};{{
+                  viewMode === 'light-mode'
+                    ? 'Default;Price;HisDate'
+                    : 'DefaultBlack'
+                }}&Cycle=DAY1&His=0"
+              >
+              </app-chart>
+            </a>
+            <div class="content">
+              <div class="left">
+                <h4>Dow Industrials</h4>
+                <!-- <p>
+									TruCharts is a Tradier Brokerage Partner offering unlimited flat fee
+									(stock/options) trading from our site
+								</p> -->
+              </div>
+              <div class="right">
+                <a href="/stockchart/DIA" class="button">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mt_30">
+          <div class="industrial--box">
+            <a class="w-100 d-block" href="/stockchart/SPY">
+              <app-chart
+                url="{{
+                  oldwebsiteUrl
+                }}/Chart.aspx?Provider=DB&code=SPY&Type=3&Scale=0&IND=VOLMA(50);&OVER=MA(50);MA(13)&Skin={{
+                  viewMode === 'light-mode' ? 'GreenRed' : 'Black'
+                }}&Size=495*240&RT=1&Start={{ sStartDate }}&End={{
+                  sEndDate
+                }}&Layout=Layout={{
+                  viewMode === 'light-mode' ? '2Line' : '2LineBlack'
+                }};{{
+                  viewMode === 'light-mode'
+                    ? 'Default;Price;HisDate'
+                    : 'DefaultBlack'
+                }}&Cycle=DAY1&His=0"
+              >
+              </app-chart>
+            </a>
+            <div class="content">
+              <div class="left">
+                <h4>S&P 500</h4>
+                <!-- <p>
+									TruCharts is a Tradier Brokerage Partner offering unlimited flat fee
+									(stock/options) trading from our site
+								</p> -->
+              </div>
+              <div class="right">
+                <a href="/stockchart/SPY" class="button">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mt_30">
+          <div class="industrial--box">
+            <a class="w-100 d-block" href="/stockchart/QQQ">
+              <app-chart
+                url="{{
+                  oldwebsiteUrl
+                }}/Chart.aspx?Provider=DB&code=QQQ&Type=3&Scale=0&IND=VOLMA(50);&OVER=MA(50);MA(13)&Skin={{
+                  viewMode === 'light-mode' ? 'GreenRed' : 'Black'
+                }}&Size=495*240&RT=1&Start={{ sStartDate }}&End={{
+                  sEndDate
+                }}&Layout=Layout={{
+                  viewMode === 'light-mode' ? '2Line' : '2LineBlack'
+                }};{{
+                  viewMode === 'light-mode'
+                    ? 'Default;Price;HisDate'
+                    : 'DefaultBlack'
+                }}&Cycle=DAY1&His=0"
+              >
+              </app-chart>
+            </a>
+            <div class="content">
+              <div class="left">
+                <h4>QQQ</h4>
+                <!-- <p>
+									TruCharts is a Tradier Brokerage Partner offering unlimited flat fee
+									(stock/options) trading from our site
+								</p> -->
+              </div>
+              <div class="right">
+                <a href="/stockchart/QQQ" class="button">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="row mt_40">
+				<div class="trending--title--area">
+					<h4>Twitter Timeline</h4>
+					<a href="#">
+						See all
+						<i class="bx bxs-right-arrow"></i>
+					</a>
+				</div>
+				<ngx-twitter-timeline 
+					[data]="{sourceType: 'url', url: 'https://twitter.com/trucharts?ref_src=twsrc%5Etfw'}"
+					[opts]="{tweetLimit: 1}">
+				</ngx-twitter-timeline>
+			</div> -->
+
+      <!-- <div class="row mt_40">
+				<div class="trending--title--area">
+					<h4>TruCharts Video Guide</h4>
+					 <a href="#">
+						See all
+						<i class="bx bxs-right-arrow"></i>
+					</a>
+				</div>
+				<div class="row mx-0 mt-3">
+					<div class="col-12 col-lg-6 col-xl-3">
+						<div class="card shadow-element">
+							<div class="card-body">
+								<app-youtube-video-player [VideoId]="'1U9HPiMlLxQ'"></app-youtube-video-player>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-lg-6 col-xl-3">
+						<div class="card shadow-element">
+							<div class="card-body">
+								<app-youtube-video-player [VideoId]="'XitY2aIxf6k'"></app-youtube-video-player>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-lg-6 col-xl-3">
+						<div class="card shadow-element">
+							<div class="card-body">
+								<app-youtube-video-player [VideoId]="'1U9HPiMlLxQ'"></app-youtube-video-player>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-lg-6 col-xl-3">
+						<div class="card shadow-element">
+							<div class="card-body">
+								<app-youtube-video-player [VideoId]="'XitY2aIxf6k'"></app-youtube-video-player>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> -->
+    </div>
+  </section>
+  <!-- ==== Trending Area :: End ==== -->
+  <ng-template #popTemplate><div [innerHtml]="html"></div></ng-template>
+</main>

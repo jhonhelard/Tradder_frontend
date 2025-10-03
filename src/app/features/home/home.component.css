@@ -1,0 +1,21 @@
+.accordian-btn {
+	margin-top: 20px;
+	background-color: var(--primary);
+	border-color: var(--primary);
+	color: #ffffff !important;
+	text-align: center;
+	height: 40px;
+	align-items: center;
+	justify-content: center;
+	display: inline-flex;
+	padding: 10px 25px;
+	border-radius: 0.3rem;
+}
+
+.accordian-btn:hover,
+.accordian-btn:active,
+.accordian-btn:visited {
+	color: #ffffff !important;
+	background-color: var(--primary-hover);
+	border-color: var(--primary-hover);
+}

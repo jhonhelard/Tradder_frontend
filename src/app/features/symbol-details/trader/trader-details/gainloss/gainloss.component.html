@@ -1,0 +1,34 @@
+<div class="table table-responsive fixTableHead">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Close Date</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Gain / Loss</th>
+                <th scope="col">Gain / Loss Percent</th>
+                <th scope="col">Open Date</th>
+                <th scope="col">Proceeds</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Term</th>
+            </tr>
+        </thead>
+        <tbody infiniteScroll (scrolled)="onScroll()">
+            <tr *ngFor="let data of gainloss">
+                <td>{{data.close_date | date}}</td>
+                <td>{{data.cost}}</td>
+                <td><span class="badge"
+                        [ngClass]="{'badge-success':data.gain_loss>=0,'badge-danger':data.gain_loss<0}">{{data.gain_loss}}</span>
+                </td>
+                <td><span class="badge"
+                        [ngClass]="{'badge-success':data.gain_loss_percent>=0,'badge-danger':data.gain_loss_percent<0}">{{data.gain_loss_percent}}</span>
+                </td>
+                <td>{{data.open_date | date}}</td>
+                <td>{{data.proceeds}}</td>
+                <td>{{data.quantity}}</td>
+                <td>{{data.symbol}}</td>
+                <td>{{data.term}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

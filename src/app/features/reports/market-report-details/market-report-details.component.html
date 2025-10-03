@@ -1,0 +1,217 @@
+<div class="content-wrapper mt-3 bg-transparent">
+    <div class="px-0" [class]="isLoading ? 'opacity': ''">
+        <div class="position-relative">
+            <div class="card rounded-0">
+                <div class="card-header px-2 mx-0 border-0 pb-3">
+                    <h3 class="card-title big-title d-block w-100">
+                        <strong>Technical Screened Market Report Details</strong>
+                    </h3>
+                </div>
+            </div>
+            <div class="card-body flat-table pointer px-2 pt-1">
+                <div class="row night-mode-div">
+                    <div class="col-md-2">
+                        <div class="navbar-collapse order-5" id="navbarCollapse">
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <button id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" (click)="hasPermission()"
+                                        class="dropdown-toggle no-arrow btn btn-block text-primary btn-outline-primary add-to-watchlist-button mt-2"
+                                        style="border-radius: 30px;">
+                                        <i class="far fa-star star text-primary mr-1"></i> Watchlist
+                                    </button>
+                                    <ul aria-labelledby="dropdownSubMenu1"
+                                        class="dropdown-menu border-0 shadow watchlist-box-wapper mt-1"
+                                        style="max-height: 300px; overflow-y: scroll;">
+                                        <!-- <div class="triangle-down"></div> -->
+                                        <ul class="list-unstyled">
+                                            <li *ngFor="let item of watchLists" class="mb-1 px-3 py-2"
+                                                (click)="onUpdateWatchlist(item.name)"><a href="javascript:void(0)"
+                                                    class="d-block text-muted"><i
+                                                        class="far fa-star mr-3 text-warning"></i>{{item.name}}</a>
+                                            </li>
+                                            <hr class="my-1" />
+                                            <li class="mt-1 text-center px-3 py-2">
+                                                <a href="javascript:void(0)" data-toggle="modal"
+                                                    data-target="#watchlist-modal" class="d-block">Create new
+                                                    Watchlist</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3" style="top: 13px">
+                        Selected Watchlist: <span class="text-success"> {{selectedWatchlistName}}</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-success btn-sm mr-2" (click)="onSaveFavorites()"> Add To
+                            Favorites
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 flat-table">
+                        <strong class="night-mode-div">
+                            Exchange: <span>{{Exchange}}</span>; by formula: {{formula}}
+                            <br>
+                            Total Result: {{count}}
+                            <br>
+                        </strong>
+
+                        <div class="table-responsive-sm">
+                            <table class="ui-table w-auto w-md-100">
+                                <thead class="ui-table-thead">
+                                    <tr>
+                                        <th></th>
+                                        <th *ngFor="let col of columns">
+                                            <a class="anchor-blank" (click)="orderBy(col)">
+                                                <span *ngIf="col == 'QuoteCode'"> Ticker</span>
+                                                <span *ngIf="col == 'QuoteName'"> Company Name</span>
+                                                <span *ngIf="col == 'Date'">Quote Date </span>
+                                                <span *ngIf="col == 'Last'">Last Price </span>
+                                                <span *ngIf="col == 'OpenA'"> Open</span>
+                                                <span *ngIf="col == 'HighA'">High </span>
+                                                <span *ngIf="col == 'LowA'">Low </span>
+                                                <span *ngIf="col == 'CloseA'"> Close</span>
+                                                <span *ngIf="col == 'VolumeA'">Volume </span>
+                                                <span *ngIf="col == 'ChangeA'"> Change</span>
+                                                <span *ngIf="col == 'PercentChange'">Change % </span>
+                                                <span *ngIf="col == 'Exchange'">Exchange </span>
+                                                <i class="ui-sortable-column-icon pi pi-fw pi-sort-alt"></i></a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="ui-table-tbody">
+                                    <tr class="extra-row" data-toggle="tooltip" data-html="true" *ngFor="let li of data | paginate : {
+                                    itemsPerPage: tableSize,
+                                    currentPage: page,
+                                    totalItems: count
+                                  }; let i = index" title='{{getTooltipHtml(li)}}'>
+                                        <!-- <td *ngFor="let col of columns">
+                                            <span *ngIf="col == 'Date'">{{ li[col] | date:'dd-MM-yyyy'}} </span>
+                                            <span *ngIf="col != 'Date'">{{ numberDataFormat(li[col])}} </span>
+                                        </td> -->
+                                        <td width="2%">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck"
+                                                (change)="addTickerName(li['QuoteCode'])"
+                                                [checked]="onCheckedTicker(li['QuoteCode'])">
+                                        </td>
+                                        <ng-container *ngFor="let col of columns" [ngSwitch]="col">
+                                            <td width="6%" class="text-left color-blue pl-2" *ngSwitchCase="''"
+                                                (click)="onSymbolSelected(li['QuoteCode'])">
+                                                <i class="fa fa-star" *ngIf="li[col] > 0"
+                                                    [style.color]="li[col] === 1 ? '#efd998' : '#ffc107'"></i>
+                                            </td>
+                                            <td width="6%" class="text-left color-blue pl-2"
+                                                *ngSwitchCase="'QuoteCode'" (click)="onSymbolSelected(li['QuoteCode'])">
+                                                {{ li[col] }}
+                                            </td>
+                                            <td width="12%" class="text-left color-blue pl-2" *ngSwitchCase="'QuoteName'"
+                                                (click)="onSymbolSelected(li['QuoteCode'])">
+                                                {{ li[col] }}
+                                            </td>
+                                            <td width="8%" class="text-left color-blue pl-2" *ngSwitchCase="'Date'"
+                                                (click)="onSymbolSelected(li['QuoteCode'])">
+                                                {{ li[col] | date:'dd-MM-yyyy' }}
+                                            </td>
+                                            <td width="8%" class="text-right color-blue pl-2" *ngSwitchCase="'Last'"
+                                                (click)="onSymbolSelected(li['QuoteCode'])">
+                                                {{ li[col] | number : '1.2-2'}}
+                                            </td>
+                                            <td width="6%" class="text-right color-blue pl-2" *ngSwitchCase="'OpenA'"
+                                                (click)="onSymbolSelected(li['QuoteCode'])">
+                                                {{ li[col] | number : '1.2-2'}}
+                                            </td>
+                                            <td width="6%" class="text-right color-blue pl-2" *ngSwitchCase="'HighA'"
+                                                (click)="onSymbolSelected(li['QuoteCode'])">
+                                                {{ li[col] | number : '1.2-2'}}
+                                            </td>
+                                            <td width="6%" class="text-right color-blue pl-2" *ngSwitchCase="'LowA'"
+                                                (click)="onSymbolSelected(li['QuoteCode'])">
+                                                {{ li[col] | number : '1.2-2'}}
+                                            </td>
+                                            <td width="6%" class="text-right color-blue pl-2" *ngSwitchCase="'CloseA'"
+                                                (click)="onSymbolSelected(li['QuoteCode'])">
+                                                {{ li[col] | number : '1.2-2'}}
+                                            </td>
+                                            <td width="7%" class="text-right color-blue pl-2" *ngSwitchCase="'VolumeA'"
+                                                (click)="onSymbolSelected(li['QuoteCode'])">
+                                                {{li[col] | ticketVolume}}
+                                            </td>
+                                            <td width="7%" class="text-right color-blue pl-2" *ngSwitchCase="'ChangeA'"
+                                                (click)="onSymbolSelected(li['QuoteCode'])">
+                                                <span [class]="li[col] >= 0 ? 'text-success' : 'text-danger'">
+                                                    {{ li[col] | number : '1.2-2'}}
+                                                </span>
+                                            </td>
+                                            <td width="8%" class="text-right color-blue pl-2"
+                                                *ngSwitchCase="'PercentChange'"
+                                                (click)="onSymbolSelected(li['QuoteCode'])">
+                                                <span [class]="li[col] >= 0 ? 'text-success' : 'text-danger'">
+                                                    {{ li[col] | number : '1.2-2'}}%
+                                                </span>
+                                            </td>
+                                            <td width="8%" class="color-blue pl-2" *ngSwitchDefault>
+                                                {{ li[col] }}
+                                            </td>
+                                        </ng-container>
+
+                                    </tr>
+                                    <tr *ngIf="data.length == 0 && defaultLoadData" style="text-align: center;"
+                                        class="text-center">
+                                        <td colspan="10"> No data found </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="d-flex justify-content-center border">
+                                <div class="mt-3">
+                                    <pagination-controls previousLabel="Prev" nextLabel="Next"
+                                        (pageChange)="pageChanged($event)">
+                                    </pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- start scan result region -->
+    </div>
+    <!-- start loading region-->
+    <div *ngIf="isLoading" class="col-12 text-center loading">
+        <i class="fas fa-3x fa-sync-alt fa-spin text-muted"></i>
+    </div>
+    <!--end loading region-->
+</div>
+
+<div class="modal fade" id="watchlist-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" [class.bg-secondary]="viewMode === 'DARK_MODE'">
+            <div class="modal-header">
+                Create New Watchlist
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-left">Watchlist Name</p>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <input type="text" class="form-control" name="chartSettingsName" placeholder=""
+                                    [(ngModel)]="watchlistName" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <p class="text-left" style="color: red;">{{watchlistError}}</p>
+                    <button type="button" (click)="onCreateWatclist()" class="btn btn-primary btn-lg btn-block">Create
+                        Watchlist</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

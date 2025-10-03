@@ -1,0 +1,15 @@
+.text-small{
+    font-size: 14px;
+}
+
+.dot {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.card-title{
+    font-size: 1.125rem;
+}

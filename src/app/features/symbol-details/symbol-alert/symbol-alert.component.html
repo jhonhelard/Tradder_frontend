@@ -1,0 +1,335 @@
+<div class="login-box-wrapper">
+    <div class="login-box" style="width: 610px;">
+        <div class="card">
+            <div class="card-header" style="background-color: #007bff;">
+                <h2 class="modal-title">Alert Setting</h2>
+            </div>
+            <div class="card-body scrollable-div" style="height: 450px; overflow-y: scroll;">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-center"
+                        style="background-color: #28a745; padding: 0;" (click)="isTechnicalAlertModal = true;"><button
+                            type="button" class="btn" style="border: none; font-size: 25px;" data-toggle="modal"
+                            data-target="#technicalAlerModal" data-backdrop="false">
+                            Technical Alert
+                        </button></li>
+                    <li class="list-group-item d-flex justify-content-center"
+                        style="background-color: #28a745; padding: 0;" (click)="isPriceAlertModal = true;"><button
+                            type="button" class="btn" style="border: none; font-size: 25px;" data-toggle="modal"
+                            data-target="#priceAlertModal" data-backdrop="false">
+                            Price Alert
+                        </button></li>
+                </ul>
+                <div class="card applid-alert" style="height: 250px; overflow-y: scroll;" *ngIf="this.appliedAlerts.length > 0 || (this.stockalert_id != null && this.stockalert_id != '' )">
+                    <div class="card-header">
+                        Applied Alerts
+                    </div>
+                    <div class="card-body">
+                        <div class="row m-0 pt-2 pb-2">
+                           <div *ngFor="let alert of appliedAlerts; let i = index">
+  <div class="filter-row d-flex align-items-start justify-content-between flex-wrap mb-3">
+
+    <!-- AND/OR dropdown (left side) -->
+    <div class="connector-dropdown me-2">
+      <p-dropdown 
+        [options]="connectorOperators" 
+        styleClass="form-control form-control-sm"
+        [(ngModel)]="alert.connector">
+      </p-dropdown>
+    </div>
+
+    <!-- Alert Card -->
+    <div class="filter-card flex-fill position-relative p-3 rounded text-white"
+        [ngClass]="{ 'technical-alert': alert.type === 'Technical', 'price-alert': alert.type === 'Price' }">
+
+      <!-- Edit + Close Icons -->
+      <div class="action-icons position-absolute top-0 end-0 mt-1 me-2">
+        <i class="fa fa-edit text-info me-2 cursor-pointer"
+            title="Edit Alert"
+            (click)="editSelectedAlert(alert)">
+        </i>
+        <i class="fa fa-times text-danger cursor-pointer"
+            title="Remove Alert"
+            (click)="removeAlerts(i, alert)">
+        </i>
+      </div>
+
+      <!-- Alert Texts -->
+      <div class="fw-500">
+        <div class="text-script">{{ alert.script }}</div>
+        <hr class="my-1">
+        <div class="text-description">{{ alert.description }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush" style="height: 250px;">
+                    </ul>
+                </div>
+                <div class="row mt-2">
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1" (click)="SetRecurring()" >
+                            Recurring
+                        </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                            checked>
+                        <label class="form-check-label" for="flexRadioDefault2" (click)="SetOnce()">
+                            Once
+                        </label>
+                    </div>
+                    <div class="list-group list-group-flush" style="height: 250px;">
+                      <table width="100%" class="table table-responsive border-bottom-only">
+                        <tr >
+                            <td>&nbsp;</td>
+                            <td class="text-end" width="10%">
+                                <strong class="badge bg-toggle p-2 text-end hourglass-cursor" (click)="CreateNew()" *ngIf="stockalert_id == '' || stockalert_id == null" > + Create Alert </strong>
+                            </td>
+                        </tr>
+                        
+                       <tr *ngFor="let item of stockalerts">
+  <td width="90%" class="text-start">
+    <div *ngIf="item.stockalert_id == stockalert_id">
+      <input type="text" class="form-control" [(ngModel)]="item.name" />
+      <small class="text-info">
+        Scroll up and edit the alerts of this filter!
+      </small>
+    </div>
+    <div *ngIf="item.stockalert_id != stockalert_id">
+      {{ item.name }}
+    </div>
+  </td>
+
+                            <td width="10%" class="text-end">
+                                <strong class="badge bg-toggle p-2 hourglass-cursor" (click)="item.stockalert_id == stockalert_id ? SaveData() : bindSelectedStockAlert(item.stockalert_id)" > {{item.stockalert_id == stockalert_id ? "Save" : "Edit"}} </strong>
+                            </td>
+                        </tr>
+                      </table>
+                        </div>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-end">
+                <button type="button" class="btn btn-primary" (click)="SaveData()" *ngIf="this.appliedAlerts.length > 0">Save</button>
+                <button type="button" class="btn btn-danger ml-2" (click)="hideAlertSettingModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Technical Alert Modal -->
+<div class="modal fade" id="technicalAlerModal" *ngIf="isTechnicalAlertModal">
+    <div class="modal-dialog modal-dialog-scrollable" role="document" style="max-width: 800px;">
+        <div class="modal-content">
+            <div class="modal-header" style="justify-content: center;">
+                <h2 class="modal-title" id="alertSettingModalTitle">Technical Alert</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="list-group">
+                    <!-- SMA alert -->
+                    <button type="button" class="list-group-item list-group-item-action toggle-btn"
+                        data-toggle="collapse" href="#collapseSMAAlerts" aria-expanded="false"
+                        aria-controls="collapseTechnicalAlerts"
+                        style="background-color: cornflowerblue; font-size: 20px; color: white;">
+                        {{smaAlerts.description}}
+                        <i class="fas fa-question" data-toggle="tooltip" data-placement="left"
+                            title="{{smaAlerts.name}}"></i>
+                    </button>
+                    <div id="collapseSMAAlerts" class="panel-collapse collapse">
+                        <div class="panel-body list-group flex-row row">
+                            <div class="list-group-item col-6" *ngFor="let data of smaAlertsData; let i = index"
+                                data-controls-modal="dynamicModal" data-keyboard="false" data-toggle="modal"
+                                data-target="#dynamicModal" (click)="selectSmaItem(i)">
+                                {{data.title}} <input type="checkbox" id="{{'Smacheckbox' + i}}"
+                                    [checked]="smaAlertsCheckedState[i]">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- EMA alert -->
+                    <button type="button" data-toggle="collapse" href="#collapseEMAAlerts" aria-expanded="false"
+                        aria-controls="collapseEMAAlerts" class="list-group-item list-group-item-action toggle-btn"
+                        style="background-color: cornflowerblue; font-size: 20px; color: white;">{{emaAlerts.description}}
+                        <i class="fas fa-question" data-toggle="tooltip" data-placement="left"
+                            title="{{emaAlerts.description}}"></i>
+                    </button>
+                    <div id="collapseEMAAlerts" class="panel-collapse collapse">
+                        <div class="panel-body list-group flex-row row">
+                            <div class="list-group-item col-6" *ngFor="let data of emaAlertsData; let i = index"
+                                data-controls-modal="dynamicModal" data-keyboard="false" data-toggle="modal"
+                                data-target="#dynamicModal" (click)="selectEmaItem(i)">
+                                {{data.title}} <input type="checkbox" id="{{'Emacheckbox' + i}}"
+                                    [checked]="emaAlertsCheckedState[i]">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card applid-alert" *ngIf="this.appliedAlerts.length > 0 || (this.stockalert_id != null && this.stockalert_id != '' )">
+                        <div class="card-header">
+                            Applied Alerts
+                        </div>
+                        <div class="card-body">
+                            <div class="row m-0 pt-2 pb-2">
+                                <div *ngFor="let alert of appliedAlerts; let i = index">
+                                    <div 
+                                        [ngClass]="{ 'technical-alert': alert.type === 'Technical', 'price-alert': alert.type === 'Price' }"
+                                        class="filter-item d-flex justify-content-between">
+                                        <div class="fw-500 poppin-font">
+                                            <div class="text-script text-white">{{ alert.script}}</div>
+                                            <hr class="m-0">
+                                            <div class="text-description text-white">{{ alert.description}}</div>
+                                            
+                                        </div>
+
+                                        <i class="fa fa-times-circle delete-filter" (click)="removeAlerts(i,alert)"></i>
+                                    </div>
+                                    <p-dropdown [ngStyle]="{'width': '100px'}"
+                                        [options]="connectorOperators"
+                                        styleClass="form-control"
+                                        [(ngModel)]="alert.connector">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="list-group list-group-flush" style="height: 250px;">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="isTechnicalAlertModal = false;">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Price Alert Modal -->
+<div class="modal fade" id="priceAlertModal" *ngIf="isPriceAlertModal">
+    <div class="modal-dialog modal-dialog-scrollable" role="document" style="max-width: 800px;">
+        <div class="modal-content">
+            <div class="modal-header" style="justify-content: center;">
+                <h2 class="modal-title" id="alertSettingModalTitle">Price Alert Settings</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="list-group row flex-row">
+                    <div class="list-group-item col-6" *ngFor="let data of priceAlertsData; let i = index"
+                        data-controls-modal="dynamicModal" data-keyboard="false" data-toggle="modal"
+                        data-target="#dynamicModal" (click)="selectPriceAlertItem(i)">{{data.title}}
+                        <input type="checkbox" id="{{'Pricecheckbox' + i}}" [checked]="priceAlertsCheckedState[i]">
+                    </div>
+                </div>
+
+                <div class="card applid-alert" *ngIf="this.appliedAlerts.length > 0 || (this.stockalert_id != null && this.stockalert_id != '' )">
+                    <div class="card-header">
+                        Applied Alerts
+                    </div>
+                    <div class="card-body">
+                        <div class="row m-0 pt-2 pb-2">
+                            <div *ngFor="let alert of appliedAlerts; let i = index">
+                                <div 
+                                    [ngClass]="{ 'technical-alert': alert.type === 'Technical', 'price-alert': alert.type === 'Price' }"
+                                    class="filter-item d-flex justify-content-between">
+                                    <div class="fw-500 poppin-font">
+                                        <div class="text-script text-white">{{ alert.script}}</div>
+                                        <hr class="m-0">
+                                        <div class="text-description text-white">{{ alert.description}}</div>
+                                        
+                                    </div>
+
+                                    <i class="fa fa-times-circle delete-filter" (click)="removeAlerts(i,alert)"></i>
+                                </div>
+                                <p-dropdown [ngStyle]="{'width': '100px'}"
+                                    [options]="connectorOperators"
+                                    styleClass="form-control"
+                                    [(ngModel)]="alert.connector">
+                                </p-dropdown>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush" style="height: 250px;">
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="isPriceAlertModal=false;">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" style="z-index: 9999999;" id="dynamicModal" *ngIf="isShowModal">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title w-100 text-center">
+                    <label class="formula-name-color-1 w-100 mb-0" style="font-weight: 400">Alert name</label>
+                    <label class="formula-name-color-1 w-100 mb-0">{{ selectedAlert.title }}</label>
+                </h5>
+            </div>
+            <div class="modal-body">
+                <div class="card shadow-element d-flex text-center">
+                    <div class="card-body">
+                        <label class="mb-0">Help :&nbsp;
+                            <span class="help-text">
+                                {{ selectedAlert.description }}
+                            </span>
+                        </label>
+                    </div>
+                    <div class="card-footer">
+                        <label class="mb-0">Script :&nbsp;
+                            <span class="help-text">
+                                {{ selectedAlert.script }}
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="card shadow-element">
+                    <div class="card-header">
+                        <h2 class="card-title big-title fw-500">Parameter </h2>
+                    </div>
+                    <div class="d-flex">
+                        <div class="card-body">
+                            <div class="row mb-2 align-items-center"
+                                *ngFor="let parameter of selectedAlert.param; let i = index">
+                                <div class="col-md-4 d-flex justify-content-center">
+                                    <span class="param-label">{{parameter.name}}</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <input class="param-input form-control" type="number" [(ngModel)]="parameter.value"
+                                        (input)="onChangeValue($event, i)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+<!-- Modal Footer with Keep / Remove -->
+<!-- Footer with Keep / Remove when deselecting -->
+<div class="modal-footer flex-wrap justify-content-between gap-2" *ngIf="isDeselecting">
+  <button class="btn btn-success flex-fill" (click)="keepAlert()">Keep</button>
+  <button class="btn btn-danger flex-fill" (click)="removeSelectedAlert()">Remove</button>
+</div>
+
+<!-- Default Add / Close footer -->
+<div class="modal-footer flex-wrap justify-content-between gap-2" *ngIf="!isDeselecting">
+  <button class="btn btn-primary flex-fill" (click)="saveAlertItem()">Add</button>
+  <button class="btn btn-outline-secondary flex-fill" (click)="closeModal()">Close</button>
+</div>
+
+
+        </div>
+    </div>
+</div>

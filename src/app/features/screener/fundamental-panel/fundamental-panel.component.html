@@ -1,0 +1,294 @@
+<div class="row">
+       <div class="col-md-12 card-height">
+
+       
+       <div class="card  shadow-element">
+              <div class="card-body d-inline-flex flex-wrap">
+                     
+              
+    <div class="dropdown-width">
+        <label class="poppin-font fw-500 item-title">{{ EXCHANGE }}</label>
+        <p-dropdown [options]="exchangeRefs"
+                    [(ngModel)]="fundamental.exchange"
+                    (onChange)="onChangedFundamental(EXCHANGE)"
+                    styleClass="w-100"
+                    class="w-50">
+        </p-dropdown>
+    </div>
+    <div class="dropdown-width">
+        <label class="poppin-font item-title fw-500">{{ PRICE }}</label>
+        <p-dropdown [options]="priceRefs"
+                    *ngIf="fundamental.price !== 'Custom'"
+                    [(ngModel)]="fundamental.price"
+                    (onChange)="onChangedFundamental(PRICE)"
+                    styleClass="w-100"
+                    class="w-50">
+        </p-dropdown>
+        <div class="row custom"
+             *ngIf="fundamental.price === 'Custom'">
+            <span>$</span>
+            <input class="col-4 custom" type="number"
+                   [(ngModel)]="priceStart"
+                   (keyup)="onChangeCustomField(CUSTOM_PRICE_START)"/>
+            <span class="col-1">-</span>
+            <span>$</span>
+            <input class="col-4 custom" type="number"
+                   [(ngModel)]="priceEnd"
+                   (keyup)="onChangeCustomField(CUSTOM_PRCIE_END)">
+            <i class="fa fa-window-close delete-filter"
+               (click)="deleteCustomPrice()"></i>
+        </div>
+    </div>
+    <div class="dropdown-width">
+        <label class="poppin-font item-title fw-500">{{ VOLUME }}</label>
+        <p-dropdown [options]="volumeRefs"
+                    *ngIf="fundamental.volume !== 'Custom'"
+                    [(ngModel)]="fundamental.volume"
+                    (onChange)="onChangedFundamental(VOLUME)"
+                    styleClass="w-100"
+                    class="w-50">
+        </p-dropdown>
+        <div class="row custom m-0"
+             *ngIf="fundamental.volume === 'Custom'">
+            <input class="col-4 custom" type="number"
+                   style="text-align: right; padding-right: 0"
+                   [(ngModel)]="volumeStart"
+                   (keyup)="onChangeCustomField(CUSTOM_VOLUME_START)"/>
+            <span>K</span>
+            <span class="col-1">-</span>
+            <input class="col-4 custom" type="number"
+                   style="text-align: right; padding-right: 0"
+                   [(ngModel)]="volumeEnd"
+                   (keyup)="onChangeCustomField(CUSTOM_VOLUME_END)" />
+            <span>K</span>
+            <i class="fa fa-window-close delete-filter"
+               (click)="deleteCustomVolume()"></i>
+        </div>
+    </div>
+
+    <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ MARKETCAP }}</label>
+       <p-dropdown [options]="marketCapRefs"
+                   [(ngModel)]="fundamental.marketCap"
+                   (onChange)="onChangedFundamental(MARKETCAP)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+
+    
+    <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ EARNINGDATE }}</label>
+       <p-dropdown [options]="earningDate"
+                   [(ngModel)]="fundamental.earningDate"
+                   (onChange)="onChangedFundamental(EARNINGDATE)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ DIVIDENDYIELD }}</label>
+       <p-dropdown [options]="dividendYield"
+                   [(ngModel)]="fundamental.dividendYield"
+                   (onChange)="onChangedFundamental(DIVIDENDYIELD)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ PERATIO }}</label>
+       <p-dropdown [options]="peRatioRefs"
+                   [(ngModel)]="fundamental.peRatio"
+                   (onChange)="onChangedFundamental(PERATIO)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ FORWARDPE }}</label>
+       <p-dropdown [options]="forwardPERefs"
+                   [(ngModel)]="fundamental.forwardPE"
+                   (onChange)="onChangedFundamental(FORWARDPE)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ PEGRATIO }}</label>
+       <p-dropdown [options]="pegRatioRefs"
+                   [(ngModel)]="fundamental.pegRatio"
+                   (onChange)="onChangedFundamental(PEGRATIO)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ PRICETOSALES }}</label>
+       <p-dropdown [options]="priceToSalesRefs"
+                   [(ngModel)]="fundamental.priceToSales"
+                   (onChange)="onChangedFundamental(PRICETOSALES)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ PRICETOBOOK }}</label>
+       <p-dropdown [options]="priceToBookRefs"
+                   [(ngModel)]="fundamental.priceToBook"
+                   (onChange)="onChangedFundamental(PRICETOBOOK)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ PRICETOCASH }}</label>
+       <p-dropdown [options]="priceToCashRefs"
+                   [(ngModel)]="fundamental.priceToCash"
+                   (onChange)="onChangedFundamental(PRICETOCASH)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ PRICETOCASHFLOW }}</label>
+       <p-dropdown [options]="priceToCashflowRefs"
+                   [(ngModel)]="fundamental.priceToCashflow"
+                   (onChange)="onChangedFundamental(PRICETOCASHFLOW)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ EPSGROWTH }}</label>
+       <p-dropdown [options]="epsGrowthRefs"
+                   [(ngModel)]="fundamental.epsGrowth"
+                   (onChange)="onChangedFundamental(EPSGROWTH)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ RETURNONASSETS }}</label>
+       <p-dropdown [options]="returnOnAssetsRefs"
+                   [(ngModel)]="fundamental.returnOnAssets"
+                   (onChange)="onChangedFundamental(RETURNONASSETS)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ RETURNONEQUITY }}</label>
+       <p-dropdown [options]="returnOnEquityRefs"
+                   [(ngModel)]="fundamental.returnOnEquity"
+                   (onChange)="onChangedFundamental(RETURNONEQUITY)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ RETURNONINVESTMENT }}</label>
+       <p-dropdown [options]="returnOnInvestmentRefs"
+                   [(ngModel)]="fundamental.returnOnInvestment"
+                   (onChange)="onChangedFundamental(RETURNONINVESTMENT)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ CURRENTRATIO }}</label>
+       <p-dropdown [options]="currentRatioRefs"
+                   [(ngModel)]="fundamental.currentRatio"
+                   (onChange)="onChangedFundamental(CURRENTRATIO)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ QUICKRATIO }}</label>
+       <p-dropdown [options]="quickRatioRefs"
+                   [(ngModel)]="fundamental.quickRatio"
+                   (onChange)="onChangedFundamental(QUICKRATIO)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ DEBTTOEQUITYRATIO }}</label>
+       <p-dropdown [options]="debtToEquityRatioRefs"
+                   [(ngModel)]="fundamental.debtToEquityRatio"
+                   (onChange)="onChangedFundamental(DEBTTOEQUITYRATIO)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ DEBTTOEQUITYRATIOLONGTERM }}</label>
+       <p-dropdown [options]="debtToEquityRatioLongTermRefs"
+                   [(ngModel)]="fundamental.debtToEquityRatioLongTerm"
+                   (onChange)="onChangedFundamental(DEBTTOEQUITYRATIOLONGTERM)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ GROSSMARGIN }}</label>
+       <p-dropdown [options]="grossMarginRefs"
+                   [(ngModel)]="fundamental.grossMargin"
+                   (onChange)="onChangedFundamental(GROSSMARGIN)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ OPERATINGMARGIN }}</label>
+       <p-dropdown [options]="operatingMarginRefs"
+                   [(ngModel)]="fundamental.operatingMargin"
+                   (onChange)="onChangedFundamental(OPERATINGMARGIN)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ NETPROFITMARGIN }}</label>
+       <p-dropdown [options]="netProfitMarginRefs"
+                   [(ngModel)]="fundamental.netProfitMargin"
+                   (onChange)="onChangedFundamental(NETPROFITMARGIN)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+       
+   <div class="dropdown-width">
+       <label class="poppin-font fw-500 item-title">{{ PAYOUTRATIO }}</label>
+       <p-dropdown [options]="payoutRatioRefs"
+                   [(ngModel)]="fundamental.payoutRatio"
+                   (onChange)="onChangedFundamental(PAYOUTRATIO)"
+                   styleClass="w-100"
+                   class="w-50">
+       </p-dropdown>
+   </div>
+
+</div>
+</div>
+</div>
+</div>

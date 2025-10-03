@@ -1,0 +1,502 @@
+.login-box-wrapper {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  background: transparent;
+  z-index: 1050;
+  text-align: center;
+  align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100vh;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.login-box-wrapper::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #e9ecef;
+  opacity: 0.7;
+}
+
+.login-box {
+  margin: 0px auto;
+}
+
+h3 {
+  font-size: 1.75rem !important;
+  margin-top: 0 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+span {
+  line-height: unset !important;
+}
+
+p {
+  line-height: unset !important;
+}
+
+.child-modal.show {
+  z-index: 1051;
+  display: block;
+  padding-right: 10px;
+  display: block;
+  width: 670px;
+  max-width: 800px;
+}
+.toggle-btn {
+  color: #495057 !important;
+}
+.list-group .list-group-item input {
+  width: 25px;
+  height: 25px;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.list-group .list-group-item {
+  display: flex;
+  justify-content: space-between;
+}
+.list-group .list-group-item:hover {
+  cursor: pointer;
+}
+.list-group .list-group-item input[type="number"]::-webkit-inner-spin-button,
+.list-group .list-group-item input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.list-group .list-group-item input[type="number"] {
+  -moz-appearance: textfield;
+}
+.list-group .list-group-item input[type="number"] {
+  -moz-appearance: textfield;
+}
+.list-group .list-group-item input[type="checkbox"] {
+  width: 20px;
+}
+.list-group div {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.close {
+  display: none;
+}
+.show {
+  display: block;
+}
+.remove {
+  display: none;
+}
+.list-group .list-group-item .alert-script {
+  background-color: #7319c6;
+  padding: 10px;
+  border-radius: 10px;
+  color: #e83e8c;
+}
+.modal-header {
+  border: none;
+  background: var(--primary-hover);
+}
+.help-text {
+  font-weight: 400;
+}
+.formula-name-color-1 {
+  color: white;
+}
+.filter-item {
+  width: auto !important;
+  border: solid 1px #dee2e6;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin: 0.5em 1em 0.5em 0;
+  font-size: 15px;
+}
+.filter-item:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.filter-item i {
+  color: white;
+}
+.delete-filter:hover {
+  cursor: pointer;
+}
+.text-script {
+  font-size: 18px;
+}
+.text-description {
+  font-size: 15px;
+}
+.technical-alert {
+  background: #7319c6;
+}
+.price-alert {
+  background: #32648d;
+}
+
+.border-bottom-only tr {
+  border-bottom: 1px solid #757373; /* Adjust the color and thickness as needed */
+}
+.hourglass-cursor {
+  cursor: pointer; /* 'wait' shows an hourglass or spinning circle depending on the OS */
+}
+
+
+
+
+/* ==== Alert UI Responsive Styles ==== */
+.login-box-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  flex-wrap: wrap;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 610px;
+}
+
+.scrollable-div {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* Applied alert scroll */
+.card.applid-alert {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+/* Full-width dropdown inside alerts */
+p-dropdown {
+  width: 100% !important;
+}
+
+/* Alert box */
+.technical-alert,
+.price-alert {
+  background-color: #2c3e50;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.text-script,
+.text-description {
+  color: white;
+  font-size: 0.9rem;
+}
+
+.delete-filter {
+  color: red;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.param-input {
+  width: 100%;
+}
+
+.help-text {
+  font-weight: 500;
+  color: #444;
+}
+
+/* Button styling */
+.list-group-item .btn {
+  font-size: 20px;
+  width: 100%;
+  padding: 10px 5px;
+}
+
+/* ===================== */
+/* 🌐 Mobile & Tablet  */
+/* ===================== */
+@media (max-width: 1024px) {
+  .modal-dialog {
+    width: 95% !important;
+    margin: 20px auto !important;
+  }
+
+  .modal-content {
+    width: 100% !important;
+  }
+
+  .modal-title {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .form-check.col-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .table.table-responsive td,
+  .table.table-responsive th {
+    display: block;
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+  .table.table-responsive tr {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .list-group-item .btn {
+    font-size: 18px;
+    width: 100%;
+    padding: 8px;
+  }
+}
+
+/* ===================== */
+/* 🧾 Extra small screens */
+/* ===================== */
+@media (max-width: 576px) {
+  .login-box {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .modal-dialog {
+    width: 98% !important;
+    margin: 10px auto !important;
+  }
+
+  .modal-title {
+    font-size: 1.1rem;
+  }
+
+  .text-script,
+  .text-description {
+    font-size: 0.85rem;
+  }
+
+  .delete-filter {
+    font-size: 18px;
+  }
+
+  .card-body,
+  .modal-body {
+    padding: 10px;
+  }
+
+  .param-input {
+    font-size: 14px;
+  }
+}
+.text-info {
+  font-size: 12px;
+  color: #17a2b8;
+  margin-top: 2px;
+}
+
+@media screen and (max-width: 768px) {
+  .table-responsive td,
+  .table-responsive th {
+    display: block;
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+  .table-responsive tr {
+    display: block;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .badge.bg-toggle {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    margin-top: 5px;
+  }
+
+  .form-control {
+    width: 100%;
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+
+  .text-end {
+    text-align: right;
+  }
+
+  .text-start {
+    text-align: left;
+  }
+}
+/* Base Styles */
+.filter-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.connector-dropdown {
+  margin-right: 0.5rem;
+  min-width: 100px;
+  flex: 0 0 auto;
+}
+
+.filter-card {
+  flex: 1 1 auto;
+  padding: 15px;
+  border-radius: 8px;
+  position: relative;
+  background-color: #2c3e50;
+  color: white;
+  min-width: 220px;
+}
+
+.filter-card .action-icons {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.filter-card .fa {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.text-script {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.text-description {
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+/* Technical and Price alert colors */
+.technical-alert {
+  background-color: #1e88e5;
+}
+
+.price-alert {
+  background-color: #43a047;
+}
+
+/* Responsive CSS */
+@media (max-width: 768px) {
+  .filter-row {
+    flex-direction: column;
+  }
+
+  .connector-dropdown {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .filter-card {
+    width: 100%;
+  }
+
+  .filter-card .action-icons {
+    top: 10px;
+    right: 15px;
+  }
+
+  .filter-card .fa {
+    font-size: 20px;
+  }
+
+  .text-script,
+  .text-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-card {
+    padding: 10px;
+  }
+
+  .text-script {
+    font-size: 0.95rem;
+  }
+
+  .text-description {
+    font-size: 0.85rem;
+  }
+
+  .filter-card .fa {
+    font-size: 18px;
+  }
+}
+/* Modal responsiveness */
+.modal-dialog {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+
+.modal-content {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .modal-body {
+    padding: 1rem;
+  }
+
+  .modal-footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter-row {
+    flex-direction: column;
+  }
+
+  .connector-dropdown {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .filter-card {
+    width: 100%;
+  }
+
+  .action-icons {
+    top: 5px;
+    right: 10px;
+  }
+
+  .text-script, .text-description {
+    font-size: 14px;
+  }
+
+  .param-label {
+    text-align: left;
+    font-size: 14px;
+  }
+
+  .param-input {
+    width: 100%;
+  }
+}

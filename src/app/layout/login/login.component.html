@@ -1,0 +1,74 @@
+<div class="login-box-wrapper">
+    <div class="login-box">
+        <div class="card">
+            <div class="card-body login-card-body">
+                <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close" style="margin-top: -10px;"
+                    (click)="hideLoginModal()">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h3 class="text-bold">Login</h3>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Email" formControlName="email"
+                            (focus)="invalidpasword = false">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                        <div class="text-danger error-message mt-1 w-100 text-left"
+                            *ngIf="email.invalid && (email.dirty || email.touched)">
+                            <span *ngIf="email.errors['required']">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Email is required
+                            </span>
+                        </div>
+                        <div class="text-danger error-message mt-1 w-100 text-left" *ngIf="invalidpasword">
+                            <span>
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Username or password is incorrect
+                            </span>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Password" formControlName="password"
+                            (focus)="invalidpasword = false">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                        <div class="text-danger error-message mt-1 w-100 text-left"
+                            *ngIf="password.invalid && (password.dirty || password.touched)">
+                            <span *ngIf="password.errors['required']">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Password is required
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- /.col -->
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary btn-block"
+                                [disabled]="loginForm.invalid || isLogginIn">Login</button>
+                        </div>
+                        <div class="col-6">
+                            <div class="icheck-primary">
+                                <p class="mt-2 mb-1">
+                                    <a href="javascript:void(0)" (click)="forgottingPassword()">Forgotten Password</a>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+                <hr />
+                <p class="mb-0">
+                    Don't have an Account? <a href="javascript:void(0)" (click)="registering()" class="text-center">Sign
+                        Up</a>
+                </p>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+</div>

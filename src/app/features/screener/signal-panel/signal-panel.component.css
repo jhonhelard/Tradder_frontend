@@ -1,0 +1,32 @@
+.dropdown-width {
+    width: 20%;
+    padding: 0.5em;
+}
+.wrapper.night-mode .ui-inputtext, .wrapper.night-mode .ui-dropdown, .wrapper.night-mode .ui-dropdown .ui-dropdown-trigger {
+    background: red;
+    color: #9b9b9b;
+}
+@media screen and (max-width: 860px) {
+    .dropdown-width {
+        width: 50%;
+        padding: 0.5em;
+    }
+}
+@media screen and (max-width: 580px) {
+    .dropdown-width {
+        width: 100%;
+        padding: 0.5em;
+    }
+}
+:host::ng-deep .ui-dropdown label.ui-dropdown-label,
+body .ui-dropdown .ui-dropdown-label {
+    font-weight: 500;
+}
+.item-title {
+    /*font-weight: 500;*/
+    font-size: 13px;
+}
+
+.tab-content > .tab-pane {
+    min-height: 180px;
+}

@@ -1,0 +1,67 @@
+.formula-name {
+    background: black;
+    padding: 8px;
+    border-radius: 5px 5px 0 0;
+}
+.collection-collapse-block {
+    border: 1px solid #dddddd !important;
+    padding: 1em;
+    /*background: #f8f9fa;*/
+    border-radius: 5px;
+}
+.collection-collapse-block.open .collection-collapse-block-content {
+    height: 115px;
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+.collection-collapse-block .collection-collapse-block-content .collection-brand-filter {
+    height: 115px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.saved-item {
+    position: relative;
+    
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    box-shadow: inset 0 0 0 rgb(0 0 0 / 0%);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        display: flex;
+    align-items: center;
+    padding: 0px 12px;
+        justify-content: space-between;
+        
+    
+}
+.item-action {
+    /* position: absolute;
+    right: 0;
+    padding: 0.3em; */
+    cursor: pointer;
+}
+
+.link {
+    cursor: pointer;
+    padding-right: 50px;
+    color: #333333 !important;
+    font-size: 14px;
+}
+.delete-link{
+    color: #333333 !important;
+}
+
+.delete-link, .delete-link:hover{
+    cursor: pointer;
+    /* padding: 0px 7px 0px 7px;
+    right: 0;
+    position: absolute; */
+    color: #333333 !important;
+}
+
+.dropdown-width{
+    width: 20%;
+    padding: 0.5em;
+}

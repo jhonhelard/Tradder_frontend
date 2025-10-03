@@ -1,0 +1,87 @@
+<form [formGroup]="equityBuySellForm">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <select [ngClass]="{ 'is-invalid': submitted && equityBuySellForm['controls'].side.errors }"
+                    class="custom-select" formControlName="side" id="inputGroupSelect01">
+                    <option selected>-Side-</option>
+                    <option *ngFor="let side of sideOptions" [value]="side.value">{{side.name}}</option>
+                </select>
+                <span *ngIf="submitted && equityBuySellForm['controls'].side.errors">
+                    <span class="text-danger" *ngIf="equityBuySellForm['controls'].side.errors.required">Side Is
+                        Required
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input [ngClass]="{ 'is-invalid': submitted && equityBuySellForm['controls'].quantity.errors }"
+                    type="number" class="form-control" formControlName="quantity" placeholder="Quantity">
+                <span *ngIf="submitted && equityBuySellForm['controls'].quantity.errors">
+                    <span class="text-danger" *ngIf="equityBuySellForm['controls'].quantity.errors.required">Quantity Is
+                        Required</span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <select [ngClass]="{ 'is-invalid': submitted && equityBuySellForm['controls'].type.errors }"
+                    class="custom-select" formControlName="type" id="inputGroupSelect01">
+                    <option selected>-Type-</option>
+                    <option *ngFor="let type of typeOptions" [value]="type.value">{{type.name}}</option>
+                </select>
+                <span *ngIf="submitted && equityBuySellForm['controls'].type.errors">
+                    <span class="text-danger" *ngIf="equityBuySellForm['controls'].type.errors.required">Type Is
+                        Required
+                    </span>
+                </span>
+            </div>
+            <div></div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <select [ngClass]="{ 'is-invalid': submitted && equityBuySellForm['controls'].duration.errors }"
+                    class="custom-select" formControlName="duration" id="inputGroupSelect01">
+                    <option selected>-Duration-</option>
+                    <option *ngFor="let duration of durationOptions" [value]="duration.value">{{duration.name}}</option>
+                </select>
+                <span *ngIf="submitted && equityBuySellForm['controls'].duration.errors">
+                    <span class="text-danger" *ngIf="equityBuySellForm['controls'].duration.errors.required">Duration
+                        Is
+                        Required</span>
+                </span>
+            </div>
+        </div>
+        <div class="col" *ngIf='equityBuySellForm.get("type").value == typeOption.Limit'>
+            <div class="form-group" >
+                <input [ngClass]="{ 'is-invalid': submitted && equityBuySellForm['controls'].Price.errors }"
+                    type="number" class="form-control" formControlName="price" placeholder="Price">
+                <span *ngIf="submitted && equityBuySellForm['controls'].price.errors">
+                    <span class="text-danger" *ngIf="equityBuySellForm['controls'].price.errors.required">Price Is
+                        Required
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="col" *ngIf='equityBuySellForm.get("type").value == typeOption.Stop'>
+            <div class="form-group" >
+                <input [ngClass]="{ 'is-invalid': submitted && equityBuySellForm['controls'].stop.errors }"
+                    type="number" class="form-control" formControlName="stop" placeholder="Stop">
+                <span *ngIf="submitted && equityBuySellForm['controls'].stop.errors">
+                    <span class="text-danger" *ngIf="equityBuySellForm['controls'].stop.errors.required">Stop Is
+                        Required
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button type="submit" [disabled]="submitInProgress" (click)="onSubmit()"
+                class="btn btn-success">Submit</button>
+        </div>
+    </div>
+</form>

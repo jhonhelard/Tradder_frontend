@@ -1,0 +1,25 @@
+.pointer{
+    cursor: pointer;
+}
+/* .ml{
+    margin-left: 60px;
+}
+
+  @media screen and (max-width: 320px) {
+    .ml{
+        margin-left: 10px;
+    }
+  }
+  @media screen and (min-width: 560px) {
+    .ml{
+        margin-left: 80px;
+    }
+  } */
+
+
+
+  .explore-more{
+    right: 5px;
+    position: absolute;
+    top: 5px;
+  }

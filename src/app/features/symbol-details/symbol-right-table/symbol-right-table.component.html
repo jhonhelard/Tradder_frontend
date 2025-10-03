@@ -1,0 +1,1809 @@
+<div class="card d-lg-none mb-3">
+  <div class="card-header">
+    <div class="next-earnings d-flex align-items-center flex-wrap">
+      <div class="mr-2 my-1">
+        Next Earnings Date:
+        <strong class="badge bg-toggle p-2"> {{ reportDate }}</strong>
+      </div>
+
+      <span class="my-1"
+        >Weekly Optionable:
+        <span
+          *ngIf="weeklyOptionable === 'Yes'"
+          class="bg-success badge text-white p-2"
+          >{{ weeklyOptionable }}</span
+        ><span
+          *ngIf="weeklyOptionable !== 'Yes'"
+          class="bg-danger badge text-white p-2"
+          >{{ weeklyOptionable }}</span
+        ></span
+      >
+    </div>
+  </div>
+</div>
+<div class="row" style="height: 100%;">
+  <div class="col-md-12">
+    <div class="card" style="height: 100%;">
+      <div
+        class="d-none d-lg-block next-earnings"
+        style="position: absolute; right: 18px; top: 15px"
+      >
+        Next Earnings Date:
+        <strong class="badge bg-toggle p-2">{{ reportDate }}</strong>
+        <!-- <strong class="badge bg-toggle p-2">{{
+          nextEarningsDate | date : "MM-dd-yyyy"
+        }}</strong> -->
+        <span style="padding-left: 10px"
+          >Weekly Optionable:
+          <span
+            *ngIf="weeklyOptionable === 'Yes'"
+            class="bg-success badge text-white p-2"
+            >{{ weeklyOptionable }}</span
+          ><span
+            *ngIf="weeklyOptionable !== 'Yes'"
+            class="bg-danger badge text-white p-2"
+            >{{ weeklyOptionable }}</span
+          ></span
+        >
+      </div>
+      <!--    Date: <strong>{{nextEarningsDate| date:'MM-dd-yyyy'}}</strong> <span style="padding-left: 10px;">Weekly Optionable: <span style="color: green; font-weight: bold;">{{weeklyOptionable}}</span></span></div> -->
+      <!-- Date: <strong>{{nextEarningsDate| date:'MM-dd-yyyy'}}</strong> <span style="padding-left: 10px;">Weekly Optionable: <span style="color: green; font-weight: bold;">Yes</span></span></div> -->
+
+      <p-tabView class="stock-chart-tabs" styleClass="tab-view-transparent" style="height: 100%;">
+        <p-tabPanel header="BASIC CHART">
+          <div class="row chart-header d-flex align-items-center">
+            <div class="col-md-6">
+              <div class="row my-3">
+                <div
+                  class="col-12 col-md-6 px-0 pb-2 d-flex align-items-center justify-content-around text-muted ml-n3"
+                >
+                  <a
+                    href="javascript:void(0)"
+                    [ngClass]="{
+                      'bg-primary badge p-2 pl-0': dateType === '3M'
+                    }"
+                    (click)="updateDateType('3M')"
+                    >3M</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    [ngClass]="{
+                      'bg-primary badge p-2 pl-0': dateType === '6M'
+                    }"
+                    (click)="updateDateType('6M')"
+                    >6M</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    [ngClass]="{
+                      'bg-primary badge p-2 pl-0': dateType === '1y'
+                    }"
+                    (click)="updateDateType('1y')"
+                    >1y</a
+                  >
+                 <a
+                    href="javascript:void(0)"
+                    [ngClass]="{
+                      'bg-primary badge p-2 pl-0': dateType === '3y'
+                    }"
+                    (click)="updateDateType('3y')"
+                    >3y</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    [ngClass]="{
+                      'bg-primary badge p-2 pl-0': dateType === '5y'
+                    }"
+                    (click)="updateDateType('5y')"
+                    >5y</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    [ngClass]="{
+                      'bg-primary badge p-2 pl-0': dateType === 'Max'
+                    }"
+                    (click)="updateDateType('Max')"
+                    >Max</a
+                  >
+                </div>
+                <div
+                  class="col-12 col-md-6 px-0 d-flex align-items-center text-muted ml-n3 ml-md-0"
+                >
+                  <nav
+                    class="navbar navbar-expand navbar-light navbar-white bg-transparent d-block pt-0"
+                  >
+                    <ul class="navbar-nav float-right">
+                      <li class="nav-item dropdown">
+                        <a
+                          id="dropdownSubMenu1"
+                          href="#"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                          class="nav-link dropdown-toggle border border-primary rounded mr-2"
+                          >{{ cycleText }}</a
+                        >
+                        <ul
+                          aria-labelledby="dropdownSubMenu1"
+                          class="dropdown-menu border-0 shadow"
+                        >
+                          <li>
+                            <a
+                              href="javascript:void(0);"
+                              class="dropdown-item"
+                              (click)="cycleChange('Day1', 'Daily')"
+                              >Daily
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="javascript:void(0);"
+                              class="dropdown-item"
+                              (click)="cycleChange('Week1', 'Weekly')"
+                              >Weekly
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="javascript:void(0);"
+                              class="dropdown-item"
+                              (click)="cycleChange('Month1', 'Monthly')"
+                              >Monthly
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="javascript:void(0);"
+                              class="dropdown-item"
+                              (click)="cycleChange('Year1', 'Yearly')"
+                              >Yearly
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a
+                          id="dropdownSubMenu1"
+                          href="#"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                          class="nav-link dropdown-toggle border border-primary rounded"
+                          >{{
+                            chartType === 1
+                              ? "OHLC Bar Chart"
+                              : chartType === 2
+                              ? "Line Chart"
+                              : "Candle Chart"
+                          }}</a
+                        >
+                        <ul
+                          aria-labelledby="dropdownSubMenu1"
+                          class="dropdown-menu border-0 shadow"
+                        >
+                          <li>
+                            <a
+                              href="javascript:void(0)"
+                              (click)="updateChartType(3)"
+                              class="dropdown-item"
+                              >Candle Chart</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="javascript:void(0)"
+                              (click)="updateChartType(1)"
+                              class="dropdown-item"
+                              >OHLC Bar Chart</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="javascript:void(0)"
+                              (click)="updateChartType(2)"
+                              class="dropdown-item"
+                              >Line Chart</a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="row chart-header d-flex align-items-center my-3">
+                <div
+                  class="col-12 pb-2 align-items-center text-muted d-none d-lg-flex"
+                >
+                  <div class="pr-2">
+                    <div class="custom-control custom-radio basic-chart-radio">
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        id="ckbDateRange"
+                        name="ckbDateRange"
+                        checked
+                        (click)="updateDateType('DR')"
+                        value="true"
+                        [(ngModel)]="dateRangeChecked"
+                      />
+                      <label
+                        for="ckbDateRange"
+                        class="custom-control-label pl-2 pt-1"
+                        >Start</label
+                      >
+                    </div>
+                  </div>
+                  <p-calendar
+                    class="from-calendar basic-chart-date-picker"
+                    id="from-calendar"
+                    [readonlyInput]="true"
+                    [showIcon]="false"
+                    [inputStyle]="{ width: '7rem' }"
+                    [(ngModel)]="startDate"
+                    dateFormat="mm/dd/yy"
+                    [monthNavigator]="true"
+                    [yearNavigator]="true"
+                    yearRange="2000:2030"
+                  ></p-calendar>
+                  <div class="pl-4 pr-2 fw-600">End</div>
+                  <p-calendar
+                    class="basic-chart-date-picker"
+                    [(ngModel)]="endDate"
+                    [inputStyle]="{ width: '7rem' }"
+                    [readonlyInput]="true"
+                    [showIcon]="false"
+                    [monthNavigator]="true"
+                    [yearNavigator]="true"
+                    yearRange="2000:2030"
+                    dateFormat="mm/dd/yy"
+                  >
+                  </p-calendar>
+                </div>
+                <div
+                  class="col-12 pb-2 align-items-center text-muted d-flex d-lg-none pl-3"
+                >
+                  <div class="pr-2">
+                    <div class="custom-control custom-radio d-flex">
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        id="ckbDateRange2"
+                        name="ckbDateRange2"
+                        (click)="updateDateType('DR')"
+                        value="true"
+                        [(ngModel)]="dateRangeChecked"
+                      />
+                      <label
+                        for="ckbDateRange2"
+                        class="custom-control-label mr-2 pl-2 pt-1"
+                        >Start</label
+                      >
+                      <p-calendar
+                        class="from-calendar basic-chart-date-picker"
+                        id="from-calendar"
+                        [readonlyInput]="true"
+                        [showIcon]="false"
+                        [touchUI]="true"
+                        [monthNavigator]="true"
+                        [yearNavigator]="true"
+                        yearRange="2000:2030"
+                        [inputStyle]="{ width: '7rem' }"
+                        [(ngModel)]="startDate"
+                        dateFormat="mm/dd/yy"
+                      ></p-calendar>
+                    </div>
+                  </div>
+                  <div
+                    class="pl-2 font-90 d-flex"
+                    style="justify-content: center; align-items: center"
+                  >
+                    <span class="pr-2">End</span>
+                    <p-calendar
+                      class="basic-chart-date-picker"
+                      [(ngModel)]="endDate"
+                      [inputStyle]="{ width: '7rem' }"
+                      [readonlyInput]="true"
+                      [showIcon]="false"
+                      [touchUI]="true"
+                      [monthNavigator]="true"
+                      [yearNavigator]="true"
+                      yearRange="2000:2030"
+                      dateFormat="mm/dd/yy"
+                    >
+                    </p-calendar>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row m-0 d-none d-lg-flex">
+                <div class="col-12 px-0 justify-content-end">
+                  <nav
+                    class="navbar navbar-expand navbar-light navbar-white bg-transparent p-0"
+                  >
+                    <ul
+                      class="navbar-nav justify-content-start justify-content-md-end"
+                    >
+                      <li class="nav-item dropdown">
+                        <a
+                          id="dropdownSubMenu1"
+                          href="#"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          (click)="hasPermission()"
+                          aria-expanded="false"
+                          class="nav-link dropdown-toggle border border-primary rounded bold-dropdown"
+                          >{{ strategyText }}</a
+                        >
+                        <ul
+                          aria-labelledby="dropdownSubMenu1"
+                          class="dropdown-menu border-0"
+                        >
+                          <li>
+                            <a
+                              href="javascript:void(0)"
+                              (click)="updateStrategy('')"
+                              class="dropdown-item border-bottom-toggle"
+                              >-- None --
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="javascript:void(0)"
+                              (click)="updateStrategy('TCFast();')"
+                              class="dropdown-item border-bottom-toggle"
+                              >TC Fast Strategy
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="javascript:void(0)"
+                              (click)="updateStrategy('TCPositional();')"
+                              class="dropdown-item border-bottom-toggle"
+                              >TC Positional Strategy
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="javascript:void(0)"
+                              (click)="updateStrategy('GoldenSpike();')"
+                              class="dropdown-item border-bottom-toggle"
+                              >TC Premium Strategy
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="javascript:void(0)"
+                              (click)="updateStrategy('Ichimoku();')"
+                              class="dropdown-item border-bottom-toggle"
+                              >Ichimoku Cloud
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="javascript:void(0)"
+                              (click)="updateStrategy('TurtleTrading();')"
+                              class="dropdown-item border-bottom-toggle"
+                              >Turtle Trading Strategy
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a
+                          href="javascript:void(0)"
+                          class="nav-link dropdown-toggle no-arrow border border-primary rounded ml-2"
+                          (click)="showOverley($event, opoverlay)"
+                        >
+                          <span class="m-0">+ Price Overlays</span>
+                        </a>
+                        <p-overlayPanel
+                          #opoverlay
+                          styleClass="portfolio-overlayPanel dropdown-menu-right w-450 ui-overlaypanel-priceoverlay ui-overlaypanel-noarrow"
+                        >
+                          <ng-template pTemplate>
+                            <div class="card m-0">
+                              <div class="card-header">
+                                <div class="card-title">
+                                  <strong>Price overlays</strong>
+                                </div>
+                                <div class="card-tools">
+                                  <button
+                                    type="button"
+                                    class="btn btn-tool"
+                                    (click)="hideOverley(opoverlay)"
+                                  >
+                                    <i class="fas fa-times"></i>
+                                  </button>
+                                </div>
+                              </div>
+                              <div class="card-body container">
+                                <div class="w-100">
+                                  <div
+                                    class="row"
+                                    *ngFor="
+                                      let overlayModel of overlayModels;
+                                      let i = index
+                                    "
+                                  >
+                                    <div class="col-6">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="overlays"
+                                          styleClass="form-control"
+                                          (onChange)="
+                                            overlaySelected($event, i)
+                                          "
+                                          [(ngModel)]="overlayModel.overlay"
+                                          [attr.filter]="'true'"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-5">
+                                      <div class="form-group mb-1">
+                                        <input
+                                          type="text"
+                                          pInputText
+                                          class="form-control"
+                                          [(ngModel)]="
+                                            overlayModel.overlayParam
+                                          "
+                                        />
+                                      </div>
+                                    </div>
+                                    <div class="col-1" *ngIf="i > 3">
+                                      <span
+                                        class="btn btn-xs rounded-circle btn-danger"
+                                        (click)="removeOverley(i)"
+                                        ><i class="fa fa-minus"></i
+                                      ></span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card-footer">
+                                <div class="row">
+                                  <div class="col text-left">
+                                    <button
+                                      class="btn btn-sm btn-info"
+                                      (click)="addNewOverley()"
+                                    >
+                                      +
+                                    </button>
+                                  </div>
+                                  <div class="col text-right">
+                                    <button
+                                      class="btn btn-sm bg-warning px-3 text-white"
+                                      (click)="updateChartByOverlay(opoverlay)"
+                                    >
+                                      Update Chart
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </ng-template>
+                        </p-overlayPanel>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a
+                          href="javascript:void(0)"
+                          class="nav-link dropdown-toggle no-arrow border border-primary rounded ml-2"
+                          (click)="showOverley($event, opindicator1)"
+                        >
+                          <span class="m-0">+ Indicators</span>
+                        </a>
+                        <p-overlayPanel
+                          #opindicator1
+                          styleClass="portfolio-overlayPanel w-400 dropdown-menu-right ui-overlaypanel-indicator ui-overlaypanel-noarrow"
+                          [dismissable]="true"
+                        >
+                          <ng-template pTemplate>
+                            <div class="card m-0">
+                              <div class="card-header">
+                                <div class="card-title">
+                                  <strong>Indicators</strong>
+                                </div>
+                                <div class="card-tools">
+                                  <button
+                                    type="button"
+                                    class="btn btn-tool"
+                                    (click)="hideOverley(opindicator1)"
+                                  >
+                                    <i class="fas fa-times"></i>
+                                  </button>
+                                </div>
+                              </div>
+                              <div class="card-body container p-2">
+                                <div class="w-100">
+                                  <div
+                                    class="row"
+                                    *ngFor="
+                                      let indicatorModel of indicatorModels;
+                                      let i = index
+                                    "
+                                  >
+                                    <div class="col-4 pr-1">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="indicatorOperators"
+                                          styleClass="form-control"
+                                          [(ngModel)]="
+                                            indicatorModel.indicatorOperator
+                                          "
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-4 px-1">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="indicators"
+                                          styleClass="form-control"
+                                          (onChange)="
+                                            indicatorSelected($event, i)
+                                          "
+                                          [(ngModel)]="indicatorModel.indicator"
+                                          [attr.filter]="'true'"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-4 pl-1">
+                                      <div
+                                        class="form-group mb-1 d-flex align-items-center"
+                                      >
+                                        <input
+                                          type="text"
+                                          pInputText
+                                          class="form-control"
+                                          [(ngModel)]="
+                                            indicatorModel.indicatorParam
+                                          "
+                                        />
+                                        <span
+                                          *ngIf="i > 3"
+                                          class="btn btn-xs rounded btn-danger ml-1"
+                                          (click)="removeIndicator(i)"
+                                          ><i class="fa fa-minus"></i
+                                        ></span>
+                                      </div>
+                                    </div>
+                                    <div class="col-1"></div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card-footer">
+                                <div class="row">
+                                  <div class="col text-left">
+                                    <button
+                                      class="btn btn-sm btn-info"
+                                      (click)="addNewIndicator()"
+                                    >
+                                      <i class="pi pi-plus"></i>
+                                    </button>
+                                  </div>
+                                  <div class="col text-right">
+                                    <button
+                                      class="btn btn-sm bg-warning px-3 text-white"
+                                      (click)="
+                                        updateChartByIndicator(opindicator1)
+                                      "
+                                    >
+                                      Update Chart
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </ng-template>
+                        </p-overlayPanel>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="row m-0 d-flex d-lg-none">
+                <div class="col-12 px-0 mt-2">
+                  <nav
+                    class="navbar navbar-expand navbar-light navbar-white bg-transparent p-0"
+                  >
+                    <ul
+                      class="navbar-nav justify-content-start justify-content-md-end"
+                    >
+                      <li class="nav-item dropdown">
+                        <a
+                          id="strategymobile"
+                          href="#"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                          class="nav-link dropdown-toggle border border-primary rounded ml-2 bold-dropdown"
+                          >{{ strategyText }}</a
+                        >
+                        <ul
+                          aria-labelledby="strategymobile"
+                          class="dropdown-menu border-0"
+                        >
+                          <li>
+                            <a
+                              href="javascript:void(0)"
+                              (click)="updateStrategy('')"
+                              class="dropdown-item"
+                              >-- None --
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="javascript:void(0)"
+                              (click)="updateStrategy('TCFast();')"
+                              class="dropdown-item"
+                              >TC Fast Strategy
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="javascript:void(0)"
+                              (click)="updateStrategy('TCPositional();')"
+                              class="dropdown-item"
+                              >TC Positional Strategy
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="javascript:void(0)"
+                              (click)="updateStrategy('GoldenSpike();')"
+                              class="dropdown-item"
+                              >TC Premium Strategy
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="javascript:void(0)"
+                              (click)="updateStrategy('Ichimoku();')"
+                              class="dropdown-item"
+                              >Ichimoku Cloud
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="javascript:void(0)"
+                              (click)="updateStrategy('TurtleTrading();')"
+                              class="dropdown-item"
+                              >Turtle Trading Strategy
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+                <div class="col-12 px-0 mt-2">
+                  <nav
+                    class="navbar navbar-expand navbar-light navbar-white bg-transparent p-0 float-left float-md-right"
+                  >
+                    <ul class="navbar-nav">
+                      <li class="nav-item dropdown">
+                        <a
+                          href="javascript:void(0)"
+                          class="nav-link dropdown-toggle no-arrow border border-primary rounded ml-2"
+                          (click)="showOverley($event, opoverlaymobile)"
+                        >
+                          <span class="m-0">+ Price Overlays</span>
+                        </a>
+                        <p-overlayPanel
+                          #opoverlaymobile
+                          styleClass="portfolio-overlayPanel dropdown-menu-right w-450 ui-overlaypanel-priceoverlay ui-overlaypanel-priceoverlaymobile ui-overlaypanel-noarrow"
+                        >
+                          <ng-template pTemplate>
+                            <div class="card m-0">
+                              <div class="card-header">
+                                <div class="card-title">
+                                  <strong>Price overlays</strong>
+                                </div>
+                                <div class="card-tools">
+                                  <button
+                                    type="button"
+                                    class="btn btn-tool"
+                                    (click)="hideOverley(opoverlaymobile)"
+                                  >
+                                    <i class="fas fa-times"></i>
+                                  </button>
+                                </div>
+                              </div>
+                              <div class="card-body container">
+                                <div class="w-100">
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="overlays"
+                                          styleClass="form-control"
+                                          (onChange)="
+                                            overlaySelected($event, 1)
+                                          "
+                                          [(ngModel)]="overlay1"
+                                          [attr.filter]="'true'"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-6">
+                                      <div class="form-group mb-1">
+                                        <input
+                                          type="text"
+                                          pInputText
+                                          class="form-control"
+                                          [(ngModel)]="overlayParam1"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="overlays"
+                                          styleClass="form-control"
+                                          (onChange)="
+                                            overlaySelected($event, 2)
+                                          "
+                                          [(ngModel)]="overlay2"
+                                          [attr.filter]="'true'"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-6">
+                                      <div class="form-group mb-1">
+                                        <input
+                                          type="text"
+                                          pInputText
+                                          class="form-control"
+                                          [(ngModel)]="overlayParam2"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="overlays"
+                                          styleClass="form-control"
+                                          (onChange)="
+                                            overlaySelected($event, 3)
+                                          "
+                                          [(ngModel)]="overlay3"
+                                          [attr.filter]="'true'"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-6">
+                                      <div class="form-group mb-1">
+                                        <input
+                                          type="text"
+                                          pInputText
+                                          class="form-control"
+                                          [(ngModel)]="overlayParam3"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="overlays"
+                                          styleClass="form-control"
+                                          (onChange)="
+                                            overlaySelected($event, 4)
+                                          "
+                                          [(ngModel)]="overlay4"
+                                          [attr.filter]="'true'"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-6">
+                                      <div class="form-group mb-1">
+                                        <input
+                                          type="text"
+                                          pInputText
+                                          class="form-control"
+                                          [(ngModel)]="overlayParam4"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="overlays"
+                                          styleClass="form-control"
+                                          (onChange)="
+                                            overlaySelected($event, 5)
+                                          "
+                                          [(ngModel)]="overlay5"
+                                          [attr.filter]="'true'"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-6">
+                                      <div class="form-group mb-1">
+                                        <input
+                                          type="text"
+                                          pInputText
+                                          class="form-control"
+                                          [(ngModel)]="overlayParam5"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="overlays"
+                                          styleClass="form-control"
+                                          (onChange)="
+                                            overlaySelected($event, 6)
+                                          "
+                                          [(ngModel)]="overlay6"
+                                          [attr.filter]="'true'"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-6">
+                                      <div class="form-group mb-1">
+                                        <input
+                                          type="text"
+                                          pInputText
+                                          class="form-control"
+                                          [(ngModel)]="overlayParam6"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card-footer">
+                                <div class="row">
+                                  <div class="col text-right">
+                                    <button
+                                      class="btn btn-sm bg-warning px-3 text-white"
+                                      (click)="
+                                        updateChartByOverlay(opoverlaymobile)
+                                      "
+                                    >
+                                      Update Chart
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </ng-template>
+                        </p-overlayPanel>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a
+                          href="javascript:void(0)"
+                          class="nav-link dropdown-toggle no-arrow border border-primary rounded ml-2"
+                          (click)="showOverley($event, opindicator1mobile)"
+                        >
+                          <span class="m-0">+ Indicators</span>
+                        </a>
+                        <p-overlayPanel
+                          #opindicator1mobile
+                          styleClass="portfolio-overlayPanel dropdown-menu-right w-450 ui-overlaypanel-indicator ui-overlaypanel-indicatormobile ui-overlaypanel-noarrow"
+                          [dismissable]="true"
+                        >
+                          <ng-template pTemplate>
+                            <div class="card m-0">
+                              <div class="card-header">
+                                <div class="card-title">
+                                  <strong>Indicators</strong>
+                                </div>
+                                <div class="card-tools">
+                                  <button
+                                    type="button"
+                                    class="btn btn-tool"
+                                    (click)="hideOverley(opindicator1mobile)"
+                                  >
+                                    <i class="fas fa-times"></i>
+                                  </button>
+                                </div>
+                              </div>
+                              <div class="card-body container">
+                                <div class="w-100">
+                                  <div class="row">
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="indicatorOperators"
+                                          styleClass="form-control"
+                                          [(ngModel)]="indicatorOperator1"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="indicators"
+                                          styleClass="form-control"
+                                          (onChange)="
+                                            indicatorSelected($event, 1)
+                                          "
+                                          [(ngModel)]="indicator1"
+                                          [attr.filter]="'true'"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <input
+                                          type="text"
+                                          pInputText
+                                          class="form-control"
+                                          [(ngModel)]="indicatorParam1"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="indicatorOperators"
+                                          styleClass="form-control"
+                                          [(ngModel)]="indicatorOperator2"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="indicators"
+                                          (onChange)="
+                                            indicatorSelected($event, 2)
+                                          "
+                                          styleClass="form-control"
+                                          [(ngModel)]="indicator2"
+                                          [attr.filter]="'true'"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <input
+                                          type="text"
+                                          pInputText
+                                          class="form-control"
+                                          [(ngModel)]="indicatorParam2"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="indicatorOperators"
+                                          styleClass="form-control"
+                                          [(ngModel)]="indicatorOperator3"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="indicators"
+                                          (onChange)="
+                                            indicatorSelected($event, 3)
+                                          "
+                                          styleClass="form-control"
+                                          [(ngModel)]="indicator3"
+                                          [attr.filter]="'true'"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <input
+                                          type="text"
+                                          pInputText
+                                          class="form-control"
+                                          [(ngModel)]="indicatorParam3"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="indicatorOperators"
+                                          styleClass="form-control"
+                                          [(ngModel)]="indicatorOperator4"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="indicators"
+                                          (onChange)="
+                                            indicatorSelected($event, 4)
+                                          "
+                                          styleClass="form-control"
+                                          [(ngModel)]="indicator4"
+                                          [attr.filter]="'true'"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <input
+                                          type="text"
+                                          pInputText
+                                          class="form-control"
+                                          [(ngModel)]="indicatorParam4"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="indicatorOperators"
+                                          styleClass="form-control"
+                                          [(ngModel)]="indicatorOperator5"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="indicators"
+                                          (onChange)="
+                                            indicatorSelected($event, 5)
+                                          "
+                                          styleClass="form-control"
+                                          [(ngModel)]="indicator5"
+                                          [attr.filter]="'true'"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <input
+                                          type="text"
+                                          pInputText
+                                          class="form-control"
+                                          [(ngModel)]="indicatorParam5"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="indicatorOperators"
+                                          styleClass="form-control"
+                                          [(ngModel)]="indicatorOperator6"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <p-dropdown
+                                          [options]="indicators"
+                                          styleClass="form-control"
+                                          [(ngModel)]="indicator6"
+                                          (onChange)="
+                                            indicatorSelected($event, 6)
+                                          "
+                                          [attr.filter]="'true'"
+                                        >
+                                        </p-dropdown>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="form-group mb-1">
+                                        <input
+                                          type="text"
+                                          pInputText
+                                          class="form-control"
+                                          [(ngModel)]="indicatorParam6"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              i
+                              <div class="card-footer">
+                                <div class="row">
+                                  <div class="col text-right">
+                                    <button
+                                      class="btn btn-sm bg-warning px-3 text-white"
+                                      (click)="
+                                        updateChartByIndicator(
+                                          opindicator1mobile
+                                        )
+                                      "
+                                    >
+                                      Update Chart
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </ng-template>
+                        </p-overlayPanel>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="row m-0 mt-4">
+                <div class="col-12 px-0">
+                  <nav
+                    class="navbar navbar-expand navbar-light navbar-white bg-transparent p-0 float-left float-md-right"
+                  >
+                    <ul class="navbar-nav">
+                      <!-- Auto Refresh Checkbox -->
+                      <li class="nav-item pr-3 d-flex align-items-center">
+                        <input
+                          type="checkbox"
+                          id="autoRefresh"
+                          [checked]="autoRefreshEnabled"
+                          (change)="toggleAutoRefresh($event)"
+                        />
+                        <label for="autoRefresh" class="mb-0 pl-1"
+                          >1 Minute Auto Refresh</label
+                        >
+                      </li>
+                      <li *ngIf="isLoggedIn" style="padding-right: 3px">
+                        <button
+                          style="padding-right: 3px"
+                          (click)="gotoSymbolAlert()"
+                          class="btn btn-info btn-sm"
+                        >
+                          <i class="fas fa-bell"></i> Set Alert
+                        </button>
+                      </li>
+                      <li>
+                          <span
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                          class="nav-link pt-1 pl-2">My Chart Settings:
+                        </span>
+                      </li>
+                      <li *ngIf="!isLoggedIn" style="padding-right: 3px">
+                        <button
+                          style="padding-right: 3px"
+                          (click)="gotoLogin()"
+                          class="btn btn-info btn-sm"
+                        >
+                          <i class="fas fa-bell"></i> Set Alert
+                        </button>
+                      </li>
+                      <li
+                        *ngIf="isLoggedIn"
+                        style="padding-right: 3px"
+                        class="nav-item dropdown"
+                      >
+                        <button
+                          style="padding-right: 3px"
+                          data-toggle="dropdown"
+                          class="btn btn-secondary btn-sm"
+                          (click)="hasPermission()"
+                        >
+                          <i class="fas fa-download mr-1"></i> Load
+                        </button>
+                        <ul
+                          style="float: left; left: -96px"
+                          aria-labelledby="dropdownSubMenu1"
+                          class="dropdown-menu border-0 shadow"
+                        >
+                          <strong class="text-center d-block text-toggle"
+                            >Load from ...</strong
+                          >
+                          <hr class="my-1" />
+                          <div class="chart-settings-container">
+                            <li *ngFor="let settings of chartSettingsList">
+                              <a
+                                (click)="changeChartSettings(settings.name)"
+                                class="dropdown-item border-bottom-toggle cursor-pointer"
+                                >{{ settings.name }}</a
+                              >
+                            </li>
+                          </div>
+                        </ul>
+                      </li>
+                      <li *ngIf="!isLoggedIn" style="padding-right: 3px">
+                        <button
+                          style="padding-right: 3px"
+                          (click)="gotoLogin()"
+                          class="btn btn-secondary btn-sm"
+                        >
+                          <i class="fas fa-download mr-1"></i> Load
+                        </button>
+                      </li>
+                      <li *ngIf="isLoggedIn" class="nav-item dropdown mr-1">
+                        <!-- <button data-toggle="dropdown"  class="btn btn-primary btn-xs pt-0" data-toggle="modal" data-target="#chartsettings-modal"><i class="fas fa-save mr-1"></i> Save</button> -->
+                        <button
+                          data-toggle="dropdown"
+                          class="btn btn-success btn-sm"
+                          (click)="hasPermission()"
+                        >
+                          <i class="fas fa-save mr-1"></i> Save
+                        </button>
+                        <ul
+                          style="float: left; left: -120px"
+                          aria-labelledby="dropdownSubMenu"
+                          class="dropdown-menu border-0 shadow"
+                        >
+                          <strong class="text-center d-block text-toggle"
+                            >Save to ...</strong
+                          >
+                          <hr class="my-1" />
+                          <div class="chart-settings-container">
+                            <li *ngFor="let settings of chartSettingsList">
+                              <a
+                                (click)="updateChartSettings(settings.name)"
+                                class="dropdown-item border-bottom-toggle cursor-pointer"
+                                >{{ settings.name }}</a
+                              >
+                            </li>
+                          </div>
+                          <li class="mt-1 text-center px-3 py-2">
+                            <button
+                              data-toggle="modal"
+                              data-target="#chartsettings-modal"
+                              class="btn-primary btn-sm text-white d-block border-0"
+                            >
+                              Create New Chart Setttings
+                            </button>
+                          </li>
+                        </ul>
+                      </li>
+                      <li *ngIf="!isLoggedIn" style="padding-right: 3px">
+                        <button
+                          style="padding-right: 3px"
+                          (click)="gotoLogin()"
+                          class="btn btn-success btn-sm"
+                        >
+                          <i class="fas fa-save mr-1"></i> Save
+                        </button>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-12 mt-2 p-0">
+            <div
+              style="overflow-x: scroll"
+              #chartcontent
+              class="d-block d-md-none"
+            >
+              <img
+              src="{{ oldwebsiteUrl }}/Chart.aspx?Provider=DB&Code={{
+                symbol
+              }}&Type={{ chartType }}&Scale=0&IND={{
+                indicatorValues
+              }}&OVER={{ overlayValues + strategySelected }}&Skin={{
+                viewMode === 'light-mode' ? 'GreenRed' : 'Black'
+              }}&Size={{ chartWidth }}*{{ chartHeight }}&RT=1&Start={{
+                getDateString(startDate)
+              }}&End={{
+                getDateString(endDate)
+              }}&Layout=2Line;Default;Price;HisDate&Cycle={{ cycle }}&HIS=0"
+                width="100%"
+                height="100%"
+                class="chart-image"
+                style="min-width: 800px"
+              />
+            </div>
+            <div
+              class="flickity-button flickity-button-pre d-block d-md-none"
+              aria-label="Previous"
+            >
+              <svg class="flickity-button-icon" viewBox="0 0 100 100">
+                <path
+                  d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
+                  class="arrow"
+                ></path>
+              </svg>
+            </div>
+            <div
+              class="flickity-button flickity-button-next d-block d-md-none"
+              aria-label="Previous"
+            >
+              <svg class="flickity-button-icon" viewBox="0 0 100 100">
+                <path
+                  d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
+                  class="arrow"
+                  transform="translate(100, 100) rotate(180) "
+                ></path>
+              </svg>
+            </div>
+            <div class="d-none d-md-block">
+              <img
+                src="{{ oldwebsiteUrl }}/Chart.aspx?Provider=DB&Code={{
+                  symbol
+                }}&Type={{ chartType }}&Scale=0&IND={{
+                  indicatorValues
+                }}&OVER={{ overlayValues + strategySelected }}&Skin={{
+                  viewMode === 'light-mode' ? 'GreenRed' : 'Black'
+                }}&Size={{ chartWidth }}*{{ chartHeight }}&RT=1&Start={{
+                  getDateString(startDate)
+                }}&End={{ getDateString(endDate) }}&Layout={{
+                  viewMode === 'light-mode' ? '2Line' : '2LineBlack'
+                }};{{
+                  viewMode === 'light-mode'
+                    ? 'Default;Price;HisDate'
+                    : 'DefaultBlack'
+                }}&Cycle={{ cycle }}&HIS=0"
+                width="100%"
+                height="100%"
+                class="chart-image"
+                style="min-width: 600px"
+              />
+              <div
+                class="flickity-button flickity-button-pre d-block d-md-none"
+                aria-label="Previous"
+              >
+                <svg class="flickity-button-icon" viewBox="0 0 100 100">
+                  <path
+                    d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
+                    class="arrow"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                class="flickity-button flickity-button-next d-block d-md-none"
+                aria-label="Previous"
+              >
+                <svg class="flickity-button-icon" viewBox="0 0 100 100">
+                  <path
+                    d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
+                    class="arrow"
+                    transform="translate(100, 100) rotate(180) "
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="BACKTEST">
+          <app-back-test [symbol-name]="symbol"></app-back-test>
+        </p-tabPanel>
+        <p-tabPanel header="DIVIDEND">
+          <div class="row pt-3">
+            <div class="col-12 col-md-6 col-xl-4 form-group">
+              <label class="dividend-title">Ex-Dividend Date:</label>
+              <span class="dividend-value">{{
+                getDisplayValue(dividendHistoryFirstRow?.ex_date)
+              }}</span>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4 form-group">
+              <label class="dividend-title">Dividend Amount:</label>
+              <span class="dividend-value">{{
+                getDevidendAmountDisplay(dividendHistoryFirstRow)
+              }}</span>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4 form-group">
+              <label class="dividend-title">Annual Frequency:</label>
+              <span class="dividend-value">{{
+                getDisplayValue(dividendHistoryFirstRow?.frequency)
+              }}</span>
+            </div>
+
+            <div class="col-12 col-md-6 col-xl-4 form-group">
+              <label class="dividend-title">Dividend Yield:</label>
+              <span class="dividend-value">{{ getDividendYield() }}</span>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4 form-group">
+              <label class="dividend-title">Dividend Declaration Date:</label>
+              <span class="dividend-value">{{
+                getDisplayValue(dividendHistoryFirstRow?.declaration_date)
+              }}</span>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4 form-group">
+              <label class="dividend-title">Next Dividend Pay Date:</label>
+              <span class="dividend-value">{{
+                getDisplayValue(stableStock?.nextDividendDate)
+              }}</span>
+            </div>
+
+            <div class="col-12 col-md-6 col-xl-4 form-group">
+              <label class="dividend-title">Last Dividend Pay Date:</label>
+              <span class="dividend-value">{{
+                getDisplayValue(dividendHistoryFirstRow?.pay_date)
+              }}</span>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4 form-group">
+              <label class="dividend-title">Record Date:</label>
+              <span class="dividend-value">{{
+                getDisplayValue(dividendHistoryFirstRow?.record_date)
+              }}</span>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4 form-group">
+              <label class="dividend-title">Payout Ratio:</label>
+              <span class="dividend-value">{{ getRatioValue() }}</span>
+            </div>
+          </div>
+          <div
+            class="card"
+            *ngIf="!!dividendHistoryData && dividendHistory24Months.length > 0"
+          >
+            <div class="card-body">
+              <div class="row">
+                <div
+                  class="col-12 col-md-6 px-0 pb-2 d-flex align-items-center justify-content-around text-muted ml-n3"
+                >
+                  <!-- <a href="javascript:void(0)" class="badge p-1 pl-0" [class.bg-primary]="chartTimeFrame === '1m'"
+                    (click)="updateChartTimeFrame('1m')">1m</a>
+                  <a href="javascript:void(0)" class="badge p-1 pl-0" [class.bg-primary]="chartTimeFrame === '3m'"
+                    (click)="updateChartTimeFrame('3m')">3m</a>
+                  <a href="javascript:void(0)" class="badge p-1 pl-0" [class.bg-primary]="chartTimeFrame === '6m'"
+                    (click)="updateChartTimeFrame('6m')">6m</a> -->
+                  <a
+                    href="javascript:void(0)"
+                    class="badge p-1 pl-0"
+                    [class.bg-primary]="chartTimeFrame === 'ytd'"
+                    (click)="updateChartTimeFrame('ytd')"
+                    >YTD</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    class="badge p-1 pl-0"
+                    [class.bg-primary]="chartTimeFrame === '1y'"
+                    (click)="updateChartTimeFrame('1y')"
+                    >1y</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    class="badge p-1 pl-0"
+                    [class.bg-primary]="chartTimeFrame === '5y'"
+                    (click)="updateChartTimeFrame('5y')"
+                    >5y</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    class="badge p-1 pl-0"
+                    [class.bg-primary]="chartTimeFrame === '10y'"
+                    (click)="updateChartTimeFrame('10y')"
+                    >10y</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    class="badge p-1 pl-0"
+                    [class.bg-primary]="chartTimeFrame === 'all'"
+                    (click)="updateChartTimeFrame('all')"
+                    >All</a
+                  >
+                </div>
+                <div class="col-12 form-group">
+                  <div class="chart-wrapper">
+                    <div class="chart-innner">
+                      <p-chart
+                        type="line"
+                        [data]="basicData"
+                        [options]="basicOptions"
+                        [plugins]="plugins"
+                      >
+                      </p-chart>
+                    </div>
+                    <div
+                      class="flickity-button flickity-button-pre d-block d-md-none"
+                      aria-label="Previous"
+                      style="left: -7px"
+                    >
+                      <svg class="flickity-button-icon" viewBox="0 0 100 100">
+                        <path
+                          d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
+                          class="arrow"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div
+                      class="flickity-button flickity-button-next d-block d-md-none"
+                      aria-label="Previous"
+                      style="right: -7px"
+                    >
+                      <svg class="flickity-button-icon" viewBox="0 0 100 100">
+                        <path
+                          d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
+                          class="arrow"
+                          transform="translate(100, 100) rotate(180) "
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card rounded-0">
+            <div class="card-header px-2 mx-0 border-0 pb-3">
+              <h5 class="card-title">Dividend History</h5>
+            </div>
+            <div class="card-body flat-table pointer px-2 pt-1">
+              <div class="row">
+                <div class="col-12 flat-table">
+                  <div class="ui-table-wrapper table-responsive-sm">
+                    <p-table
+                      [columns]="cols"
+                      [value]="dividendHistoryData"
+                      [paginator]="isPaginatorDividentHistoryVisible()"
+                      [rows]="10"
+                      tableStyleClass="table w-auto w-md-100"
+                    >
+                      <ng-template pTemplate="header" let-columns>
+                        <tr>
+                          <th
+                            *ngFor="let col of columns"
+                            class="light text-left"
+                            [pSortableColumn]="col.field"
+                          >
+                            {{ col.header }}
+                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                          </th>
+                        </tr>
+                      </ng-template>
+                      <ng-template
+                        pTemplate="body"
+                        let-rowData
+                        let-columns="columns"
+                      >
+                        <tr
+                          class="extra-row"
+                          #tr
+                          id="#row{{ rowData.ticker }}"
+                          (click)="onSymbolSelected(rowData)"
+                        >
+                          <ng-container *ngFor="let col of columns">
+                            <!-- <td class="text-right" *ngSwitchCase="'changePercent'">
+                            <span
+                              [class]="rowData[col.field] >= 0 ? 'text-success' : 'text-danger'">{{rowData[col.field]
+                              | number : '1.2-2'}}</span>
+                          </td>
+                          <td class='text-right' *ngSwitchCase="'volume'">
+                            {{rowData[col.field] | ticketVolume}}
+                          </td> -->
+                            <td class="text-left px-3">
+                              {{ rowData[col.field] }}
+                            </td>
+                          </ng-container>
+                        </tr>
+                      </ng-template>
+                      <ng-template pTemplate="emptymessage" let-columns>
+                        <tr>
+                          <td [attr.colspan]="columns.length">
+                            No dividend data available for {{ symbol }}
+                          </td>
+                        </tr>
+                      </ng-template>
+                    </p-table>
+                  </div>
+                  <div
+                    class="flickity-button flickity-button-pre d-block d-md-none"
+                    aria-label="Previous"
+                    style="left: -7px"
+                  >
+                    <svg class="flickity-button-icon" viewBox="0 0 100 100">
+                      <path
+                        d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
+                        class="arrow"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div
+                    class="flickity-button flickity-button-next d-block d-md-none"
+                    aria-label="Previous"
+                    style="right: -7px"
+                  >
+                    <svg class="flickity-button-icon" viewBox="0 0 100 100">
+                      <path
+                        d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
+                        class="arrow"
+                        transform="translate(100, 100) rotate(180) "
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="d-block float-right mt-2"
+                *ngIf="!!(basicData?.labels.length > 0)"
+              >
+                <a
+                  href="#"
+                  class="show-all-link"
+                  data-toggle="modal"
+                  data-target="#dividendhistorymodal"
+                  >View All Payment History</a
+                >
+              </div>
+            </div>
+          </div>
+        </p-tabPanel>
+
+        <p-tabPanel header="INTERACTIVE CHART">
+         <div style="height: 70vh; display: block; min-height: 500px; max-height: 1200px;">
+          <iframe
+            [src]="safeURL"
+            height="100%"
+            width="100%"
+            frameborder="0"
+            allow="fullscreen"
+            allowfullscreen="allowfullscreen"
+            mozallowfullscreen="mozallowfullscreen"
+            msallowfullscreen="msallowfullscreen"
+            oallowfullscreen="oallowfullscreen"
+            webkitallowfullscreen="webkitallowfullscreen"
+            *ngIf="wait1000MS"
+          ></iframe>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="dividendhistorymodal">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content" [class.bg-secondary]="viewMode === 'DARK_MODE'">
+      <div class="modal-header">
+        <h4 class="modal-title w-100 text-center">
+          Dividend History for {{ symbol }}
+        </h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div
+        class="modal-body dark-scrollbar"
+        style="max-height: 500px; overflow-y: scroll"
+      >
+        <div class="row">
+          <div class="col-12 flat-table">
+            <div class="ui-table-wrapper table-responsive-sm">
+              <p-table
+                [columns]="cols"
+                [value]="dividendHistoryData"
+                [paginator]="false"
+                [rows]="10"
+                tableStyleClass="table w-auto w-md-100"
+              >
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th
+                      *ngFor="let col of columns"
+                      class="light text-left"
+                      [pSortableColumn]="col.field"
+                    >
+                      {{ col.header }}
+                      <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                  <tr
+                    class="extra-row"
+                    #tr
+                    id="#row{{ rowData.ticker }}"
+                    
+                  >
+                    <ng-container *ngFor="let col of columns">
+                      <td class="text-left px-3">
+                        {{ rowData[col.field] }}
+                      </td>
+                    </ng-container>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage" let-columns>
+                  <tr>
+                    <td [attr.colspan]="columns.length">
+                      No dividend data available for {{ symbol }}
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flickity-button flickity-button-pre d-block d-md-none"
+        aria-label="Previous"
+        style="left: -7px"
+      >
+        <svg class="flickity-button-icon" viewBox="0 0 100 100">
+          <path
+            d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
+            class="arrow"
+          ></path>
+        </svg>
+      </div>
+      <div
+        class="flickity-button flickity-button-next d-block d-md-none"
+        aria-label="Previous"
+        style="right: -7px"
+      >
+        <svg class="flickity-button-icon" viewBox="0 0 100 100">
+          <path
+            d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
+            class="arrow"
+            transform="translate(100, 100) rotate(180) "
+          ></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="chartsettings-modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" [class.bg-secondary]="viewMode === 'DARK_MODE'">
+      <div class="modal-header">Create New Chart Settings</div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-left">Name</p>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="chartSettingsName"
+                  placeholder=""
+                  [(ngModel)]="chartSettingsName"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <p class="text-left" style="color: red">{{ chartSettingsError }}</p>
+          <button
+            type="button"
+            (click)="onCreateNewChartSettings()"
+            class="btn btn-primary btn-lg btn-block"
+          >
+            Create
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

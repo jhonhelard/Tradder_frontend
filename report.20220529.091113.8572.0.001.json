@@ -1,0 +1,397 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20220529.091113.8572.0.001.json",
+    "dumpEventTime": "2022-05-29T09:11:13Z",
+    "dumpEventTimeStamp": "1653795673304",
+    "processId": 8572,
+    "cwd": "C:\\NODE ANGULAR\\tradier\\truchart-client",
+    "commandLine": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\NODE ANGULAR\\tradier\\truchart-client\\node_modules\\jest-worker\\build\\workers\\processChild.js"
+    ],
+    "nodejsVersion": "v12.14.1",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.14.1",
+      "v8": "7.7.299.13-node.16",
+      "uv": "1.33.1",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.40.0",
+      "napi": "5",
+      "llhttp": "2.0.1",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1d",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019c",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Erbium",
+      "headersUrl": "https://nodejs.org/download/release/v12.14.1/node-v12.14.1-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.14.1/node-v12.14.1.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.14.1/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.19044",
+    "osVersion": "Windows 10 Pro",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i3-7100U CPU @ 2.40GHz",
+        "speed": 2400,
+        "user": 148452312,
+        "nice": 0,
+        "sys": 110665125,
+        "idle": 880710546,
+        "irq": 9428609
+      },
+      {
+        "model": "Intel(R) Core(TM) i3-7100U CPU @ 2.40GHz",
+        "speed": 2400,
+        "user": 156763109,
+        "nice": 0,
+        "sys": 96165234,
+        "idle": 886899734,
+        "irq": 1448593
+      },
+      {
+        "model": "Intel(R) Core(TM) i3-7100U CPU @ 2.40GHz",
+        "speed": 2400,
+        "user": 188274468,
+        "nice": 0,
+        "sys": 108019906,
+        "idle": 843533609,
+        "irq": 1119015
+      },
+      {
+        "model": "Intel(R) Core(TM) i3-7100U CPU @ 2.40GHz",
+        "speed": 2400,
+        "user": 216916187,
+        "nice": 0,
+        "sys": 116262953,
+        "idle": 806648859,
+        "irq": 771328
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "9c:da:3e:d5:c7:f3",
+        "address": "2409:4042:791:f551:e905:a45c:3de:9458",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "9c:da:3e:d5:c7:f3",
+        "address": "2409:4042:791:f551:5c2f:928a:903b:a536",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "9c:da:3e:d5:c7:f3",
+        "address": "fe80::e905:a45c:3de:9458",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 5
+      },
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "9c:da:3e:d5:c7:f3",
+        "address": "192.168.35.67",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      }
+    ],
+    "host": "DESKTOP-UB3FS15"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff6d7fa1759",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6d7fa5b7c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6d7fa4b38",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6d809433b",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6d8898c5e",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6d8880ca1",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6d874e56c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6d872a563",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6d872885b",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6d8753edd",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6d8755be4",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6d874bcd3",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6d874a4a4",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6d876b775",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6d84d78d7",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6d8cc463d",
+      "symbol": ""
+    },
+    {
+      "pc": "0x000000aff83b5968",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 439410688,
+    "totalCommittedMemory": 439410688,
+    "usedMemory": 392130952,
+    "availableMemory": 1729820360,
+    "memoryLimit": 2129657856,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 261872,
+        "used": 32296,
+        "available": 229576
+      },
+      "new_space": {
+        "memorySize": 33554432,
+        "committedMemory": 33554432,
+        "capacity": 16759808,
+        "used": 101200,
+        "available": 16658608
+      },
+      "old_space": {
+        "memorySize": 220573696,
+        "committedMemory": 220573696,
+        "capacity": 207975256,
+        "used": 207817224,
+        "available": 158032
+      },
+      "code_space": {
+        "memorySize": 950272,
+        "committedMemory": 950272,
+        "capacity": 494368,
+        "used": 494368,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 528384,
+        "committedMemory": 528384,
+        "capacity": 311840,
+        "used": 311840,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 183492608,
+        "committedMemory": 183492608,
+        "capacity": 183370472,
+        "used": 183370472,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 49152,
+        "committedMemory": 49152,
+        "capacity": 3552,
+        "used": 3552,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 16759808,
+        "used": 0,
+        "available": 16759808
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 9.546,
+    "kernelCpuSeconds": 2.89,
+    "cpuConsumptionPercent": 77.725,
+    "maxRss": 287916032,
+    "pageFaults": {
+      "IORequired": 294751,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 26,
+      "writes": 87
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "APPDATA": "C:\\Users\\Avenger\\AppData\\Roaming",
+    "APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL": "true",
+    "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
+    "ChocolateyLastPathUpdate": "132230177624146219",
+    "CommonProgramFiles": "C:\\Program Files\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "DESKTOP-UB3FS15",
+    "ComSpec": "C:\\WINDOWS\\system32\\cmd.exe",
+    "C_EM64T_REDIST11": "C:\\Program Files (x86)\\Common Files\\Intel\\Shared Files\\cpp\\",
+    "DOTNET_REACTOR": "C:\\Program Files (x86)\\Eziriz\\.NET Reactor",
+    "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "FORCE_COLOR": "1",
+    "FPS_BROWSER_APP_PROFILE_STRING": "Internet Explorer",
+    "FPS_BROWSER_USER_PROFILE_STRING": "Default",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\Avenger",
+    "JEST_WORKER_ID": "2",
+    "LOCALAPPDATA": "C:\\Users\\Avenger\\AppData\\Local",
+    "LOGONSERVER": "\\\\DESKTOP-UB3FS15",
+    "NUMBER_OF_PROCESSORS": "4",
+    "OneDrive": "C:\\Users\\Avenger\\OneDrive",
+    "OS": "Windows_NT",
+    "Path": "C:\\Program Files (x86)\\Eziriz\\.NET Reactor;C:\\Program Files (x86)\\Common Files\\Intel\\Shared Files\\cpp\\bin\\Intel64;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Microsoft VS Code\\bin;C:\\Program Files (x86)\\Common Files\\Adobe\\AGL;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\nodejs\\;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Microsoft Visual Studio 10.0\\Common7\\IDE\\PrivateAssemblies\\;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files\\dotnet\\;C:\\Users\\Avenger\\AppData\\Local\\Programs\\Python\\Python39\\Scripts\\;C:\\Users\\Avenger\\AppData\\Local\\Programs\\Python\\Python39\\;C:\\Users\\Avenger\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Avenger\\AppData\\Roaming\\npm;C:\\Users\\Avenger\\.dotnet\\tools",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC;.CPL",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 142 Stepping 9, GenuineIntel",
+    "PROCESSOR_LEVEL": "6",
+    "PROCESSOR_REVISION": "8e09",
+    "ProgramData": "C:\\ProgramData",
+    "ProgramFiles": "C:\\Program Files",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PROMPT": "$P$G",
+    "PSModulePath": "C:\\Users\\Avenger\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules;C:\\Program Files (x86)\\Microsoft SQL Server\\110\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\PowerShell\\Modules\\",
+    "PUBLIC": "C:\\Users\\Public",
+    "SESSIONNAME": "Console",
+    "SynaProgDir": "Synaptics\\SynTP",
+    "SystemDrive": "C:",
+    "SystemRoot": "C:\\WINDOWS",
+    "TEMP": "C:\\Users\\Avenger\\AppData\\Local\\Temp",
+    "TERM_PROGRAM": "vscode",
+    "TERM_PROGRAM_VERSION": "1.28.2",
+    "TMP": "C:\\Users\\Avenger\\AppData\\Local\\Temp",
+    "USERDOMAIN": "DESKTOP-UB3FS15",
+    "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-UB3FS15",
+    "USERNAME": "Avenger",
+    "USERPROFILE": "C:\\Users\\Avenger",
+    "VS110COMNTOOLS": "C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\Tools\\",
+    "VS120COMNTOOLS": "C:\\Program Files (x86)\\Microsoft Visual Studio 12.0\\Common7\\Tools\\",
+    "VSCODE_CWD": "C:\\NODE ANGULAR\\tradier\\truchart-client",
+    "WEBPACK_DEV_SERVER": "true",
+    "windir": "C:\\WINDOWS"
+  },
+  "sharedObjects": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\System32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\powrprof.dll",
+    "C:\\WINDOWS\\SYSTEM32\\UMPDC.dll",
+    "C:\\WINDOWS\\SYSTEM32\\CRYPTBASE.DLL",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\SYSTEM32\\kernel.appcore.dll",
+    "C:\\WINDOWS\\System32\\bcryptprimitives.dll",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\system32\\wshbth.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll"
+  ]
+}

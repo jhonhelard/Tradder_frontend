@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfDropdown xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ <!--Moving Average Start-->
+	<Type> Techncial Alerts
+	<Field>
+    <items>
+		<item>
+			<itemtext>Price crossed below SMA(50)</itemtext>
+			<itemvalue>1</itemvalue>
+			<itemscript>CROSS(MA(C,50),C) </itemscript>
+			<itemdesc>Closing Price is crossed below SMA50  </itemdesc>
+		</item>
+      <item>
+        <itemtext>Price crossed below SMA(N)</itemtext>
+        <itemvalue>2</itemvalue>
+        <itemscript>CROSS(MA(C,N),C) </itemscript>
+      </item>
+		<item>
+			<itemtext>Price crossed above SMA(50)</itemtext>
+			<itemvalue>3</itemvalue>
+			<itemscript>CROSS(C,MA(C,50)) </itemscript>
+		</item>
+		<item>
+			<itemtext>Price crossed above SMA(N)</itemtext>
+			<itemvalue>4</itemvalue>
+			<itemscript>CROSS(C,MA(C,N)) </itemscript>
+		</item>
+		<item>
+			<itemtext>Price Moved 20% below SMA50</itemtext>
+			<itemvalue>5</itemvalue>
+			<itemscript>cross(20,(((MA(C,50)-C) /(MA(C,50)))*100 )) </itemscript>
+		</item>
+      <item>
+        <itemtext>Price Moved (N)% below SMA(N1)</itemtext>
+        <itemvalue>6</itemvalue>
+        <itemscript>CROSS(N, (((MA(C,N1)-C) /(MA(C,N1)))*100 ))</itemscript>
+      </item>
+          
+      <item>
+        <itemtext>SMA20 crossed SMA50 above</itemtext>
+        <itemvalue>7</itemvalue>
+        <itemscript>CROSS(MA(C,20),MA(C,50)) </itemscript>
+      </item>
+		<item>
+			<itemtext>SMA(N1) crossed SMA(N2) above</itemtext>
+			<itemvalue>8</itemvalue>
+			<itemscript>CROSS(MA(C,N1),MA(C,N2)) </itemscript>
+		</item>
+      <item>
+        <itemtext>SMA20 crossed SMA50 below</itemtext>
+        <itemvalue>9</itemvalue>
+        <itemscript>CROSS(MA(C,50),MA(C,20)) </itemscript>
+      </item>
+		<item>
+			<itemtext>SMA(N1) crossed SMA(N2) below</itemtext>
+			<itemvalue>10</itemvalue>
+			<itemscript>CROSS(MA(C,N1),MA(C,N2)) </itemscript>
+		</item>
+    </items>
+   
+  <description>SMA price cross alerts</description>
+    <name>Simple Moving Average (SMA) alerts</name>
+
+	</Field>
+
+		<Field>
+
+			<items>
+				<item>
+					<itemtext>Price crossed below EMA(50)</itemtext>
+					<itemvalue>1</itemvalue>
+					<itemscript>CROSS(EMA(C,50),C) </itemscript>
+					<itemdesc>Closing Price is crossed below EMA50  </itemdesc>
+				</item>
+				<item>
+					<itemtext>Price crossed below EMA(N)</itemtext>
+					<itemvalue>2</itemvalue>
+					<itemscript>CROSS(EMA(C,N),C) </itemscript>
+				</item>
+				<item>
+					<itemtext>Price crossed above EMA(50)</itemtext>
+					<itemvalue>3</itemvalue>
+					<itemscript>CROSS(C,EMA(C,50)) </itemscript>
+				</item>
+				<item>
+					<itemtext>Price crossed above EMA(N)</itemtext>
+					<itemvalue>4</itemvalue>
+					<itemscript>CROSS(C,EMA(C,N)) </itemscript>
+				</item>
+				<item>
+					<itemtext>Price Moved 20% below EMA50</itemtext>
+					<itemvalue>5</itemvalue>
+					<itemscript>cross(20,(((MA(C,50)-C) /(MA(C,50)))*100 )) </itemscript>
+				</item>
+				<item>
+					<itemtext>Price Moved (N)% below EMA(N1)</itemtext>
+					<itemvalue>6</itemvalue>
+					<itemscript>CROSS(N, (((EMA(C,N1)-C) /(EMA(C,N1)))*100 ))</itemscript>
+				</item>
+
+				<item>
+					<itemtext>EMA20 crossed EMA50 above</itemtext>
+					<itemvalue>7</itemvalue>
+					<itemscript>CROSS(EMA(C,20),EMA(C,50)) </itemscript>
+				</item>
+				<item>
+					<itemtext>EMA(N1) crossed EMA(N2) above</itemtext>
+					<itemvalue>8</itemvalue>
+					<itemscript>CROSS(EMA(C,N1),EMA(C,N2)) </itemscript>
+				</item>
+				<item>
+					<itemtext>EMA20 crossed EMA50 below</itemtext>
+					<itemvalue>9</itemvalue>
+					<itemscript>CROSS(EMA(C,50),EMA(C,20)) </itemscript>
+				</item>
+				<item>
+					<itemtext>EMA(N1) crossed EMA(N2) below</itemtext>
+					<itemvalue>10</itemvalue>
+					<itemscript>CROSS(EMA(C,N1),EMA(C,N2)) </itemscript>
+				</item>
+			</items>
+			<description>EMA price cross alerts</description>
+			<name>Exponential Moving Average (EMA) alerts</name>
+		</Field>
+	</Type>
+
+	<Type>
+		Price Alerts
+		<Field>
+			<items>
+				<item>
+					<itemtext>New 52 Week High</itemtext>
+					<itemvalue>1</itemvalue>
+					<itemscript>CROSS(H,hhv(c,260))</itemscript>
+				</item>
+				<item>
+					<itemtext>New N Week High</itemtext>
+					<itemvalue>2</itemvalue>
+					<itemscript>CROSS(H,hhv(c,N))</itemscript>
+				</item>
+				
+				<item>
+					<itemtext>New 52 Week Low</itemtext>
+					<itemvalue>3</itemvalue>
+					<itemscript>CROSS(LLV(L,260),L)</itemscript>
+				</item>
+				<item>
+					<itemtext>New N Week Low</itemtext>
+					<itemvalue>4</itemvalue>
+					<itemscript>CROSS(LLV(L,N),L)</itemscript>
+				</item>
+				
+				<item>
+					<itemtext>New 52 Week Closing High</itemtext>
+					<itemvalue>9</itemvalue>
+					<itemscript>CROSS(C,hhv(c,260))</itemscript>
+				</item>
+				<item>
+					<itemtext>New N Week Closing High</itemtext>
+					<itemvalue>10</itemvalue>
+					<itemscript>CROSS(H,hhv(c,N))</itemscript>
+				</item>
+			
+				<item>
+					<itemtext>New 52 Week Closing Low</itemtext>
+					<itemvalue>13</itemvalue>
+					<itemscript>CROSS(LLV(L,260),C)</itemscript>
+				</item>
+				<item>
+					<itemtext>New N Week Closing Low</itemtext>
+					<itemvalue>14</itemvalue>
+					<itemscript>CROSS(LLV(L,N),C)</itemscript>
+				</item>
+				
+			</items>
+			<description>Stock Price Alerts</description>
+			<name>Stock Price alerts</name>
+		
+		</Field>
+	</Type>
+  
+</ArrayOfDropdown>

@@ -1,0 +1,714 @@
+@media only screen and (min-width: 1200px) {
+  .container {
+    /* max-width:85%; 1695px; harshalpatil */
+    max-width: 1336px;
+  }
+}
+
+@media only screen and (min-width: 1440px) and (max-width: 1599px) {
+  .hero--area::before {
+    width: 956px;
+  }
+  .news--area .news--slider .news--box {
+    padding: 10px;
+  }
+  .news--area .news--slider .news--box img {
+    margin-right: 10px;
+  }
+  .industrial--box .content .left {
+    max-width: 70%;
+  }
+  .industrial--box .content .right {
+    max-width: 30%;
+  }
+  .industrial--box .content h3 {
+    font-size: 28px;
+  }
+}
+@media only screen and (min-width: 1366px) and (max-width: 1399px) {
+  .menu--wrapper form .input--group,
+  .hero--area form .input--group {
+    width: 250px;
+  }
+  header .menu--wrapper {
+    justify-content: end;
+  }
+  .industrial--box .content .left {
+    max-width: 70%;
+  }
+  .industrial--box .content .right {
+    max-width: 30%;
+  }
+}
+@media only screen and (min-width: 1366px) and (max-width: 1439px) {
+  .hero--area::before {
+    width: 956px;
+  }
+  .news--area .news--slider .news--box {
+    padding: 10px;
+  }
+  .news--area .news--slider .news--box img {
+    margin-right: 10px;
+  }
+  .tradier--area .tradier--box {
+    right: 100px;
+  }
+  .tradier--area .tradier--content h2 {
+    font-size: 38px;
+    line-height: 54px;
+  }
+  .section--tilte h2,
+  .section--tilte h2 span {
+    font-size: 40px;
+  }
+  .hero--area .hero--content h1,
+  .hero--area .hero--content h1 span {
+    font-size: 50px;
+    line-height: 62px;
+  }
+  .hero--area::before {
+    width: 826px;
+  }
+  .hero--area .hero--img .img--stock img {
+    width: 80px;
+  }
+  .industrial--box .content .left {
+    max-width: 70%;
+  }
+  .industrial--box .content .right {
+    max-width: 30%;
+  }
+  .industrial--box .content h3 {
+    font-size: 28px;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1365px) {
+  .hero--area .hero--content h1,
+  .hero--area .hero--content h1 span {
+    font-size: 40px;
+    line-height: 52px;
+  }
+  .menu--wrapper form .input--group {
+    width: 246px;
+    margin-right: 12px;
+  }
+  .hero--area form .input--group {
+    width: 326px;
+  }
+  header .menu > li a {
+    margin-right: 20px;
+  }
+  header .menu--wrapper {
+    margin-left: 100px;
+  }
+  header .menu li.dropdown--toggle a {
+    padding-right: 20px;
+  }
+  .hero--area .hero--img .img--stock img {
+    width: 80px;
+  }
+  .hero--area::before {
+    width: 786px;
+  }
+  .menu--wrapper form .input--group input {
+    font-size: 12px;
+  }
+  .hero--area form .input--group input {
+    height: 58px;
+  }
+  .hero--area form .button {
+    padding: 16px 32px;
+  }
+  .section--tilte h2,
+  .section--tilte h2 span {
+    font-size: 38px;
+  }
+  .choose--content h2 {
+    font-size: 36px;
+    line-height: 46px;
+  }
+  .choose--area .row {
+    margin-right: -10px;
+    margin-left: -10px;
+  }
+  .choose--area .row [class*="col-"] {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .faq--accordion .accordion-item button p {
+    font-size: 20px;
+  }
+  .tradier--area .tradier--content h2 {
+    font-size: 38px;
+    line-height: 54px;
+  }
+  .tradier--area .tradier--box {
+    padding: 38px 34px 35px 34px;
+    max-width: 400px;
+    right: 100px;
+  }
+  .industrial--box .content .left {
+    max-width: 70%;
+  }
+  .industrial--box .content .right {
+    max-width: 30%;
+  }
+  .industrial--box .content h3 {
+    font-size: 26px;
+  }
+  .industrial--box .content {
+    align-items: flex-start;
+  }
+}
+@media only screen and (max-width: 1199px) {
+  .hero--area .hero--content h1,
+  .hero--area .hero--content h1 span {
+    font-size: 36px;
+    line-height: 45px;
+  }
+  .hero--area::before {
+    width: 686px;
+  }
+  .hero--area .hero--img .img--stock img {
+    width: 60px;
+  }
+  .hero--area form .input--group {
+    max-width: 276px;
+  }
+  .hero--area form .input--group input {
+    height: 48px;
+  }
+  .hero--area form .button {
+    padding: 10px 32px;
+    font-size: 16px;
+  }
+  .section--tilte h2,
+  .section--tilte h2 span {
+    font-size: 36px;
+  }
+  .choose--content h2 {
+    font-size: 30px;
+    line-height: 40px;
+    margin-bottom: 10px;
+  }
+  .faq--accordion .accordion-item button p {
+    font-size: 20px;
+  }
+  .tradier--area .tradier--content h2 {
+    font-size: 30px;
+    line-height: 40px;
+  }
+  .tradier--area .tradier--box {
+    right: 50px;
+  }
+  .tradier--area .tradier--box {
+    right: 50px;
+    padding: 28px 24px 45px 24px;
+    max-width: 360px;
+  }
+  .tradier--area {
+    padding: 60px 0;
+  }
+  .choose--area .mt_95 {
+    margin-top: 50px;
+  }
+  .section--tilte {
+    margin-bottom: 50px;
+  }
+  .pricing--area {
+    padding: 70px 0 80px;
+  }
+  .menu--wrapper form .input--group {
+    width: 186px;
+    margin-right: 12px;
+  }
+  .faq--accordion .accordion-item button::after {
+    height: 30px;
+    width: 30px;
+  }
+  .choose--content .button {
+    padding: 15px 32px;
+  }
+  header .menu > li a {
+    font-size: 16px;
+  }
+  header .menu li.dropdown--toggle::before {
+    top: -3px;
+  }
+  .industrial--box .content {
+    display: block;
+  }
+  .industrial--box .content .left,
+  .industrial--box .content .right {
+    max-width: 100%;
+  }
+  .industrial--box .content .right {
+    text-align: left;
+    margin-top: 20px;
+  }
+  .industrial--box .content h3 {
+    font-size: 26px;
+  }
+  .industrial--box .content .right .button {
+    padding: 14px 32px;
+  }
+  .industrial--box {
+    padding: 24px;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .hero--area .hero--content h1,
+  .hero--area .hero--content h1 span {
+    font-size: 26px;
+    line-height: 35px;
+  }
+  .hero--area form .input--group {
+    max-width: 206px;
+  }
+  .hero--area form .button {
+    padding: 10px 2px;
+    font-size: 14px;
+    max-width: 120px;
+    width: 100%;
+  }
+  .hero--area form .input--group input {
+    font-size: 14px;
+    padding: 0 16px 0 25px;
+  }
+  .hero--area form .input--group::before {
+    height: 20px;
+    width: 20px;
+    left: 4px;
+  }
+  header .menu--wrapper {
+    display: none;
+  }
+  .header--btn--area .mode--toggler {
+    scale: 0.9;
+    margin-right: 10px;
+  }
+  .header--btn--area .btn--two {
+    display: none;
+  }
+  .hero--area {
+    height: 70vh;
+  }
+  .hero--area .hero--img .img--stock {
+    top: -60px;
+    left: 110px;
+  }
+  .hero--area::before {
+    width: 506px;
+  }
+  .section--tilte h2,
+  .section--tilte h2 span,
+  .choose--content h2 {
+    font-size: 28px;
+  }
+  .choose--content h2 {
+    line-height: 35px;
+  }
+  header .logo img {
+    margin-left: -10px;
+    width: 134px;
+  }
+  .hamburger-menu {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: calc((100% - 720px) / 2 + 10px);
+    /* transform: translateY(-50%); */
+  }
+  header.active .mobile--menu--wrapper .toggle--area {
+    display: flex !important;
+  }
+  header.active .mobile--menu {
+    padding-top: 0 !important;
+  }
+  header.active .mobile--menu--wrapper {
+    padding-top: 90px !important;
+  }
+  header.active .active-menus {
+    display: none !important;
+  }
+  header.active .search-header-mobile {
+    padding-top: 0 !important;
+    padding-right: 42px;
+  }
+  .mobile--menu--wrapper {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    padding-top: 120px;
+    padding-left: calc((100% - 720px) / 2 + 10px);
+    padding-right: calc((100% - 720px) / 2 + 10px);
+    z-index: -1;
+    transition: all 0.3s ease-in-out;
+  }
+  .mobile--menu--wrapper.show-menu {
+    left: 0;
+    transition: all 0.3s ease-in-out;
+  }
+  header .menu > li {
+    display: block;
+    padding: 10px 0;
+  }
+  .toggle--area {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .mobile--menu--wrapper .menu li.dropdown--toggle::before {
+    top: 6px;
+    left: 40px;
+  }
+  .mobile--menu--wrapper form .input--group {
+    width: 266px;
+    margin-right: 0;
+  }
+  .mobile--menu--wrapper .input--group {
+    margin-top: 10px;
+  }
+  header .menu .dropdown--menu {
+    position: relative;
+    top: 0;
+    padding: 0;
+    opacity: 1;
+    visibility: visible;
+    box-shadow: none !important;
+    height: 0;
+    overflow: hidden;
+    background-color: transparent;
+  }
+  header .menu .dropdown--menu.active-dropdown {
+    height: 140px;
+    top: 0;
+    padding: 10px 0 30px;
+  }
+  header .dropdown--toggle:hover .dropdown--menu {
+    top: 0;
+  }
+  .testimonial--area .section--tilte h2 {
+    line-height: 40px;
+  }
+  .tradier--area .tradier--box {
+    max-width: 260px;
+    padding: 18px 14px 25px 14px;
+  }
+  .tradier--box img {
+    width: 100px;
+  }
+  .tradier--area .tradier--box p {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+  .faq--accordion .accordion-item button p {
+    font-size: 18px;
+    max-width: 410px;
+  }
+  .faq--accordion .accordion-item button {
+    padding: 10px 0;
+  }
+  .night-mode header .menu .dropdown--menu {
+    background-color: transparent;
+  }
+  .night-mode .mobile--menu--wrapper form .input--group input,
+  .night-mode header .search-header-mobile .input--group input {
+    background-color: rgba(56, 97, 251, 0.1);
+    color: #fafafa;
+  }
+  .night-mode .mobile--menu--wrapper form .input--group::before,
+  .night-mode header .search-header-mobile .input--group::before {
+    background-image: url(../../new-layout/img/search-white.svg);
+  }
+  .night-mode .news--area .news--title--area h4,
+  .night-mode .news--area .news--slider .news--box h3 {
+    color: #fff !important;
+  }
+  .night-mode .news--area .news--slider .news--box {
+    background-color: var(--dark--box) !important;
+    border-color: #323546 !important;
+  }
+  .night-mode .news--area .news--slider .news--box p {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+  .night-mode .news--area .news--title--area a {
+    color: #fafafa !important;
+  }
+  .night-mode .news--area .news--title--area a i {
+    color: #fafafa !important;
+  }
+  .mobile--menu--wrapper
+    .mode--toggler
+    .checkbox:checked
+    + .checkbox-label
+    .ball {
+    transform: translateX(40px);
+  }
+  .back-to-top.hide {
+    display: none;
+  }
+  .header--btn--area .btn--area {
+    padding-right: 42px;
+  }
+  .testimonial--area .owl-stage {
+    margin-left: -5px;
+  }
+  .mobile--menu--wrapper .button {
+    padding: 10px 25px;
+  }
+  header .menu .dropdown--menu li:hover {
+    background-color: transparent;
+  }
+  header .menu .dropdown--menu li a:hover {
+    color: var(--btn-color);
+  }
+  header .menu .dropdown--menu li a {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .hero--area .hero--img .img--stock {
+    display: none;
+  }
+  .hamburger-menu {
+    right: calc((100% - 540px) / 2 + 10px);
+  }
+  .header--btn--area .btn--one {
+    font-size: 12px;
+    width: max-content;
+    margin-left: 0;
+  }
+  .mobile--menu--wrapper {
+    padding-left: calc((100% - 540px) / 2 + 10px);
+    padding-right: calc((100% - 540px) / 2 + 10px);
+  }
+  header {
+    padding: 18px 0;
+  }
+  .hero--area {
+    height: 90vh;
+  }
+  .hero--area .hero--content h1 {
+    margin-bottom: 35px;
+  }
+  .choose--area .mt_95 {
+    margin-top: 30px;
+  }
+  .choose--content span {
+    margin-bottom: 22px;
+  }
+  .choose--area {
+    padding: 50px 0;
+  }
+  .tradier--area .tradier--box {
+    max-width: 100%;
+    padding: 28px 24px 35px 24px;
+    position: relative;
+    right: 0;
+    top: 0;
+  }
+  .back-to-top {
+    height: 50px;
+    width: 50px;
+  }
+  .faq--area {
+    padding: 80px 0 60px;
+  }
+  .hero--area form {
+    flex-direction: column;
+  }
+  .hero--area form .input--group {
+    max-width: 250px;
+  }
+  .hero--area form .button {
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .hamburger-menu {
+    right: calc(15px * 0.8);
+  }
+  footer .footer--box .quick--links {
+    margin-top: 30px;
+  }
+  .section--tilte h2,
+  .section--tilte h2 span,
+  .choose--content h2 {
+    font-size: 26px;
+  }
+  .section--tilte p,
+  .choose--content span,
+  .pricing--area .pricing--title p {
+    max-width: 100%;
+    font-size: 16px;
+    margin-top: 15px;
+    line-height: 26px;
+  }
+  .choose--content h2 {
+    font-size: 25px;
+  }
+  .choose--content .button {
+    padding: 13px 12px;
+  }
+  .choose--content p {
+    font-size: 17px;
+  }
+  .choose--content p::before {
+    width: 48px;
+  }
+  .news--area .news--title--area h4,
+  .pricing--area .pricing--title .heading--and--tab h2 {
+    font-size: 26px;
+  }
+  .pricing--area .pricing--title .heading--and--tab {
+    display: block;
+  }
+  .pricing--area .pricing--title ul {
+    margin-left: 0;
+  }
+  .pricing--area .pricing--title ul {
+    margin-left: 0;
+    max-width: 202px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 5px;
+    margin-top: 20px;
+  }
+  .pricing--area {
+    padding: 0rem 0 60px;
+  }
+  .testimonial--area .owl-stage {
+    margin-left: 0rem;
+  }
+  .section--tilte h2,
+  .section--tilte h2 span,
+  .choose--content h2 {
+    line-height: 40px;
+  }
+  .faq--accordion .accordion-item button p {
+    font-size: 16px;
+    max-width: 320px;
+    line-height: 24px;
+  }
+  .faq--accordion .accordion-item .accordion-body p {
+    font-size: 16px;
+    line-height: 26px;
+  }
+  .faq--accordion .accordion-item button::after {
+    height: 25px;
+    width: 25px;
+  }
+  .tradier--area .tradier--content h2 {
+    font-size: 24px;
+    line-height: 36px;
+    max-width: 100%;
+  }
+  .pricing--area .plan--area h3 {
+    font-size: 22px;
+  }
+  .plan--area p {
+    font-size: 16px;
+  }
+  .pricing--area .feature--area .button {
+    padding: 10px 32px;
+  }
+  .tradier--area .tradier--content .button {
+    padding: 10px 40px;
+  }
+  .tradier--area {
+    padding: 10px 0 50px;
+  }
+  .button {
+    padding: 10px 6px;
+  }
+  .mobile--menu--wrapper {
+    padding-left: calc(15px * 0.5);
+    padding-right: calc(15px * 0.5);
+  }
+  .mobile--menu--wrapper > .mobile--menu {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .mobile--menu--wrapper > form {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .mobile--menu--wrapper > .btn--two--mobile {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .mobile--menu--wrapper .toggle--area {
+    padding-right: calc(15px * 0.5);
+  }
+  .hero--area .hero--content h1 {
+    max-width: 100%;
+  }
+  .industrial--box {
+    padding: 15px;
+  }
+  .industrial--box .content .right .button {
+    padding: 12px 32px;
+  }
+
+  .trending--title--area h4 {
+    font-size: 22px;
+  }
+  .industrial--box .content h3 {
+    font-size: 22px;
+  }
+  .industrial--box .content p {
+    font-size: 16px;
+  }
+  .industrial--box .content {
+    margin-top: 10px;
+  }
+  .trending--area .mt_70 {
+    margin-top: 20px !important;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .button {
+    font-size: 12px;
+  }
+  .hero--area .hero--content h1,
+  .hero--area .hero--content h1 span {
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .hero--area {
+    padding: 250px 0;
+    height: 100vh;
+  }
+  .section--tilte h2,
+  .section--tilte h2 span,
+  .choose--content h2 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  .faq--accordion .accordion-item button p {
+    max-width: 270px;
+  }
+  .tradier--area .tradier--content h2 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  footer .footer--box .social--icon i {
+    font-size: 30px;
+  }
+  footer .footer--box .social--icon {
+    padding-left: 20px;
+  }
+  footer .footer--box .logo--and--social a img {
+    padding-right: 30px;
+  }
+  .testimonial--area .section--tilte h2 {
+    line-height: 30px;
+  }
+}

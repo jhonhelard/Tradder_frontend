@@ -1,0 +1,239 @@
+<div class="content-wrapper bg-transparent">
+  <div class="pricing ng-scope" id="pricing">
+    <div class="container new-price-wrap">
+      <div class="row">
+        <div class="col-md-12 d-flex px-0 flex-column flex-lg-row mt-5 mb-5 justify-content-center">
+          <div class="card box3" *ngIf="CurrentPrice_id == '' || CurrentPrice_id == priceTag.Free">
+            <div class="card-body box-inner">              
+              <h3>Free</h3>
+              <h2 class="pl-0">14 Days</h2>
+              <p class="pl-0">per user <br />&nbsp;</p>              
+              <div *ngIf="showTrialSub">
+                <button
+                  *ngIf="!authService.isLoggedIn"
+                  class="btn btn-default"
+                  (click)="
+                    doRegister(
+                      freeSubscribe,
+                      'price_1MP8HLCRmDTwTgcmNZxzGjC4'
+                    )
+                  "
+                >
+                  Register
+                </button>
+                <button
+                  *ngIf="authService.isLoggedIn && CurrentPrice_id==''"
+                  class="btn btn-default w-100"
+                  (click)="
+                    makePayment(
+                      freeSubscribe,
+                      'price_1MP8HLCRmDTwTgcmNZxzGjC4'
+                    )
+                  "
+                >
+                  Subscribe
+                </button>               
+              </div>
+              <div *ngIf="!showTrialSub">
+                <label class="active-plan w-100">{{ trialStartDate }}</label>
+              </div>
+            </div>
+          </div>
+          <div class="card box3"  *ngIf="CurrentPrice_id == '' || CurrentPrice_id == priceTag.Free || CurrentPrice_id == priceTag.StandardMonthly">
+            <div class="card-body box-inner">              
+              <h3>Standard</h3>
+              <h2 class="pl-0">$29</h2>
+              <p class="pl-0">
+                USD/user/per Month
+                <br />&nbsp;
+              </p>
+              
+              <div *ngIf="CurrentPrice_id != priceTag.StandardMonthly">
+                <button
+                  class="btn btn-default w-100"                  
+                  (click)="makePayment(standard_monthly, priceTag.StandardMonthly)"
+                >
+                {{CurrentPrice_id == '' ? 'Buy Now':'Upgrade'}}
+                </button>
+              </div>
+              <div *ngIf="CurrentPrice_id == priceTag.StandardMonthly">
+                <label class="btn btn-default active-plan w-100">Subscribed</label>
+              </div>
+            </div>
+          </div>         
+          <div class="card box3" *ngIf="CurrentPrice_id == '' || CurrentPrice_id == priceTag.Free || CurrentPrice_id == priceTag.StandardMonthly || CurrentPrice_id == priceTag.PremiumMonthly">
+            <div class="card-body box-inner">              
+              <h3>Premium</h3>                
+                <h2 class="pl-0">
+                  ${{ premium_monthly }}
+                </h2>
+                <p class="pl-0">
+                  USD/user/Month
+                  <br />&nbsp;
+                </p>
+                <div *ngIf="CurrentPrice_id != priceTag.PremiumMonthly">
+                  <button
+                    class="btn btn-default"
+                    (click)="
+                      makePayment(
+                        CurrentPrice_id == priceTag.StandardMonthly ? (premium_monthly-standard_monthly) : premium_monthly,
+                        priceTag.PremiumMonthly
+                      )
+                    "
+                  >
+                  {{CurrentPrice_id == '' ? 'Buy Now':'Upgrade'}}
+                  </button>
+                </div>
+                <div
+                  *ngIf="CurrentPrice_id == priceTag.PremiumMonthly"
+                >
+                  <label class="btn btn-default active-plan w-100">Subscribed</label>
+                </div>                
+            </div>
+          </div>
+          <div class="card box3" *ngIf="CurrentPrice_id == '' || CurrentPrice_id == priceTag.Free || CurrentPrice_id == priceTag.StandardMonthly || CurrentPrice_id == priceTag.PremiumMonthly || CurrentPrice_id == priceTag.StandardAnnually">
+            <div class="card-body box-inner">              
+              <h3>Standard</h3>
+                <h2 class="pl-0">$23</h2>                
+                <p class="pl-0">
+                  per Month
+                  <br />Paid Annually
+                </p>                
+                <div *ngIf="CurrentPrice_id !=  priceTag.StandardAnnually">
+                  <button
+                    class="btn btn-default"
+                    (click)="
+                      makePayment(
+                        standard_yearly,
+                        priceTag.StandardAnnually
+                      )
+                    "
+                  >
+                  {{CurrentPrice_id == '' ? 'Buy Now':'Upgrade'}}
+                  </button>
+                </div>
+                <div *ngIf="CurrentPrice_id == priceTag.StandardAnnually">
+                  <label class="btn btn-default active-plan w-100">Subscribed</label>
+                </div>               
+            </div>
+          </div>
+          <div class="card box3">
+            <div class="card-body box-inner">              
+              <h3>Premium</h3>
+                <h2 class="pl-0">$39</h2>
+                
+                <p class="pl-0">
+                  per Month
+                  <br />Paid Annually
+                </p>                
+                <div *ngIf="CurrentPrice_id != priceTag.PremiumAnnually">
+                  <button
+                    class="btn btn-default w-100"                    
+                    (click)="
+                      makePayment(
+                        CurrentPrice_id == priceTag.StandardAnnually ? (premium_yearly-standard_yearly) : premium_yearly,
+                        priceTag.PremiumAnnually
+                      )
+                    "
+                  >
+                    {{CurrentPrice_id == '' ? 'Buy Now':'Upgrade'}}
+                  </button>
+                </div>
+                <div
+                  *ngIf="
+                    CurrentPrice_id == priceTag.PremiumAnnually"
+                >
+                  <label class="btn btn-default active-plan w-100">Subscribed</label>
+                </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 d-flex px-5">
+          <!-- for desktop -->
+          <div class="d-none d-md-block w-100" >
+            <div class="card rounded-0">
+              <div class="card-header px-2 mx-0 border-none">
+                  <h3 class="card-title big-title d-block w-100 pl-1 text-muted">
+                      <strong>Invoices History</strong>
+                  </h3>                
+              </div>
+              <div class="card-body flat-table pointer">
+                  <div class="row">
+                      <div class="col-xl-12 col-md-12">                         
+                          <div class="card card-default">                              
+                              <div class="card-body">
+                                  <div class="row">
+                                      <div class="col-12 flat-table ">
+                                            <table class="ui-table w-auto w-md-100">
+                                              <thead>
+                                                <tr>
+                                                  <!-- Column headers -->
+                                                  <th *ngFor="let column of invoiceColumns" class="ui-table-thead col-3">{{ column }}</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody class="ui-table-tboy">
+                                                <!-- Iterate over data and render rows -->
+                                                <tr *ngFor="let item of invoiceData" role='button' (click)="downloadFile(item)">
+                                                  <!-- Individual cell data -->
+                                                  <td width="20%">{{ item.id }}</td>
+                                                  <td width="20%">{{ item.date }}</td>
+                                                  <td width="20%">{{ item.time }}</td>
+                                                  <td width="20%">{{ item.quantity }}</td>
+                                                  <td width="20%">{{ item.price }}</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>                      
+                  </div>
+
+              </div>
+          </div>
+          </div>
+
+          <!-- mobile -->
+          <div class="d-block d-md-none w-100">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- new price secion end -->
+
+    <!-- <div class="support-center-wrap">
+      <div class="support-bg"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="text-center">
+              Still Have Questions? <strong>We're Here to Help!</strong>
+            </h4>
+            <hr class="line-thick line-center line-50" />
+            <div
+              class="support-info d-flex align-items-center justify-content-center flex-column"
+            >
+              <p>
+                Visit our Support Center or contact us for answers and
+                assistance.
+              </p>
+              <button>
+                Support Center&nbsp;&nbsp;<i
+                  class="fas fa-arrow-circle-right"
+                ></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div *ngIf="isLoading" class="col-12 text-center loading">
+      <i class="fas fa-3x fa-sync-alt fa-spin text-muted"></i>
+    </div>
+  </div>
+  <!-- <button onmouseover="welcome()"> Welcome to our website </button>     -->
+</div>

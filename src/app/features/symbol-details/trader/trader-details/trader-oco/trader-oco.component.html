@@ -1,0 +1,74 @@
+<form [formGroup]="OcoBuySellForm">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <select [ngClass]="{ 'is-invalid': submitted && OcoBuySellForm['controls'].duration.errors }"
+                    class="custom-select" formControlName="duration" id="inputGroupSelect01">
+                    <option selected>-Duration-</option>
+                    <option *ngFor="let duration of durationOptions" [value]="duration.value">{{duration.name}}</option>
+                </select>
+                <span *ngIf="submitted && OcoBuySellForm['controls'].duration.errors">
+                    <span class="text-danger" *ngIf="OcoBuySellForm['controls'].duration.errors.required">Duration
+                        Is
+                        Required</span>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="quantity" placeholder="Quantity">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <select [ngClass]="{ 'is-invalid': submitted && OcoBuySellForm['controls'].type.errors }"
+                    class="custom-select" formControlName="type" id="inputGroupSelect01">
+                    <option selected>-Type-</option>
+                    <option *ngFor="let type of typeOptions" [value]="type.value">{{type.name}}</option>
+                </select>
+                <span *ngIf="submitted && OcoBuySellForm['controls'].type.errors">
+                    <span class="text-danger" *ngIf="OcoBuySellForm['controls'].type.errors.required">Type Is
+                        Required
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input [ngClass]="{ 'is-invalid': submitted && OcoBuySellForm['controls'].quantity.errors }" type="text"
+                    class="form-control" formControlName="option_symbol" placeholder="Option Symbol">
+                <span *ngIf="submitted && OcoBuySellForm['controls'].class.errors">
+                    <span class="text-danger" *ngIf="OcoBuySellForm['controls'].class.errors.required">Option
+                        Symbol Is
+                        Required</span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <select [ngClass]="{ 'is-invalid': submitted && OcoBuySellForm['controls'].side.errors }"
+                    class="custom-select" formArrayName="side" id="inputGroupSelect01">
+                    <option selected>-Side-</option>
+                    <option *ngFor="let side of sideOptions" [value]="side.value">{{side.name}}</option>
+                </select>
+                <span *ngIf="submitted && OcoBuySellForm['controls'].side.errors">
+                    <span class="text-danger" *ngIf="OcoBuySellForm['controls'].side.errors.required">Side Is
+                        Required
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button type="submit" [disabled]="submitInProgress" (click)="onSubmit()"
+                class="btn btn-success">Submit</button>
+        </div>
+    </div>
+    <!-- {{OcoBuySellForm.value | json}} -->
+</form>

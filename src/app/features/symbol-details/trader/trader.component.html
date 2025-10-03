@@ -1,0 +1,54 @@
+<accordion>
+    <accordion-group [isOpen]="isAccordionOpen">
+        <div accordion-heading type="button">
+            <h2 class="card-title big-title fw-500">
+                <img style="width: 25px;" src="../../../assets/dist/img/traderIcon.png" alt="Logo">
+                <span>
+                    Tradier Brokerage&nbsp;({{symbol}})
+                </span></h2>
+        </div>
+        <div class="row" *ngIf="isTradierLoggedIn">
+            <div class="col-sm-6" >
+                <p-card class="text-center" styleClass="pCard card-border-color-blue">
+                    <div>Total Account Value</div>
+                    <div class="font-weight-bold">{{totalAccountValue}}</div>
+                </p-card>
+            </div>
+            <div class="col-sm-6">
+                <p-card class="text-center border-primary border-top" styleClass="pCard card-border-color-blue">
+                    <div style="font-size: 13px;">Option Buying Power</div>
+                    <div class="font-weight-bold">{{tradierdata?.balances?.margin?.option_buying_power}}</div>
+                </p-card>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" *ngIf="isTradierLoggedIn">
+                <p-card class="text-center border-primary border-top" styleClass="pCard card-border-color-blue">
+                    <div>Stock Buying Power</div>
+                    <div class="font-weight-bold">{{tradierdata?.balances?.margin?.stock_buying_power}}</div>
+                </p-card>
+            </div>
+            <div class="col">
+                <p-card class="text-center border-primary border-top" (click)="exploreMore()" styleClass="pCard card-border-color">
+                    <div class="row text-center ">
+                        <h6 class="col text-center font-weight-bold">
+                            <i class="fa fa-paper-plane"></i>&nbsp;&nbsp;Trade Now
+                            <!-- <div  style="background-color: aqua;"><i class="fa fa-paper-plane"></i></div> -->
+                            <!-- <div class="font-weight-bold" style="line-height: 0.6;">Trade Now -->
+                                <!-- <div class="font-weight-bold" >
+                            </div> -->
+                        </h6>
+                        <sub class="col-md-12 mt-1">Equity and Option</sub>
+                        <sub class="col-md-12 mt-3">Ticket</sub>
+                    </div>
+                    <!-- <div class="btn">
+                        <i class="fa fa-paper-plane fa-lg"></i>
+                    </div>
+                    <span class="font-weight-bold">Trade Now
+                        <p>Equity and Option Ticket</p>
+                    </span> -->
+                </p-card>
+            </div>
+        </div>
+    </accordion-group>
+</accordion>

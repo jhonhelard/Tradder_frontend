@@ -1,0 +1,116 @@
+<div [formGroup]="OptionsChains">
+    <div class="row mt-2 mb-2">
+        <div class="col-md-3">
+            <div>
+                <select class="form-control" formControlName="date">
+                    <option *ngFor="let date of dates" [value]="date">{{date}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="input-group input-group-sm">
+                <p-autoComplete id="capitalizeInput" #autocomplete formControlName="symbol"
+                    [suggestions]="results | async" (completeMethod)="search($event)" styleClass="w-100 analyze-textbox"
+                    inputStyleClass="form-control" placeholder="Search Symbol or Company" [autoHighlight]="false"
+                    emptyMessage="No company found!" field="ticker" (onSelect)="onSelect($event)"
+                    (onKeyUp)="onKeyUp($event)">
+                    <ng-template let-item pTemplate="item">
+                        <div class="ui-helper-clearfix container" style="width: 410px !important;">
+                            <div class="row w-100">
+                                <div class="col-2">{{item.ticker}}</div>
+                                <div class="col-8">{{item.company}}
+                                </div>
+                                <div class="col-2"><i>{{item.exchange}}</i></div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-autoComplete>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-info btn-flat" (click)="onSearchClick()">Search</button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button class="btn float-right btn-primary btn-sm" type="button" *ngIf="tickets.length"
+            (click)="sendToTickets(tickets)">Send to Ticket ({{tickets.length}})</button>
+        </div>
+    </div>
+</div>
+
+<div class="row Tabel-font" >
+    <div class="table-responsive fixTableHead">
+        <table class="height table-bordered ">
+            <thead>
+                <tr class="text-center">
+                    <th class="table-header-color" colspan="9">CALLS</th>
+                    <th class="table-header-color"></th>
+                    <th class="table-header-color" colspan="9">PUTS</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>LAST</th>
+                    <th>BID</th>
+                    <th>ASK</th>
+                    <th>CHG</th>
+                    <th>DELTA</th>
+                    <th>IV</th>
+                    <th>VOL.</th>
+                    <th>OPEN INT.</th>
+                    <th>STRIKE</th>
+                    <th>LAST</th>
+                    <th>BID</th>
+                    <th>ASK</th>
+                    <th>CHG</th>
+                    <th>DELTA</th>
+                    <th>IV</th>
+                    <th>VOL.</th>
+                    <th>OPEN INT.</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of optionChains">
+                    <td>
+                        <button class="btn btn-sm" [ngClass]="{'btn-primary':data?.call?.buy=='buy_to_open',
+                            'btn-danger':data?.call?.buy=='buy_to_close',
+                            'btn-outline-primary':!data?.call?.buy}"
+                            (click)="onBuySell(data, 'call','buy_to_open')">B</button>
+                        <button class="btn btn-sm" [ngClass]="{'btn-primary':data?.call?.sell=='sell_to_open',
+                            'btn-danger':data?.call?.sell=='sell_to_close',
+                            'btn-outline-primary':!data?.call?.sell}"
+                            (click)="onBuySell(data, 'call','sell_to_open')">S</button>
+                    </td>
+                    <td>{{data.lastCall}}</td>
+                    <td>{{data.bidCall}}</td>
+                    <td>{{data.askCall}}</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>{{data.volumeCall}}</td>
+                    <td>{{data.open_interestCall}}</td>
+
+                    <td class="strike-color">{{data.strike}}</td>
+
+                    <td>{{data.last}}</td>
+                    <td>{{data.bid}}</td>
+                    <td>{{data.ask}}</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>{{data.volume}}</td>
+                    <td>{{data.open_interest}}</td>
+                    <td>
+                        <button class="btn btn-sm" [ngClass]="{'btn-primary':data?.put?.buy=='buy_to_open',
+                            'btn-danger':data?.put?.buy=='buy_to_close',
+                            'btn-outline-primary':!data?.put?.buy}"
+                            (click)="onBuySell(data, 'put','buy_to_open')">B</button>
+                        <button class="btn btn-sm" [ngClass]="{'btn-primary':data?.put?.sell=='sell_to_open',
+                        'btn-danger':data?.put?.sell=='sell_to_close',
+                        'btn-outline-primary':!data?.put?.sell}"
+                            (click)="onBuySell(data, 'put','sell_to_open')">S</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

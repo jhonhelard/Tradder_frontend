@@ -1,0 +1,65 @@
+<div class="home-banner d-none d-lg-flex">
+    <div class="overlay d-flex align-items-center justify-content-center">
+        <form class="form-inline ml-0 ml-md-3 text-center w-50">
+            <div class="input-group input-group-lg w-100" *ngIf="true">
+                <p-autoComplete id="capitalizeInput" [(ngModel)]="text" name="text" [suggestions]="results | async"
+                    (completeMethod)="search($event)" styleClass="w-100" inputStyleClass="home-input-search"
+                    class="w-75" placeholder="Search Symbol or Company" [autoHighlight]="false"
+                    emptyMessage="No company found!" field="ticker" (onSelect)="onSelect($event)"
+                    (onKeyUp)="onKeyUp($event)" [ngModelOptions]="{standalone: true}">
+                    <ng-template let-item pTemplate="item">
+                        <div class="ui-helper-clearfix container">
+                            <div class="row">
+                                <div class="col-2">{{item.ticker}}</div>
+                                <div class="col-8">{{item.company}}
+                                </div>
+                                <div class="col-2"><i>{{item.exchange}}</i></div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-autoComplete>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-info btn-flat" (click)="analyze()">Analyze</button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- popup start -->
+<div *ngIf="showPopup" class="popup">
+    <div id="openModal" class="modalDialog">
+       <div>  <button (click)="closePopup()" class="close">X</button> <!-- <a href="#" title="Close" class="close">X</a> -->
+      
+            <a href="https://trucharts.com/subscript"> <img src="../../../assets/dist/img/trucharts.jpg" alt="Image popup" class="popupimg"/> </a> 
+        </div>
+      </div>
+    </div>
+    <!--popup end -->
+<div class="home-banner d-block d-lg-none">
+    <form class="form-inline ml-0 ml-md-3 text-center px-4 w-100 h-100 form-banner">
+        <div class="input-group input-group-lg w-100">
+            <!-- <input type="text" placeholder="AAPL, GOOG, MSCL" class="form-control"> -->
+            <span class="banner-input">
+                <p-autoComplete [(ngModel)]="text" name="text" [suggestions]="results | async"
+                    (completeMethod)="search($event)" styleClass="w-100" inputStyleClass="home-input-search"
+                    [style]="{'width': '100%'}" placeholder="Search Symbol or Company" [autoHighlight]="false"
+                    emptyMessage="No company found!" field="ticker" (onSelect)="onSelect($event)"
+                    (onKeyUp)="onKeyUp($event)">
+                    <ng-template let-item pTemplate="item">
+                        <div class="ui-helper-clearfix container">
+                            <div class="row">
+                                <div class="col-2">{{item.ticker}}</div>
+                                <div class="col-8">{{item.company}}
+                                </div>
+                                <div class="col-2"><i>{{item.exchange}}</i></div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-autoComplete>
+            </span>
+            <span class="input-group-append">
+                <button type="button" class="btn btn-info btn-flat" (click)="analyze()">Analyze</button>
+            </span>
+        </div>
+    </form>
+</div>

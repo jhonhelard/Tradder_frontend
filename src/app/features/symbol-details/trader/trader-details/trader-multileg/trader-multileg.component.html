@@ -1,0 +1,134 @@
+<form [formGroup]="multilegBuySellForm">
+    <div class="text-right"><i class="pi pi-minus-circle" style="font-size: 1.5rem" (click)="removeRow(0)"></i>&nbsp;<i
+            class="pi pi-plus-circle" style="font-size: 1.5rem" (click)="addRow()"></i></div>
+    <ng-container>
+        <div class="row"
+            *ngFor="let option_symbolFg of multilegBuySellForm.get('option_symbols')['controls']; let i = index;">
+            <ng-container [formGroup]="option_symbolFg">
+                <div class="col-md-3">
+                    <select class="custom-select" formControlName='expirations_date'
+                        [ngClass]="{ 'is-invalid': submitted && option_symbolFg.get('expirations_date').errors }">
+                        <option>-Expiration Date-</option>
+                        <option *ngFor="let date of dates" [value]="date">{{date}}</option>
+                    </select>
+                    <span *ngIf="submitted && option_symbolFg['controls'].expirations_date.errors">
+                        <span class="text-danger"
+                            *ngIf="option_symbolFg['controls'].expirations_date.errors.required">Expirations Date Is
+                            Required</span>
+                    </span>
+                </div>
+                <div class="col-md-2 marginTop">
+                    <select class="custom-select" formControlName='striks'
+                        [ngClass]="{ 'is-invalid': submitted && option_symbolFg.get('striks').errors }">
+                        <option selected>-STRIKE-</option>
+                        <option *ngFor="let strike of strikes[i]" [value]="strike">{{strike}}</option>
+                    </select>
+                    <span *ngIf="submitted && option_symbolFg['controls'].striks.errors">
+                        <span class="text-danger" *ngIf="option_symbolFg['controls'].striks.errors.required">Striks Is
+                            Required</span>
+                    </span>
+                </div>
+                <div class="col-md-2 marginTop">
+                    <select class="custom-select" formControlName='option_type'
+                        [ngClass]="{ 'is-invalid': submitted && option_symbolFg.get('option_type').errors }">
+                        <option selected>-OPTION TYPE-</option>
+                        <option *ngFor="let optionType of optionTypeOptions" [value]="optionType.value">
+                            {{optionType.name}}</option>
+                    </select>
+                    <span *ngIf="submitted && option_symbolFg['controls'].option_type.errors">
+                        <span class="text-danger" *ngIf="option_symbolFg['controls'].option_type.errors.required">Option
+                            Type Is
+                            Required</span>
+                    </span>
+                </div>
+                <div class="col-md-2 marginTop">
+                    <select class="custom-select" formControlName='side'
+                        [ngClass]="{ 'is-invalid': submitted && option_symbolFg.get('side').errors }">
+                        <option selected>-SIDE-</option>
+                        <option *ngFor="let side of sideOptions" [value]="side.value">{{side.name}}</option>
+                    </select>
+                    <span *ngIf="submitted && option_symbolFg['controls'].side.errors">
+                        <span class="text-danger" *ngIf="option_symbolFg['controls'].side.errors.required">Side Is
+                            Required</span>
+                    </span>
+                </div>
+                <div class="col-md-3 marginTop">
+                    <div class="form-group">
+                        <input [ngClass]="{ 'is-invalid': submitted && option_symbolFg.get('quantity').errors }"
+                            type="number" class="form-control" formControlName="quantity" placeholder="Quantity">
+                        <span *ngIf="submitted && option_symbolFg['controls'].quantity.errors">
+                            <span class="text-danger"
+                                *ngIf="option_symbolFg['controls'].quantity.errors.required">Quantity Is
+                                Required</span>
+                        </span>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <select [ngClass]="{ 'is-invalid': submitted && multilegBuySellForm['controls'].type.errors }"
+                    class="custom-select" formControlName="type" id="inputGroupSelect01">
+                    <option selected>-Type-</option>
+                    <option *ngFor="let type of typeOptions" [value]="type.value">{{type.name}}</option>
+                </select>
+                <span *ngIf="submitted && multilegBuySellForm['controls'].type.errors">
+                    <span class="text-danger" *ngIf="multilegBuySellForm['controls'].type.errors.required">Type Is
+                        Required
+                    </span>
+                </span>
+            </div>
+            <div></div>
+        </div>
+
+        <div class="col"
+            *ngIf='multilegBuySellForm.get("type").value == typeOption.Stop || multilegBuySellForm.get("type").value == typeOption.StopLimit'>
+            <div class="form-group">
+                <input [ngClass]="{ 'is-invalid': submitted && multilegBuySellForm['controls'].stop.errors }"
+                    type="number" class="form-control" formControlName="stop" placeholder="Stop">
+                <span *ngIf="submitted && multilegBuySellForm['controls'].stop.errors">
+                    <span class="text-danger" *ngIf="multilegBuySellForm['controls'].stop.errors.required">Stop Is
+                        Required
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="col"
+            *ngIf='multilegBuySellForm.get("type").value == typeOption.Limit || multilegBuySellForm.get("type").value == typeOption.StopLimit'>
+            <div class="form-group">
+                <input [ngClass]="{ 'is-invalid': submitted && multilegBuySellForm['controls'].price.errors }"
+                    type="number" class="form-control" formControlName="price" placeholder="Price">
+                <span *ngIf="submitted && multilegBuySellForm['controls'].price.errors">
+                    <span class="text-danger" *ngIf="multilegBuySellForm['controls'].price.errors.required">Price Is
+                        Required
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <select [ngClass]="{ 'is-invalid': submitted && multilegBuySellForm['controls'].duration.errors }"
+                    class="custom-select" formControlName="duration" id="inputGroupSelect01">
+                    <option selected>-Duration-</option>
+                    <option *ngFor="let duration of durationOptions" [value]="duration.value">{{duration.name}}</option>
+                </select>
+                <span *ngIf="submitted && multilegBuySellForm['controls'].duration.errors">
+                    <span class="text-danger" *ngIf="multilegBuySellForm['controls'].duration.errors.required">Duration
+                        Is
+                        Required</span>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <button type="submit" [disabled]="submitInProgress" (click)="onSubmit()"
+                class="btn btn-success">Submit</button>
+        </div>
+    </div>
+</form>

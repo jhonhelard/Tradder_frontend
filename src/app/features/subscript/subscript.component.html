@@ -1,0 +1,2398 @@
+<div class="content-wrapper bg-transparent">
+  <!-- <div class="splash-image landing-splash pricing-splash-image p-0">
+    <img src="assets/dist/img/pricing-bg.png" alt="" srcset="" />
+    <div class="content-box">
+      <div class="content">
+        <h1 class="title">
+          TRUCHARTS.COM IS THE MOST COMPREHENSIVE and ADVANCED STOCK CHARTING
+          WEBSITE ON THE WEB!
+        </h1>
+        <ul>
+          <li class="subtitle">Are you a serious trader/investor?</li>
+          <li class="subtitle">
+            Are you tired of paying high subscription fees and options trading
+            commissions?
+          </li>
+          <li class="subtitle">
+            Are you tired of clicking through several websites to obtain the
+            information you need to become a well informed trader and investor?
+          </li>
+        </ul>
+        <p class="subtitle">We were! So we started and created TruCharts.com</p>
+    
+      </div>
+    </div>
+  </div> -->
+  <!-- <div class="upper-accordian-wrap">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="mb-5">
+            <div class="note-tradier">
+              <img
+                width="100"
+                src="https://tradier.com/assets/images/tradier-logo.svg"
+                alt=""
+                srcset=""
+              />
+              <br />
+              <p class="mb-0 pl-0 mt-3">
+                TruCharts is a Tradier Brokerage Partner offering unlimited flat
+                fee (stock/options) trading from our site (with an approved
+                opened/funded account and includes full site access).
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <h3 class="text-center">
+            Join TruCharts Premium for Better Trading & Investing Decisions
+          </h3>
+        </div>
+        <div class="col-md-6">
+          <div class="image-accordian">
+            <accordion [closeOthers]="true" [isAnimated]="true">
+              <accordion-group
+                heading="When to Buy and When to Sell any Stock? Use Profitable
+                      Buy/Sell signal strategy charts"
+                [isOpen]="first"
+                (isOpenChange)="onChangeAccordian($event, 1)"
+              >
+                Real time technical stock charts with quotes, fundamental data
+                and news <br />
+                Automated Strategies with buy and sell signals for any stock
+                .<br />
+                Profitable Tested Buy/Sell Signal Strategies for Members.
+                <a
+                  routerLink="/stockchart/TSLA"
+                  target="_blank"
+                  class="nav-link text-info border-none accordian-btn"
+                  >EXPLORE STOCK CHARTS</a
+                >
+
+                <div class="d-md-none d-block img-margin-top">
+                  <img src="/assets/dist/img/chart-1.png" class="img-fluid" />
+                </div>
+              </accordion-group>
+              <accordion-group
+                heading="Do you know how to find the best stocks for Investment?
+                      Use Trucharts Dynamic Technical Stock Screener"
+                [isOpen]="second"
+                (isOpenChange)="onChangeAccordian($event, 2)"
+              >
+                <p>
+                  Customizable Single, Multiple technical parameter screener
+                  with mouseover charts. <br />
+                  <a
+                    routerLink="/screener"
+                    target="_blank"
+                    class="nav-link text-info border-none accordian-btn"
+                    >EXPLORE STOCK SCREENER</a
+                  >
+                </p>
+                <div class="d-md-none d-block img-margin-top">
+                  <img src="/assets/dist/img/chart-2.png" class="img-fluid" />
+                </div>
+              </accordion-group>
+              <accordion-group
+                heading="How to evaluate your trading strategies? Do
+                      profitability research on technical indicators in
+                      Backtest tool."
+                [isOpen]="third"
+                (isOpenChange)="onChangeAccordian($event, 3)"
+              >
+                Backtest will help you evaluate your trading strategies before
+                applying them to the real market. <br />
+                <a
+                  routerLink="/stockchart/TSLA"
+                  target="_blank"
+                  class="nav-link text-info border-none accordian-btn"
+                  >EXPLORE BACKTESTING</a
+                >
+                <div class="d-md-none d-block img-margin-top">
+                  <img src="/assets/dist/img/chart-3.png" class="img-fluid" />
+                </div>
+              </accordion-group>
+
+              <accordion-group
+                heading="Do you know how to find the best stocks for Investment?
+                      Use daily Technical Screened Stocks Reports"
+                [isOpen]="fourth"
+                (isOpenChange)="onChangeAccordian($event, 4)"
+              >
+                Bullish and Bearish Technical Screened Stock lists with
+                mouseover charts. <br />
+                <a
+                  routerLink="/market-report"
+                  target="_blank"
+                  class="nav-link text-info border-none accordian-btn"
+                  >EXPLORE SCREENED REPORTS</a
+                >
+                <div class="d-md-none d-block img-margin-top">
+                  <img src="/assets/dist/img/chart-4.png" class="img-fluid" />
+                </div>
+              </accordion-group>
+
+              <accordion-group
+                heading="How do I manage my Stock Portfolio? Now tracking your
+                      portfolio is easy with Daily Trucharts Technical Alerts"
+                [isOpen]="fifth"
+                (isOpenChange)="onChangeAccordian($event, 5)"
+              >
+                We send daily Technical Alerts emails for every stock in your
+                portfolio, so your investment keeps growing. <br />
+                <a
+                  routerLink="/stockchart/TSLA"
+                  target="_blank"
+                  class="nav-link text-info border-none accordian-btn"
+                  >MAINTAIN YOUR STOCK PORTFOLIO</a
+                >
+                <div class="d-md-none d-block img-margin-top">
+                  <img src="/assets/dist/img/chart-5.png" class="img-fluid" />
+                </div>
+              </accordion-group>
+            </accordion>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="d-none d-md-block">
+            <img [src]="activeAccordian?.img" class="img-fluid" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="pricing ng-scope" id="pricing">
+    <div class="container new-price-wrap">
+      <div class="row">
+        <div class="col-md-12 d-flex px-0 flex-column flex-lg-row">
+          <div class="box1 d-flex align-items-center justify-content-center">
+            <div class="content">
+              <h1 class="title">Pricing</h1>
+              <!-- <h3 class="subtitle">Transparent pricing for teams and projects of any size</h3> -->
+              <h3 class="subtitle">
+                Most comprehensive site encompassing all aspects of the market
+              </h3>
+              <h3 class="subtitle">
+                Enjoy our technical research & tools to boost performance of
+                your stock portfolio
+              </h3>
+
+              <!-- button for desktop -->
+              <div
+                class="btn-group-sm btn-group duration-btns"
+                data-toggle="buttons"
+              >
+                <label class="btn btn-shadow btn-sm btn-lg active">
+                  <input
+                    type="radio"
+                    name="options"
+                    class="btn-check"
+                    id="option3"
+                    autocomplete="off"
+                    (click)="radio_btn = 'Month'"
+                    checked
+                  />
+                  Monthly
+                </label>
+                <label class="btn btn-shadow btn-sm btn-lg">
+                  <input
+                    type="radio"
+                    name="options"
+                    class="btn-check"
+                    id="option1"
+                    autocomplete="off"
+                    (click)="radio_btn = 'Year'"
+                  />
+                  Annual
+                </label>
+              </div>
+
+              <!-- button for mobile -->
+              <div
+                class="btn-group-sm btn-group d-lg-none d-flex mobile-btns"
+                data-toggle="buttons"
+              >
+                <label class="btn btn-shadow btn-sm btn-lg active">
+                  <input
+                    type="radio"
+                    name="options"
+                    class="btn-check"
+                    id="option1"
+                    autocomplete="off"
+                    (click)="radio_btn_mobile = 'Free'"
+                    checked
+                  />
+                  Free
+                </label>
+                <label class="btn btn-shadow btn-sm btn-lg">
+                  <input
+                    type="radio"
+                    name="options"
+                    class="btn-check"
+                    id="option2"
+                    autocomplete="off"
+                    (click)="radio_btn_mobile = 'Standard'"
+                  />
+                  Standard
+                </label>
+                <label class="btn btn-shadow btn-sm btn-lg">
+                  <input
+                    type="radio"
+                    name="options"
+                    class="btn-check"
+                    id="option3"
+                    autocomplete="off"
+                    (click)="radio_btn_mobile = 'Premium'"
+                  />
+                  Premium
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-lg-flex desktop-price">
+            <div class="box2 d-flex align-items-center justify-content-center">
+              <div class="box-inner">
+                <h3>Free</h3>
+                <h2 class="pl-0">14 Days</h2>
+                <p class="pl-0">per user</p>
+                <div *ngIf="showTrialSub">
+                  <button
+                    *ngIf="!authService.isLoggedIn"
+                    class="btn btn-default"
+                    (click)="
+                      doRegister(
+                        freeSubscribe,
+                        'price_1MP8HLCRmDTwTgcmNZxzGjC4'
+                      )
+                    "
+                  >
+                    Register
+                  </button>
+                  <button
+                    *ngIf="authService.isLoggedIn"
+                    class="btn btn-default"
+                    (click)="
+                      makePayment(
+                        freeSubscribe,
+                        'price_1MP8HLCRmDTwTgcmNZxzGjC4'
+                      )
+                    "
+                  >
+                    Subscribe
+                  </button>
+                </div>
+                <div *ngIf="!showTrialSub">
+                  <label class="active-plan">{{ trialStartDate }}</label>
+                </div>
+              </div>
+            </div>
+            <div class="box3 d-flex align-items-center justify-content-center">
+              <div class="box-inner">
+                <h3>Standard</h3>
+                <h2 class="pl-0" *ngIf="radio_btn == 'Month'">$29</h2>
+                <h2 class="pl-0" *ngIf="radio_btn == 'Year'">$23</h2>
+                <p class="pl-0" *ngIf="radio_btn == 'Month'">
+                  USD/user/{{ radio_btn }}
+                </p>
+                <p class="pl-0" *ngIf="radio_btn == 'Year'">
+                  per Month
+                  <br />
+                  Paid Annually
+                </p>
+                <!-- <div class="loggin-btn">
+                  <a href="#" class="nav-link text-info border-none ml-0"
+                    >Start Your Trial</a
+                  >
+                </div> -->
+                <div *ngIf="CurrentPrice_id != 'price_1MP8T8CRmDTwTgcmlN4Cy7nQ'">
+                  <button
+                    class="btn btn-default"
+                    *ngIf="radio_btn == 'Year'"
+                    (click)="
+                      makePayment(
+                        standard_yearly,
+                        'price_1MP8T8CRmDTwTgcmlN4Cy7nQ'
+                      )
+                    "
+                  >
+                    Buy Now
+                  </button>
+                </div>
+                <div *ngIf=" CurrentPrice_id == 'price_1MP8T8CRmDTwTgcmlN4Cy7nQ' && radio_btn == 'Year'">
+                  <label class="btn btn-default active-plan">
+                    Active Plan
+                  </label>
+                </div>
+                <div *ngIf="CurrentPrice_id != 'price_1MP8T8CRmDTwTgcmxHLZx824'">
+                  <button
+                    class="btn btn-default"
+                    *ngIf="radio_btn == 'Month'"
+                    (click)="makePayment(standard_monthly,'price_1MP8T8CRmDTwTgcmxHLZx824')"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+                <div
+                  *ngIf="
+                    CurrentPrice_id == 'price_1MP8T8CRmDTwTgcmxHLZx824' &&
+                    radio_btn == 'Month'
+                  "
+                >
+                  <label class="btn btn-default active-plan">
+                    Active Plan</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="box4 d-flex align-items-center justify-content-center">
+              <div class="box-inner">
+                <h3>Premium</h3>
+                <h2 class="pl-0" *ngIf="radio_btn == 'Year'">$39</h2>
+                <h2 class="pl-0" *ngIf="radio_btn == 'Month'">
+                  ${{ premium_monthly }}
+                </h2>
+                <p class="pl-0" *ngIf="radio_btn == 'Month'">
+                  USD/user/{{ radio_btn }}
+                </p>
+                <p class="pl-0" *ngIf="radio_btn == 'Year'">
+                  per Month
+                  <br />Paid Annually
+                </p>
+                <!-- <div class="loggin-btn">
+                  <a href="#" class="nav-link text-info border-none ml-0"
+                    >Start Your Trial</a
+                  >
+                </div> -->
+                <div
+                  *ngIf="CurrentPrice_id != 'price_1MP8R4CRmDTwTgcmFSIz3VgM'"
+                >
+                  <button
+                    class="btn btn-default"
+                    *ngIf="radio_btn == 'Year'"
+                    (click)="
+                      makePayment(
+                        premium_yearly,
+                        'price_1MP8R4CRmDTwTgcmFSIz3VgM'
+                      )
+                    "
+                  >
+                    Buy Now
+                  </button>
+                </div>
+                <div
+                  *ngIf="
+                    CurrentPrice_id == 'price_1MP8R4CRmDTwTgcmFSIz3VgM' &&
+                    radio_btn == 'Year'
+                  "
+                >
+                  <label class="btn btn-default active-plan">
+                    Active Plan</label
+                  >
+                </div>
+                <div
+                  *ngIf="CurrentPrice_id != 'price_1MP8R4CRmDTwTgcmPv7vT61E'"
+                >
+                  <button
+                    class="btn btn-default"
+                    *ngIf="radio_btn == 'Month'"
+                    (click)="
+                      makePayment(
+                        premium_monthly,
+                        'price_1MP8R4CRmDTwTgcmPv7vT61E'
+                      )
+                    "
+                  >
+                    Buy Now
+                  </button>
+                </div>
+                <div
+                  *ngIf="
+                    CurrentPrice_id == 'price_1MP8R4CRmDTwTgcmPv7vT61E' &&
+                    radio_btn == 'Month'
+                  "
+                >
+                  <label class="btn btn-default active-plan">
+                    Active Plan</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- for mobile -->
+          <div class="d-block d-lg-none">
+            <div
+              class="box2 d-flex align-items-center justify-content-center"
+              *ngIf="radio_btn_mobile == 'Free'"
+            >
+              <div class="box-inner">
+                <h3>Free</h3>
+                <h2 class="pl-0">14 Days</h2>
+                <p class="pl-0">per user</p>
+                <div *ngIf="showTrialSub">
+                  <button
+                    *ngIf="!authService.isLoggedIn"
+                    class="btn btn-default"
+                    (click)="
+                      doRegister(
+                        freeSubscribe,
+                        'price_1MP8HLCRmDTwTgcmNZxzGjC4'
+                      )
+                    "
+                  >
+                    Register
+                  </button>
+                  <button
+                    *ngIf="authService.isLoggedIn"
+                    class="btn btn-default"
+                    (click)="
+                      makePayment(
+                        freeSubscribe,
+                        'price_1MP8HLCRmDTwTgcmNZxzGjC4'
+                      )
+                    "
+                  >
+                    Subscribe
+                  </button>
+                </div>
+                <div *ngIf="!showTrialSub">
+                  <label class="active-plan">{{ trialStartDate }}</label>
+                </div>
+              </div>
+            </div>
+            <div
+              class="box3 d-flex align-items-center justify-content-center"
+              *ngIf="radio_btn_mobile == 'Standard'"
+            >
+              <div class="box-inner">
+                <h3>Standard</h3>
+                <h2 class="pl-0" *ngIf="radio_btn == 'Month'">$29</h2>
+                <h2 class="pl-0" *ngIf="radio_btn == 'Year'">$23</h2>
+                <p class="pl-0" *ngIf="radio_btn == 'Month'">
+                  USD/user/{{ radio_btn }}
+                </p>
+                <p class="pl-0" *ngIf="radio_btn == 'Year'">
+                  per Month
+                  <br />
+                  Paid Annually
+                </p>
+                <!-- <div class="loggin-btn">
+                            <a href="#" class="nav-link text-info border-none ml-0"
+                              >Start Your Trial</a
+                            >
+                          </div> -->
+                <div
+                  *ngIf="CurrentPrice_id != 'price_1MP8T8CRmDTwTgcmlN4Cy7nQ'"
+                >
+                  <button
+                    class="btn btn-default"
+                    *ngIf="radio_btn == 'Year'"
+                    (click)="
+                      makePayment(
+                        standard_yearly,
+                        'price_1MP8T8CRmDTwTgcmlN4Cy7nQ'
+                      )
+                    "
+                  >
+                    Buy Now
+                  </button>
+                </div>
+                <div
+                  *ngIf="
+                    CurrentPrice_id == 'price_1MP8T8CRmDTwTgcmlN4Cy7nQ' &&
+                    radio_btn == 'Year'
+                  "
+                >
+                  <label class="btn btn-default active-plan">
+                    Active Plan</label
+                  >
+                </div>
+                <div
+                  *ngIf="CurrentPrice_id != 'price_1MP8T8CRmDTwTgcmxHLZx824'"
+                >
+                  <button
+                    class="btn btn-default"
+                    *ngIf="radio_btn == 'Month'"
+                    (click)="
+                      makePayment(
+                        standard_monthly,
+                        'price_1MP8T8CRmDTwTgcmxHLZx824'
+                      )
+                    "
+                  >
+                    Buy Now
+                  </button>
+                </div>
+                <div
+                  *ngIf="
+                    CurrentPrice_id == 'price_1MP8T8CRmDTwTgcmxHLZx824' &&
+                    radio_btn == 'Month'
+                  "
+                >
+                  <label class="btn btn-default active-plan">
+                    Active Plan</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="box4 d-flex align-items-center justify-content-center"
+              *ngIf="radio_btn_mobile == 'Premium'"
+            >
+              <div class="box-inner">
+                <h3>Premium</h3>
+                <h2 class="pl-0" *ngIf="radio_btn == 'Year'">$39</h2>
+                <h2 class="pl-0" *ngIf="radio_btn == 'Month'">
+                  ${{ premium_monthly }}
+                </h2>
+                <p class="pl-0" *ngIf="radio_btn == 'Year'">
+                  USD/user/{{ radio_btn }}
+                </p>
+                <p class="pl-0" *ngIf="radio_btn == 'Month'">
+                  per Month
+                  <br />Paid Annually
+                </p>
+                <!-- <div class="loggin-btn">
+                            <a href="#" class="nav-link text-info border-none ml-0"
+                              >Start Your Trial</a
+                            >
+                          </div> -->
+                <div
+                  *ngIf="CurrentPrice_id != 'price_1MP8R4CRmDTwTgcmFSIz3VgM'"
+                >
+                  <button
+                    class="btn btn-default"
+                    *ngIf="radio_btn == 'Year'"
+                    (click)="
+                      makePayment(
+                        premium_yearly,
+                        'price_1MP8R4CRmDTwTgcmFSIz3VgM'
+                      )
+                    "
+                  >
+                    Buy Now
+                  </button>
+                </div>
+                <div
+                  *ngIf="
+                    CurrentPrice_id == 'price_1MP8R4CRmDTwTgcmFSIz3VgM' &&
+                    radio_btn == 'Year'
+                  "
+                >
+                  <label class="btn btn-default active-plan">
+                    Active Plan</label
+                  >
+                </div>
+                <div
+                  *ngIf="CurrentPrice_id != 'price_1MP8R4CRmDTwTgcmPv7vT61E'"
+                >
+                  <button
+                    class="btn btn-default"
+                    *ngIf="radio_btn == 'Month'"
+                    (click)="
+                      makePayment(
+                        premium_monthly,
+                        'price_1MP8R4CRmDTwTgcmPv7vT61E'
+                      )
+                    "
+                  >
+                    Buy Now
+                  </button>
+                </div>
+                <div
+                  *ngIf="
+                    CurrentPrice_id == 'price_1MP8R4CRmDTwTgcmPv7vT61E' &&
+                    radio_btn == 'Month'
+                  "
+                >
+                  <label class="btn btn-default active-plan">
+                    Active Plan</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 d-flex px-0">
+          <!-- for desktop -->
+          <div class="d-none d-md-block w-100">
+            <div class="accordion w-100" id="accordionQuestion">
+              <h3 class="accordian-header">
+                REALTIME CHARTS & QUOTES WITH 20+ YEARS EOD DATA
+              </h3>
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Realtime live quotes
+                  </p>
+                </div>
+                <div class="box6">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box7">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box8">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Realtime Stockcharts (>20+ years charts)
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionOne"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionOne"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionOne"
+                    class="collapse"
+                    aria-labelledby="QuestionOne"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>Stockcharts with data since 1990</li>
+                        <li>Charts with Realtime Data Tick</li>
+                        <li>100+ Technical Indicators</li>
+                        <li>
+                          Trucharts Propriotery Stock Buy Sell Research
+                          Strategies
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="box6">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box7">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box8">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Fundamental Data w/Charts
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionTwo"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionTwo"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionTwo"
+                    class="collapse"
+                    aria-labelledby="QuestionTwo"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>Latest Fundamental Data for all stocks</li>
+                        <li>Accurate Earnings Details</li>
+                        <li>Detailed Dividend Data with History Charts</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="box6">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box7">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box8">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Multiple Chart Technical Indicators
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionThree"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionThree"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionThree"
+                    class="collapse"
+                    aria-labelledby="QuestionThree"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>70+ Technical Indicators and Overlays</li>
+                        <li>Stockcharts with data since 1990</li>
+                        <li>Charts with Realtime Data Tick</li>
+                        <li>
+                          Trucharts Propriotery Stock Buy Sell Research
+                          Strategies Indicators
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="box6">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box7">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box8">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Live Top Stocks Lists
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionFour"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionFour"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionFour"
+                    class="collapse"
+                    aria-labelledby="QuestionFour"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Live Top Gainers, Top Losers, Top Traded Stocks at one
+                          glance
+                        </li>
+                        <li>Mouseover Technical Charts</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="box6">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box7">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box8">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Detailed Dividend data
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionFive"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionFive"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionFive"
+                    class="collapse"
+                    aria-labelledby="QuestionFive"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          All paid Dividends history and charts for all dividend
+                          stocks
+                        </li>
+                        <li>Detailed Dividend Information for analysis</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="box6">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box7">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box8">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+              </div>
+              <h3 class="accordian-header">CUSTOMIZED EXPERIENCE</h3>
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Customizable Stock Screener
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionSix"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionSix"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionSix"
+                    class="collapse"
+                    aria-labelledby="QuestionSix"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>All possible Technical Scans</li>
+                        <li>
+                          Combination of multiple Scans to get a filtered stock
+                          result
+                        </li>
+                        <li>Stock scans using Dynamic Parameter Indicators</li>
+                        <li>Save and Load Dynamic Screener Settings</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="box6">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box7">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box8">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Fastest Backtesting w/technical indicators
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionSeven"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionSeven"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionSeven"
+                    class="collapse"
+                    aria-labelledby="QuestionSeven"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Backtest helps us evaluate our trading strategies
+                          before applying them to the real market.
+                        </li>
+                        <li>
+                          70+ Indicators and Overlays Combinations to use for
+                          Backtest
+                        </li>
+                        <li>30 Years of Historical Stock Data</li>
+                        <li>Save and Load Backtest Settings</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="box6">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box7">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box8">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Custom Watchlists
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionEight"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionEight"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionEight"
+                    class="collapse"
+                    aria-labelledby="QuestionEight"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Create your watchlists to track your portfolio stocks
+                        </li>
+                        <li>
+                          Get automated Buy Sell recommendations of Stocks in
+                          your watchlists
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="box6">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box7">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box8">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Algo Stock Buy/Sell Signals on charts
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionNine"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionNine"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionNine"
+                    class="collapse"
+                    aria-labelledby="QuestionNine"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Get to know when is the right time to Buy stocks and
+                          Exit stocks with the help of our Algo Stock Buy/Sell
+                          Signals on Stock Charts
+                        </li>
+                        <li>
+                          Trucharts proprietory startegies for Buy / Sell
+                          Signals.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="box6">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box7">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box8">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Daily EOD Screened Stock Lists
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionTen"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionTen"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionTen"
+                    class="collapse"
+                    aria-labelledby="QuestionTen"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Predefined Scanned Stocks Lists Reports for easy stock
+                          analysis
+                        </li>
+                        <li>
+                          Create your list of stocks by selecting your favorite
+                          stocks from Screened Stock Lists
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="box6">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box7">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box8">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+              </div>
+              <h3 class="accordian-header">
+                UNLIMITED TRADING IN EQUITY & OPTIONS
+              </h3>
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Ad Free
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionEleven"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionEleven"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionEleven"
+                    class="collapse"
+                    aria-labelledby="QuestionEleven"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>Not a single ad through out the website</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="box6">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box7">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box8">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-times solid cross responsive-show"
+                    ></i>
+                    Watchlist Stocks Technical Reports (by email)
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionTwele"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionTwele"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionTwele"
+                    class="collapse"
+                    aria-labelledby="QuestionTwele"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Stay updated on your portfolio stocks using Trucharts
+                          Email Alerts
+                        </li>
+                        <li>
+                          Get emails of Trucharts proprietory startegies Buy /
+                          Sell Signals on your Portfolio Stocks.
+                        </li>
+                        <li>
+                          Stay updated daily about when is the right time to Buy
+                          stocks and Exit stocks with the help of our Algo Stock
+                          Buy/Sell Signals on Stock Charts Email notifications
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="box6">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-times solid cross"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box7">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box8">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-times solid cross responsive-show"
+                    ></i>
+                    Unlimited Equity Trading
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionThirteen"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionThirteen"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionThirteen"
+                    class="collapse"
+                    aria-labelledby="QuestionThirteen"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Zero* brokerage for Intraday and Delivery Transactions
+                        </li>
+                        <li>Unlimited Trading in Equity</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="box6">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-times solid cross"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box7">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-times solid cross"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box8">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-times solid cross responsive-show"
+                    ></i>
+                    Unlimited Options Trading
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionFourteen"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionFourteen"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionFourteen"
+                    class="collapse"
+                    aria-labelledby="QuestionFourteen"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Zero* brokerage for Intraday and Delivery Transactions
+                        </li>
+                        <li>Unlimited Trading in Options</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="box6">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-times solid cross"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box7">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-times solid cross"
+                    ></i>
+                  </p>
+                </div>
+                <div class="box8">
+                  <p class="tick-cross">
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick"
+                    ></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- mobile -->
+          <div class="d-block d-md-none w-100">
+            <div class="accordion w-100" id="accordionQuestion">
+              <h3 class="accordian-header">
+                REALTIME CHARTS & QUOTES WITH 20+ YEARS EOD DATA
+              </h3>
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Realtime live quotes
+                  </p>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Realtime Stockcharts (>20+ years charts)
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionOne"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionOne"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionOne"
+                    class="collapse"
+                    aria-labelledby="QuestionOne"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>Stockcharts with data since 1990</li>
+                        <li>Charts with Realtime Data Tick</li>
+                        <li>100+ Technical Indicators</li>
+                        <li>
+                          Trucharts Propriotery Stock Buy Sell Research
+                          Strategies
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Fundamental Data w/Charts
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionTwo"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionTwo"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionTwo"
+                    class="collapse"
+                    aria-labelledby="QuestionTwo"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>Latest Fundamental Data for all stocks</li>
+                        <li>Accurate Earnings Details</li>
+                        <li>Detailed Dividend Data with History Charts</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Multiple Chart Technical Indicators
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionThree"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionThree"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionThree"
+                    class="collapse"
+                    aria-labelledby="QuestionThree"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>70+ Technical Indicators and Overlays</li>
+                        <li>Stockcharts with data since 1990</li>
+                        <li>Charts with Realtime Data Tick</li>
+                        <li>
+                          Trucharts Propriotery Stock Buy Sell Research
+                          Strategies Indicators
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Live Top Stocks Lists
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionFour"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionFour"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionFour"
+                    class="collapse"
+                    aria-labelledby="QuestionFour"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Live Top Gainers, Top Losers, Top Traded Stocks at one
+                          glance
+                        </li>
+                        <li>Mouseover Technical Charts</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Detailed Dividend data
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionFive"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionFive"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionFive"
+                    class="collapse"
+                    aria-labelledby="QuestionFive"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          All paid Dividends history and charts for all dividend
+                          stocks
+                        </li>
+                        <li>Detailed Dividend Information for analysis</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h3 class="accordian-header">CUSTOMIZED EXPERIENCE</h3>
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Customizable Stock Screener
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionSix"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionSix"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionSix"
+                    class="collapse"
+                    aria-labelledby="QuestionSix"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>All possible Technical Scans</li>
+                        <li>
+                          Combination of multiple Scans to get a filtered stock
+                          result
+                        </li>
+                        <li>Stock scans using Dynamic Parameter Indicators</li>
+                        <li>Save and Load Dynamic Screener Settings</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Fastest Backtesting w/technical indicators
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionSeven"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionSeven"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionSeven"
+                    class="collapse"
+                    aria-labelledby="QuestionSeven"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Backtest helps us evaluate our trading strategies
+                          before applying them to the real market.
+                        </li>
+                        <li>
+                          70+ Indicators and Overlays Combinations to use for
+                          Backtest
+                        </li>
+                        <li>30 Years of Historical Stock Data</li>
+                        <li>Save and Load Backtest Settings</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Custom Watchlists
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionEight"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionEight"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionEight"
+                    class="collapse"
+                    aria-labelledby="QuestionEight"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Create your watchlists to track your portfolio stocks
+                        </li>
+                        <li>
+                          Get automated Buy Sell recommendations of Stocks in
+                          your watchlists
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Algo Stock Buy/Sell Signals on charts
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionNine"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionNine"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionNine"
+                    class="collapse"
+                    aria-labelledby="QuestionNine"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Get to know when is the right time to Buy stocks and
+                          Exit stocks with the help of our Algo Stock Buy/Sell
+                          Signals on Stock Charts
+                        </li>
+                        <li>
+                          Trucharts proprietory startegies for Buy / Sell
+                          Signals.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Daily EOD Screened Stock Lists
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionTen"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionTen"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionTen"
+                    class="collapse"
+                    aria-labelledby="QuestionTen"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Predefined Scanned Stocks Lists Reports for easy stock
+                          analysis
+                        </li>
+                        <li>
+                          Create your list of stocks by selecting your favorite
+                          stocks from Screened Stock Lists
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h3 class="accordian-header">
+                UNLIMITED TRADING IN EQUITY & OPTIONS
+              </h3>
+              <div class="table-row">
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-xs fa-check solid green-tick responsive-show"
+                    ></i>
+                    Ad Free
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionEleven"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionEleven"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionEleven"
+                    class="collapse"
+                    aria-labelledby="QuestionEleven"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>Not a single ad through out the website</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="table-row"
+                *ngIf="['Premium', 'Standard'].includes(radio_btn_mobile)"
+              >
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-check solid solid green-tick responsive-show"
+                    ></i>
+                    Watchlist Stocks Technical Reports (by email)
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionTwele"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionTwele"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionTwele"
+                    class="collapse"
+                    aria-labelledby="QuestionTwele"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Stay updated on your portfolio stocks using Trucharts
+                          Email Alerts
+                        </li>
+                        <li>
+                          Get emails of Trucharts proprietory startegies Buy /
+                          Sell Signals on your Portfolio Stocks.
+                        </li>
+                        <li>
+                          Stay updated daily about when is the right time to Buy
+                          stocks and Exit stocks with the help of our Algo Stock
+                          Buy/Sell Signals on Stock Charts Email notifications
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="table-row"
+                *ngIf="['Premium'].includes(radio_btn_mobile)"
+              >
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-check solid solid green-tick responsive-show"
+                    ></i>
+                    Unlimited Equity Trading
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionThirteen"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionThirteen"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionThirteen"
+                    class="collapse"
+                    aria-labelledby="QuestionThirteen"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Zero* brokerage for Intraday and Delivery Transactions
+                        </li>
+                        <li>Unlimited Trading in Equity</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="table-row"
+                *ngIf="['Premium'].includes(radio_btn_mobile)"
+              >
+                <div class="box5">
+                  <p>
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-check solid solid green-tick responsive-show"
+                    ></i>
+                    Unlimited Options Trading
+                    <span
+                      class=""
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseQuestionFourteen"
+                      aria-expanded="false"
+                      aria-controls="collapseQuestionFourteen"
+                    >
+                      <i class="fa fa-question-circle"></i>
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                  </p>
+                  <div
+                    id="collapseQuestionFourteen"
+                    class="collapse"
+                    aria-labelledby="QuestionFourteen"
+                    data-parent="#accordionQuestion"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          Zero* brokerage for Intraday and Delivery Transactions
+                        </li>
+                        <li>Unlimited Trading in Options</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- new price secion end -->
+
+    <div class="testimonials-wrap">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center testimonials-text">
+            <h3 class="mb-5">
+              Here's what our members are saying about TruCharts Membership.
+            </h3>
+            <!-- <p class="text-center">
+              Here's what our members are saying about TruCharts Membership.
+            </p> -->
+            <!-- <h3 class="text-danger">here would be slider</h3> -->
+            <div class="d-grid three-cols">
+              <div
+                class="testiminial-details"
+                *ngFor="let item of testimonials"
+              >
+                <div class="slider-inner-box">
+                  <img src="/assets/dist/img/five-star.png" />
+                  <h3>{{ item.title }}</h3>
+                  <h5>{{ item.subtitle }}</h5>
+                  <p style="text-align: left !important">
+                    {{ item.content }}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- <p-carousel
+              [value]="testimonials"
+              styleClass="custom-carousel"
+              [numVisible]="3"
+              [numScroll]="1"
+              [circular]="true"
+              [autoplayInterval]="3000"
+              [responsiveOptions]="responsiveOptions"
+            >
+              <ng-template let-item pTemplate="item">
+                <div class="testiminial-details">
+                  <a href="#" class="">
+                    <div class="slider-inner-box">
+                      <img src="/assets/dist/img/five-star.png" />
+                      <h3>{{ item.title }}</h3>
+                      <h5>{{ item.subtitle }}</h5>
+                      <p style="text-align: left !important">
+                        {{ item.content }}
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </ng-template>
+            </p-carousel> -->
+
+            <!-- <carousel
+                [itemsPerSlide]="itemsPerSlide"
+                [singleSlideOffset]="true"
+                [interval]="false"
+                [indicatorsByChunk]="false"
+                [noWrap]="true"
+              >
+                <slide *ngFor="let slide of slides; let index = index">
+                  <a href="#" class="slider-inner-box">
+                      <div class="">
+                        <img src=""/>
+                        <h3>{{slide.title}}</h3>
+                        <h5>{{slide.subtitle}}</h5>
+                        <p style="text-align: left !important;">{{slide.content}}</p>
+                      </div>
+                    </a>
+                  
+                </slide>
+              </carousel> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-wrap">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="text-center">Frequently Asked Questions</h3>
+              <hr class="line-thick line-center line-50" />
+            </div>
+            <div class="col-md-12 faq">
+              <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <button
+                        class="btn btn-link"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseOne"
+                        aria-expanded="true"
+                        aria-controls="collapseOne"
+                      >
+                        <i class="fas fa-angle-right"></i>
+                        How does the free 14 day trial work?
+                      </button>
+                    </h5>
+                  </div>
+                  <div
+                    id="collapseOne"
+                    class="collapse show"
+                    aria-labelledby="headingOne"
+                    data-parent="#accordionExample"
+                  >
+                    <div class="card-body">
+                      With our no credit card needed, free trial, you gain access to our ProfitPlus tools for free for 14 days. After your free trial is over, you can choose a plan for a monthly fee to keep access.
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                      <button
+                        class="btn btn-link"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseTwo"
+                        aria-expanded="false"
+                        aria-controls="collapseTwo"
+                      >
+                        <i class="fas fa-angle-right"></i>
+                        How much does it cost to subscribe to TruCharts?
+                      </button>
+                    </h5>
+                  </div>
+                  <div
+                    id="collapseTwo"
+                    class="collapse"
+                    aria-labelledby="headingTwo"
+                    data-parent="#accordionExample"
+                  >
+                    <div class="card-body">
+                      With our trial, the first 14 days of service is totally free. You may upgrade or
+											downgrade at any point during the free trial by activating membership after
+											paying subscription fees. After 14 days of free trial period, we will charge
+											your credit card for another month of whichever service level you last
+											selected.
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                      <button
+                        class="btn btn-link"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseThree"
+                        aria-expanded="false"
+                        aria-controls="collapseThree"
+                      >
+                        <i class="fas fa-angle-right"></i>
+                        Can I change or cancel my subscription plan at any time?
+                      </button>
+                    </h5>
+                  </div>
+                  <div
+                    id="collapseThree"
+                    class="collapse"
+                    aria-labelledby="headingThree"
+                    data-parent="#accordionExample"
+                  >
+                    <div class="card-body">
+                      Yes. With a few simple clicks, you can cancel, upgrade, or downgrade your subscription at any time.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="support-center-wrap">
+      <div class="support-bg"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="text-center">
+              Still Have Questions? <strong>We're Here to Help!</strong>
+            </h4>
+            <hr class="line-thick line-center line-50" />
+            <div
+              class="support-info d-flex align-items-center justify-content-center flex-column"
+            >
+              <p>
+                Visit our Support Center or contact us for answers and
+                assistance.
+              </p>
+              <button>
+                Support Center&nbsp;&nbsp;<i
+                  class="fas fa-arrow-circle-right"
+                ></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="subscribe-wrap">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- <h2 class="text-center">Subscribe to Us!</h2> -->
+            <div
+              class="loggin-btn d-flex align-items-center justify-content-center flex-column mt-4"
+            >
+              <button
+                (click)="scrollToSubscription()"
+                class="btn-subscribe text-info border-none subscrib-btn m-0"
+              >
+                Start your free 14 days trial
+                <!-- <i class="fas fa-bell"></i> -->
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="isLoading" class="col-12 text-center loading">
+      <i class="fas fa-3x fa-sync-alt fa-spin text-muted"></i>
+    </div>
+  </div>
+  <!-- <button onmouseover="welcome()"> Welcome to our website </button>     -->
+</div>
